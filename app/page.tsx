@@ -1,5 +1,6 @@
+import { useTranslations } from 'next-intl';
+
 export default function Home() {
-  return (
-    <h1>Hello, Next.js!</h1>
-  );
+  const t = useTranslations('HomePage');
+  return <h1>{t('title')}</h1>;
 }
