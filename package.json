@@ -6,8 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write .",
     "lint": "eslint",
-    "test": "vitest"
+    "lint:fix": "eslint --fix .",
+    "lint-staged": "lint-staged",
+    "test": "vitest run",
+    "prepare": "husky || true"
   },
   "dependencies": {
     "@apollo/client": "^4.2.3",
@@ -37,7 +42,12 @@
     "@vitejs/plugin-react": "^6.0.2",
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.6",
+    "husky": "^9.1.7",
     "jsdom": "^29.1.1",
+    "lint-staged": "^17.0.7",
+    "prettier": "^3.8.4",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vite-tsconfig-paths": "^6.1.1",
