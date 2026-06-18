@@ -9,7 +9,7 @@ export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
   return new ApolloClient({
     cache: new InMemoryCache(),
     link: new HttpLink({
-      uri: process.env.PUBLIC_GRAPHQL_API_URL,
+      uri: process.env.VITE_GRAPHQL_URL,
       fetchOptions: {
         // Optional: Next.js-specific fetch options for caching and revalidation
         // See: https://nextjs.org/docs/app/api-reference/functions/fetch
