@@ -9,12 +9,12 @@ export default function AuthLayout({
   const t = useTranslations('AuthPage');
 
   return (
-      <div className="flex flex-col gap-4">
-        <nav className='flex gap-2'>
-          <Link href="./login">{t('loginTab')}</Link>
-          <Link href="./signup">{t('signupTab')}</Link>
-        </nav>
-        {children}
-      </div>
+    <main className="flex flex-col gap-4">
+      <nav className="flex gap-2">
+        <Link href="./login">{t('loginTab')}</Link>
+        <Link href="./signup">{t('signupTab')}</Link>
+      </nav>
+      {children}
+    </main>
   );
 }
