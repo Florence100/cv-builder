@@ -1,4 +1,4 @@
-import { AuthNavigation } from '@/src/widgets/auth-navigation/ui/AuthNavigation';
+import { AuthNavigation } from '@/src/widgets/auth-navigation';
 
 export default function AuthLayout({
   children,
