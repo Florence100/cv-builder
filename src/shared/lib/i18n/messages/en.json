@@ -1,9 +1,0 @@
-{
-  "HomePage": {
-    "title": "Welcome to my CV Builder!"
-  },
-  "AuthPage": {
-    "loginTab": "Login",
-    "signupTab": "Sign up"
-  }
-}
