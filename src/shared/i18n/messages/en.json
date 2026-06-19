@@ -1,0 +1,15 @@
+{
+  "pages": {
+    "login": {},
+    "signup": {
+      "title": "Register now",
+      "subtitle": "Welcome! Sign up to continue"
+    }
+  },
+  "widgets": {
+    "auth-navigation": {
+      "loginTab": "Login",
+      "signupTab": "Sign up"
+    }
+  }
+}
