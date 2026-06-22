@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${roboto.variable} antialiased`}>
-      <body className="min-h-dvh flex flex-col">
+      <body className="min-h-dvh flex flex-col w-full items-center">
         <NextIntlClientProvider>
           <ApolloWrapper>{children}</ApolloWrapper>
         </NextIntlClientProvider>
