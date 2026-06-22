@@ -5,7 +5,9 @@
       "title": "Register now",
       "subtitle": "Welcome! Sign up to continue",
       "emailPlaceholder": "Email",
-      "passwordPlaceholder": "Password"
+      "passwordPlaceholder": "Password",
+      "submitButton": "Create an account",
+      "haveAccountButton": "I have an account"
     }
   },
   "widgets": {
