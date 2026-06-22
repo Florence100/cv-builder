@@ -1,22 +1,17 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Roboto } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
-import '../src/app/styles/globals.css';
 import { ApolloWrapper } from '@/src/app/providers';
+import '../src/app/styles/globals.css';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+const roboto = Roboto({
+  variable: '--font-roboto',
+  subsets: ['latin', 'cyrillic'],
 });
 
 export const metadata: Metadata = {
   title: 'CV-Builder',
-  description: 'Here will be some description for CV-Builder',
+  description: 'The app for building CVs',
 };
 
 export default function RootLayout({
@@ -25,8 +20,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">
+    <html lang="en" className={`${roboto.variable} antialiased`}>
+      <body className="min-h-dvh flex flex-col">
         <NextIntlClientProvider>
           <ApolloWrapper>{children}</ApolloWrapper>
         </NextIntlClientProvider>

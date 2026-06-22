@@ -3,7 +3,9 @@
     "login": {},
     "signup": {
       "title": "Register now",
-      "subtitle": "Welcome! Sign up to continue"
+      "subtitle": "Welcome! Sign up to continue",
+      "emailPlaceholder": "Email",
+      "passwordPlaceholder": "Password"
     }
   },
   "widgets": {
