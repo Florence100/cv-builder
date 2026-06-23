@@ -11,7 +11,7 @@ export function LoginForm() {
       <FloatingInput type="email" label={t('emailPlaceholder')} />
       <PasswordInput label={t('passwordPlaceholder')} />
 
-      <Button className="cursor-pointer w-[220px] h-[48px] rounded-[40px] uppercase text-sm mt-8 shadow-sm hover:bg-btn-hovered">
+      <Button className="cursor-pointer w-55 h-12 rounded-[40px] uppercase text-sm mt-8 shadow-sm hover:bg-btn-hovered">
         {t('button')}
       </Button>
     </form>

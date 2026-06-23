@@ -1,13 +1,11 @@
 'use client';
 
-import { useState } from 'react';
-import * as React from 'react';
+import { useState, ComponentProps, useId } from 'react';
 import { Input } from './input';
 import { Button } from './button';
-import { useTranslations } from 'next-intl';
 import { cn } from '@/src/shared/lib/class-names';
 
-type FloatingInputProps = React.ComponentProps<'input'> & {
+type PasswordInputProps = ComponentProps<'input'> & {
   label: string;
 };
 
@@ -39,8 +37,8 @@ function EyeOff() {
   );
 }
 
-export function PasswordInput({ label, id, className, ...props }: FloatingInputProps) {
-  const generatedId = React.useId();
+export function PasswordInput({ label, id, className, ...props }: PasswordInputProps) {
+  const generatedId = useId();
   const inputId = id ?? generatedId;
   const [show, setShow] = useState(false);
 
@@ -86,7 +84,7 @@ export function PasswordInput({ label, id, className, ...props }: FloatingInputP
         type="button"
         variant="ghost"
         size="icon"
-        className="absolute right-2 top-[5px] cursor-pointer w-[38px] h-[38px] rounded-full hover:bg-[#0000000a]"
+        className="absolute right-2 top-1 cursor-pointer w-10 h-10 rounded-full hover:bg-icon-hover"
         onClick={() => setShow((v) => !v)}
       >
         {show ? <EyeOff /> : <Eye />}

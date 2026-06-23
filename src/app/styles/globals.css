@@ -12,7 +12,7 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
   --primary: rgba(198, 48, 49, 1);
-  --primary-transporent: rgba(198, 48, 49, 0.04);
+  --primary-transparent: rgba(198, 48, 49, 0.04);
   --primary-foreground: rgba(255, 255, 255, 1);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -77,6 +77,7 @@
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
   --color-btn-hovered: rgb(138, 33, 34);
+  --color-icon-hover: rgba(0, 0, 0, 0.04);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
