@@ -26,5 +26,11 @@
       "loginTab": "Login",
       "signupTab": "Sign up"
     }
+  },
+  "ui": {
+    "password-input": {
+      "btnShowPassword": "Show password",
+      "btnHidePassword": "Hide password"
+    }
   }
 }

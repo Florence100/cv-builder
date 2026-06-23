@@ -1,20 +1,20 @@
-import * as React from 'react';
+import { useId, ComponentProps } from 'react';
 import { Input } from '@/src/shared/ui/input';
 import { cn } from '@/src/shared/lib/class-names';
 
-type FloatingInputProps = React.ComponentProps<'input'> & {
+type FloatingInputProps = ComponentProps<'input'> & {
   label: string;
 };
 
 export function FloatingInput({ label, id, className, ...props }: FloatingInputProps) {
-  const generatedId = React.useId();
+  const generatedId = useId();
   const inputId = id ?? generatedId;
 
   return (
     <div className="relative w-full">
       <Input
         id={inputId}
-        placeholder=" "
+        placeholder={props.placeholder ?? ' '}
         className={cn(
           'h-12 p-3 text-base placeholder:text-base bg-transparent border-border rounded-none outline-none hover:border-border-hovered peer',
           className
@@ -38,7 +38,7 @@ export function FloatingInput({ label, id, className, ...props }: FloatingInputP
           peer-focus:bg-background
           peer-focus:p-1
 
-          peer-not-placeholder-shown:top-0          
+          peer-not-placeholder-shown:top-0
           peer-not-placeholder-shown:text-sm
           peer-not-placeholder-shown:bg-background
           peer-not-placeholder-shown:p-1
