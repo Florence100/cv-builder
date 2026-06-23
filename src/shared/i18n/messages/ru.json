@@ -1,4 +1,11 @@
 {
+  "features": {
+    "registerByEmail": {
+      "emailPlaceholder": "Почта",
+      "passwordPlaceholder": "Пароль",
+      "submitButton": "Создать аккаунт"
+    }
+  },
   "pages": {
     "login": {
       "title": "С возвращением",
@@ -11,8 +18,7 @@
     "signup": {
       "title": "Зарегистрируйтесь",
       "subtitle": "Добро пожаловать! Создайте аккаунт, чтобы продолжить",
-      "emailPlaceholder": "Почта",
-      "passwordPlaceholder": "Пароль"
+      "haveAccountButton": "У меня есть аккаунт"
     }
   },
   "widgets": {
