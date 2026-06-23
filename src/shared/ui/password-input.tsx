@@ -1,13 +1,11 @@
 'use client';
 
 import { useState, ComponentProps, useId } from 'react';
-import { Input } from './input';
 import { Button } from './button';
-import { cn } from '@/src/shared/lib/class-names';
+import { FloatingInput } from './floating-input';
+import { useTranslations } from 'next-intl';
 
-type PasswordInputProps = ComponentProps<'input'> & {
-  label: string;
-};
+type PasswordInputProps = Omit<ComponentProps<'input'> & { label: string }, 'type'>;
 
 function Eye() {
   return (
@@ -41,51 +39,26 @@ export function PasswordInput({ label, id, className, ...props }: PasswordInputP
   const generatedId = useId();
   const inputId = id ?? generatedId;
   const [show, setShow] = useState(false);
+  const t = useTranslations('ui.password-input');
 
   return (
     <div className="relative w-full">
-      <Input
+      <FloatingInput
+        label={label}
+        className={className}
         id={inputId}
-        placeholder=" "
         type={show ? 'text' : 'password'}
-        className={cn(
-          'h-12 p-3 text-base placeholder:text-base bg-transparent border-border rounded-none outline-none hover:border-border-hovered peer',
-          className
-        )}
+        disabled={props.disabled}
         {...props}
       />
-
-      <label
-        htmlFor={inputId}
-        className="
-          pointer-events-none
-          absolute left-3 top-1/2
-          -translate-y-1/2
-          text-base text-muted-foreground
-          transition-all duration-200
-          origin-left
-
-          peer-focus:top-0
-          peer-focus:text-sm
-          peer-focus:text-primary
-          peer-focus:bg-background
-          peer-focus:p-1
-
-          peer-[&:not(:placeholder-shown)]:top-0
-          peer-[&:not(:placeholder-shown)]:text-sm
-          peer-[&:not(:placeholder-shown)]:bg-background
-          peer-[&:not(:placeholder-shown)]:p-1
-        "
-      >
-        {label}
-      </label>
 
       <Button
         type="button"
         variant="ghost"
         size="icon"
-        className="absolute right-2 top-1 cursor-pointer w-10 h-10 rounded-full hover:bg-icon-hover"
+        className="absolute right-2 top-1 cursor-pointer w-10 h-10 rounded-full hover:bg-icon-hover active:scale-100"
         onClick={() => setShow((v) => !v)}
+        aria-label={show ? t('btnHidePassword') : t('btnShowPassword')}
       >
         {show ? <EyeOff /> : <Eye />}
       </Button>

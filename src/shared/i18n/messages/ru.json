@@ -20,5 +20,11 @@
       "loginTab": "Войти",
       "signupTab": "Создать"
     }
+  },
+  "ui": {
+    "password-input": {
+      "btnShowPassword": "Показать пароль",
+      "btnHidePassword": "Спрятать пароль"
+    }
   }
 }
