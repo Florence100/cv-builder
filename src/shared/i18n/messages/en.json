@@ -1,6 +1,13 @@
 {
   "pages": {
-    "login": {},
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Hello again! Log in to continue",
+      "emailPlaceholder": "Email",
+      "passwordPlaceholder": "Password",
+      "button": "Log in",
+      "forgetLink": "Forgot password"
+    },
     "signup": {
       "title": "Register now",
       "subtitle": "Welcome! Sign up to continue",
