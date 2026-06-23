@@ -1,5 +1,7 @@
 import { SignupForm } from '@/src/features/register-by-email/ui/SignupForm';
+import { Button } from '@/src/shared/ui/button';
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 
 export const SignupPage = () => {
   const t = useTranslations('pages.signup');
@@ -12,6 +14,9 @@ export const SignupPage = () => {
           <p>{t('subtitle')}</p>
         </div>
         <SignupForm />
+        <Button variant="ghost" className="w-55 h-12 mt-2 uppercase text-muted-foreground" asChild>
+          <Link href="/auth/login">{t('haveAccountButton')}</Link>
+        </Button>
       </div>
     </div>
   );

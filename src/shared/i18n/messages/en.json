@@ -1,4 +1,11 @@
 {
+  "features": {
+    "registerByEmail": {
+      "emailPlaceholder": "Email",
+      "passwordPlaceholder": "Password",
+      "submitButton": "Create an account"
+    }
+  },
   "pages": {
     "login": {
       "title": "Welcome back",
@@ -11,9 +18,6 @@
     "signup": {
       "title": "Register now",
       "subtitle": "Welcome! Sign up to continue",
-      "emailPlaceholder": "Email",
-      "passwordPlaceholder": "Password",
-      "submitButton": "Create an account",
       "haveAccountButton": "I have an account"
     }
   },
