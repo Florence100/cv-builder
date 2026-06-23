@@ -6,7 +6,7 @@ if (typeof window !== 'undefined') {
   try {
     accessToken = localStorage.getItem('accessToken');
   } catch {
-    console.error('Access tocken reading failed');
+    console.error('Access token reading failed');
   }
 }
 
