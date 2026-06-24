@@ -22,15 +22,23 @@
     }
   },
   "widgets": {
-    "auth-navigation": {
+    "authNavigation": {
       "loginTab": "Войти",
       "signupTab": "Создать"
     }
   },
   "ui": {
-    "password-input": {
+    "passwordInput": {
       "btnShowPassword": "Показать пароль",
       "btnHidePassword": "Спрятать пароль"
     }
+  },
+  "errors": {
+    "emailRequired": "Поле email обязательно",
+    "passwordRequired": "Поле пароль обязательно",
+    "emailInvalid": "Пожалуйста, введите корректный email",
+    "passwordTooShort": "Пароль должен содержать как минимум 8 символов",
+    "invalidCredentials": "Неверные учетные данные",
+    "uninspectedServerError": "Ошибка сервера. Пожалуйста, попробуйте еще раз"
   }
 }

@@ -3,7 +3,11 @@
     "registerByEmail": {
       "emailPlaceholder": "Email",
       "passwordPlaceholder": "Password",
-      "submitButton": "Create an account"
+      "submitButton": "Create an account",
+      "errors": {
+        "userExists": "User already exists",
+        "uninspectedServerError": "Server error. Please, try again"
+      }
     }
   },
   "pages": {
@@ -22,15 +26,24 @@
     }
   },
   "widgets": {
-    "auth-navigation": {
+    "authNavigation": {
       "loginTab": "Login",
       "signupTab": "Sign up"
     }
   },
   "ui": {
-    "password-input": {
+    "passwordInput": {
       "btnShowPassword": "Show password",
       "btnHidePassword": "Hide password"
     }
+  },
+  "errors": {
+    "emailRequired": "Email address is required.",
+    "passwordRequired": "Password is required.",
+    "emailInvalid": "Please enter a valid email address.",
+    "passwordTooShort": "Password must contain at least 8 characters",
+    "invalidCredentials": "Invalid сredentials",
+    "userExists": "User already exists",
+    "uninspectedServerError": "Server error. Please, try again"
   }
 }
