@@ -17,7 +17,7 @@ export function LoginForm() {
   const [loginTrigger] = useLogin();
   const router = useRouter();
 
-  const initialState: FormState = { errors: {}, inputs: { email: '' } };
+  const initialState: AuthFormState = { errors: {}, inputs: { email: '' } };
 
   async function reducerAction(
     previousState: AuthFormState,
