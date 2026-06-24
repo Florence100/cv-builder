@@ -23,8 +23,8 @@ export function LoginForm() {
     previousState: AuthFormState,
     actionPayload: FormData
   ): Promise<AuthFormState> {
-    const email = actionPayload.get('email');
-    const password = actionPayload.get('password');
+    const email = actionPayload.get('email') as string;
+    const password = actionPayload.get('password') as string;
 
     const validationErrors = validateAuthFields({ email: email, password: password }, tErr);
 
