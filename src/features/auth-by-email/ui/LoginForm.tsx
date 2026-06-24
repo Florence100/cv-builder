@@ -22,7 +22,7 @@ export function LoginForm() {
   async function reducerAction(
     previousState: AuthFormState,
     actionPayload: FormData
-  ): Promise<FormState> {
+  ): Promise<AuthFormState> {
     const email = actionPayload.get('email');
     const password = actionPayload.get('password');
 
