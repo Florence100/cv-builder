@@ -9,7 +9,7 @@ export function validateAuthFields(data: AuthFormData, t: TFunction): Validation
   const errors: ValidationErrors = {};
 
   const email = data.email?.trim();
-  const password = data.password?.trim();
+  const password = data.password;
 
   if (!email) {
     errors.email = t('emailRequired');

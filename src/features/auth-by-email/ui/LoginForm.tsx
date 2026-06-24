@@ -49,12 +49,12 @@ export function LoginForm() {
       if (!data) throw Error;
 
       const {
-        access_token,
+        access_token: accessToken,
         // user
       } = data.login;
 
-      if (access_token) {
-        localStorage.setItem('accessToken', access_token);
+      if (accessToken) {
+        localStorage.setItem('accessToken', accessToken);
         return { errors: {}, success: true };
       }
 
