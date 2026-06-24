@@ -49,7 +49,7 @@ export function LoginForm() {
       const {
         access_token,
         // user
-      } = data.login;
+      } = data?.login;
 
       if (access_token) {
         localStorage.setItem('accessToken', access_token);
