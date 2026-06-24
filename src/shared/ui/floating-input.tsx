@@ -42,6 +42,11 @@ export function FloatingInput({ label, id, className, ...props }: FloatingInputP
           peer-not-placeholder-shown:text-sm
           peer-not-placeholder-shown:bg-background
           peer-not-placeholder-shown:p-1
+
+          peer-autofill:top-0
+          peer-autofill:text-sm
+          peer-autofill:bg-background
+          peer-autofill:p-1
         "
       >
         {label}

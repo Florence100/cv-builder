@@ -1,5 +1,6 @@
 import { LoginForm } from '@/src/features/auth-by-email';
 import { useTranslations } from 'next-intl';
+import { Button } from '@/src/shared/ui/button';
 import Link from 'next/link';
 
 export function LoginPage() {
@@ -15,12 +16,9 @@ export function LoginPage() {
 
         <LoginForm />
 
-        <Link
-          className="uppercase text-sm text-muted-foreground mt-6 focus:outline focus:outline-primary"
-          href="#"
-        >
-          {t('forgetLink')}
-        </Link>
+        <Button variant="ghost" className="w-55 h-12 mt-2 uppercase text-muted-foreground" asChild>
+          <Link href="#">{t('forgetLink')}</Link>
+        </Button>
       </div>
     </div>
   );

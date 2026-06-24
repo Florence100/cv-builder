@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 export const AuthNavigation = () => {
-  const t = useTranslations('widgets.auth-navigation');
+  const t = useTranslations('widgets.authNavigation');
   const pathname = usePathname();
 
   return (
