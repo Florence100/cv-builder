@@ -46,10 +46,12 @@ export function LoginForm() {
         },
       });
 
+      if (!data) throw Error;
+
       const {
         access_token,
         // user
-      } = data?.login;
+      } = data.login;
 
       if (access_token) {
         localStorage.setItem('accessToken', access_token);
