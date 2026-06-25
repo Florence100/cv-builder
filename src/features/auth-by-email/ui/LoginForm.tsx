@@ -1,114 +1,102 @@
 'use client';
 
-import { useActionState } from 'react';
 import { Button } from '@/src/shared/ui/button';
-import { useTranslations } from 'next-intl';
-import { PasswordInput } from '@/src/shared/ui/password-input';
 import { FloatingInput } from '@/src/shared/ui/floating-input';
-import { validateAuthFields } from '../utils/validate';
-import { AuthFormState } from '@/src/model/types';
-import { useLogin } from '../api/api';
-import { CombinedGraphQLErrors } from '@apollo/client/errors';
+import { PasswordInput } from '@/src/shared/ui/password-input';
+import { useTranslations } from 'next-intl';
+import { accessTokenVar } from '@/src/entities/session/model/session';
 import { useRouter } from 'next/navigation';
+import { CombinedGraphQLErrors } from '@apollo/client';
+import { useForm } from 'react-hook-form';
+import { EMAIL_REGEXP } from '@/src/shared/lib/validation';
+import { useLogin } from '../api/api';
+import { LoginFormData } from '../model/types';
 
-export function LoginForm() {
-  const t = useTranslations('pages.login');
-  const tErr = useTranslations('errors');
+export const LoginForm = () => {
+  const t = useTranslations('features.authByEmail');
+  const tErr = useTranslations('shared.validation.errors');
   const [loginTrigger] = useLogin();
   const router = useRouter();
 
-  const initialState: AuthFormState = { errors: {}, inputs: { email: '' } };
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors },
+  } = useForm<LoginFormData>();
 
-  async function reducerAction(
-    previousState: AuthFormState,
-    actionPayload: FormData
-  ): Promise<AuthFormState> {
-    const email = actionPayload.get('email') as string;
-    const password = actionPayload.get('password') as string;
-
-    const validationErrors = validateAuthFields({ email: email, password: password }, tErr);
-
-    if (validationErrors) {
-      return {
-        errors: validationErrors,
-        inputs: { email },
-        success: false,
-      };
-    }
-
+  const onSubmit = async (data: LoginFormData) => {
     try {
-      const { data } = await loginTrigger({
-        variables: {
-          auth: {
-            email,
-            password,
-          },
-        },
+      const response = await loginTrigger({
+        variables: { auth: { email: data.email, password: data.password } },
       });
+      if (!response) throw Error;
 
-      if (!data) throw Error;
-
-      const {
-        access_token: accessToken,
-        // user
-      } = data.login;
+      const accessToken = response.data?.login.access_token;
 
       if (accessToken) {
         localStorage.setItem('accessToken', accessToken);
-        return { errors: {}, success: true };
+        accessTokenVar(response.data?.login.access_token);
+        router.replace('/users');
       }
-
-      return { errors: {}, success: true };
     } catch (error) {
       if (CombinedGraphQLErrors.is(error)) {
         const graphQLError = error.errors[0];
 
         if (graphQLError.message.toLocaleLowerCase() === 'invalid credentials') {
-          return { errors: { server: tErr('invalidCredentials') }, success: false };
+          setError('root.server', { message: tErr('invalidCredentials') });
+          return null;
         }
       }
-      return { errors: { server: tErr('uninspectedServerError') }, success: false };
+      setError('root.server', { message: tErr('uninspectedServerError') });
     }
-  }
-
-  const [state, formAction, isPending] = useActionState(reducerAction, initialState);
-
-  if (state.success) {
-    router.replace('/users');
-  }
+  };
 
   return (
-    <form action={formAction} className="w-full flex flex-col gap-5 items-center">
+    <form onSubmit={handleSubmit(onSubmit)} className="w-full flex flex-col gap-5 items-center">
       <div className="w-full flex flex-col gap-1">
         <FloatingInput
-          type="email"
-          name="email"
           label={t('emailPlaceholder')}
-          defaultValue={state?.inputs?.email}
+          isError={!!errors.email}
+          {...register('email', {
+            required: tErr('emailRequired'),
+            pattern: {
+              value: EMAIL_REGEXP,
+              message: tErr('emailInvalid'),
+            },
+          })}
         />
-        {state?.errors?.email && (
-          <span className="text-red-500 text-xs self-start px-1">{state.errors.email}</span>
+        {errors.email && (
+          <span className="text-primary text-xs self-start px-1">{errors.email.message}</span>
         )}
       </div>
-
       <div className="w-full flex flex-col gap-1">
-        <PasswordInput name="password" label={t('passwordPlaceholder')} />
-        {state?.errors?.password && (
-          <span className="text-red-500 text-xs self-start px-1">{state.errors.password}</span>
+        <PasswordInput
+          label={t('passwordPlaceholder')}
+          isError={!!errors.password}
+          {...register('password', {
+            required: tErr('passwordRequired'),
+            minLength: {
+              value: 8,
+              message: tErr('passwordTooShort'),
+            },
+          })}
+        />
+        {errors.password && (
+          <span className="text-primary text-xs self-start px-1">{errors.password.message}</span>
         )}
       </div>
 
-      {state?.errors?.server && (
-        <div className="text-red-500 text-sm text-center mt-2">{state.errors.server}</div>
+      {errors.root?.server && (
+        <div className="text-primary text-sm text-center mt-2">{errors.root?.server.message}</div>
       )}
 
       <Button
         type="submit"
-        disabled={isPending}
-        className="cursor-pointer w-55 h-12 rounded-[40px] uppercase text-sm mt-10 shadow-sm hover:bg-btn-hovered"
+        className="w-55 h-12 rounded-full uppercase text-sm mt-10 shadow-sm hover:bg-btn-hovered cursor-pointer"
       >
-        {t('button')}
+        {t('submitButton')}
       </Button>
     </form>
   );
-}
+};

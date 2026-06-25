@@ -42,7 +42,7 @@ export function PasswordInput({ label, isError, id, className, ...props }: Passw
   const generatedId = useId();
   const inputId = id ?? generatedId;
   const [show, setShow] = useState(false);
-  const t = useTranslations('ui.passwordInput');
+  const t = useTranslations('shared.ui.passwordInput');
 
   return (
     <div className="relative w-full">

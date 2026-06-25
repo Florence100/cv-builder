@@ -14,7 +14,7 @@ import { EMAIL_REGEXP } from '@/src/shared/lib/validation';
 
 export const SignupForm = () => {
   const t = useTranslations('features.registerByEmail');
-  const tErr = useTranslations('errors');
+  const tErr = useTranslations('shared.validation.errors');
   const [signup] = useSignup();
   const router = useRouter();
 
@@ -32,8 +32,6 @@ export const SignupForm = () => {
       });
       if (!response) throw Error;
 
-      console.log(response);
-
       const accessToken = response.data?.signup.access_token;
 
       if (accessToken) {
@@ -45,15 +43,12 @@ export const SignupForm = () => {
       if (CombinedGraphQLErrors.is(error)) {
         const graphQLError = error.errors[0];
 
-        console.log(graphQLError.message.toLocaleLowerCase());
-
         if (graphQLError.message.toLocaleLowerCase() === 'user already exists') {
-          console.log(123);
           setError('root.server', { message: tErr('userExists') });
-        } else {
-          setError('root.server', { message: tErr('uninspectedServerError') });
+          return null;
         }
       }
+      setError('root.server', { message: tErr('uninspectedServerError') });
     }
   };
 

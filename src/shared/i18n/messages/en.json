@@ -3,20 +3,18 @@
     "registerByEmail": {
       "emailPlaceholder": "Email",
       "passwordPlaceholder": "Password",
-      "submitButton": "Create an account",
-      "errors": {
-        "userExists": "User already exists",
-        "uninspectedServerError": "Server error. Please, try again"
-      }
+      "submitButton": "Create an account"
+    },
+    "authByEmail": {
+      "emailPlaceholder": "Email",
+      "passwordPlaceholder": "Password",
+      "submitButton": "Log in"
     }
   },
   "pages": {
     "login": {
       "title": "Welcome back",
       "subtitle": "Hello again! Log in to continue",
-      "emailPlaceholder": "Email",
-      "passwordPlaceholder": "Password",
-      "button": "Log in",
       "forgetLink": "Forgot password"
     },
     "signup": {
@@ -31,19 +29,23 @@
       "signupTab": "Sign up"
     }
   },
-  "ui": {
-    "passwordInput": {
-      "btnShowPassword": "Show password",
-      "btnHidePassword": "Hide password"
+  "shared": {
+    "ui": {
+      "passwordInput": {
+        "btnShowPassword": "Show password",
+        "btnHidePassword": "Hide password"
+      }
+    },
+    "validation": {
+      "errors": {
+        "emailRequired": "Email address is required",
+        "passwordRequired": "Password is required",
+        "emailInvalid": "Please enter a valid email address",
+        "passwordTooShort": "Password must contain at least 8 characters",
+        "invalidCredentials": "Invalid сredentials",
+        "userExists": "User already exists",
+        "uninspectedServerError": "Server error. Please, try again"
+      }
     }
-  },
-  "errors": {
-    "emailRequired": "Email address is required.",
-    "passwordRequired": "Password is required.",
-    "emailInvalid": "Please enter a valid email address.",
-    "passwordTooShort": "Password must contain at least 8 characters",
-    "invalidCredentials": "Invalid сredentials",
-    "userExists": "User already exists",
-    "uninspectedServerError": "Server error. Please, try again"
   }
 }

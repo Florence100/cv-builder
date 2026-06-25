@@ -4,15 +4,17 @@
       "emailPlaceholder": "Почта",
       "passwordPlaceholder": "Пароль",
       "submitButton": "Создать аккаунт"
+    },
+    "authByEmail": {
+      "emailPlaceholder": "Почта",
+      "passwordPlaceholder": "Пароль",
+      "submitButton": "Войти"
     }
   },
   "pages": {
     "login": {
       "title": "С возвращением",
       "subtitle": "Рады вас видеть! Войдите, чтобы продолжить",
-      "emailPlaceholder": "Почта",
-      "passwordPlaceholder": "Пароль",
-      "button": "Войти",
       "forgetLink": "Забыли пароль"
     },
     "signup": {
@@ -27,18 +29,23 @@
       "signupTab": "Создать"
     }
   },
-  "ui": {
-    "passwordInput": {
-      "btnShowPassword": "Показать пароль",
-      "btnHidePassword": "Спрятать пароль"
+  "shared": {
+    "ui": {
+      "passwordInput": {
+        "btnShowPassword": "Показать пароль",
+        "btnHidePassword": "Спрятать пароль"
+      }
+    },
+    "validation": {
+      "errors": {
+        "emailRequired": "Поле email обязательно",
+        "passwordRequired": "Поле пароль обязательно",
+        "emailInvalid": "Пожалуйста, введите корректный email",
+        "passwordTooShort": "Пароль должен содержать как минимум 8 символов",
+        "invalidCredentials": "Неверные учетные данные",
+        "userExists": "Пользователь уже зарегистрирован",
+        "uninspectedServerError": "Ошибка сервера. Пожалуйста, попробуйте еще раз"
+      }
     }
-  },
-  "errors": {
-    "emailRequired": "Поле email обязательно",
-    "passwordRequired": "Поле пароль обязательно",
-    "emailInvalid": "Пожалуйста, введите корректный email",
-    "passwordTooShort": "Пароль должен содержать как минимум 8 символов",
-    "invalidCredentials": "Неверные учетные данные",
-    "uninspectedServerError": "Ошибка сервера. Пожалуйста, попробуйте еще раз"
   }
 }
