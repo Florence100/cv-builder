@@ -5,7 +5,10 @@ import { Button } from './button';
 import { FloatingInput } from './floating-input';
 import { useTranslations } from 'next-intl';
 
-type PasswordInputProps = Omit<ComponentProps<'input'> & { label: string }, 'type'>;
+type PasswordInputProps = Omit<
+  ComponentProps<'input'> & { label: string; isError?: boolean },
+  'type'
+>;
 
 function Eye() {
   return (
@@ -35,7 +38,7 @@ function EyeOff() {
   );
 }
 
-export function PasswordInput({ label, id, className, ...props }: PasswordInputProps) {
+export function PasswordInput({ label, isError, id, className, ...props }: PasswordInputProps) {
   const generatedId = useId();
   const inputId = id ?? generatedId;
   const [show, setShow] = useState(false);
@@ -45,6 +48,7 @@ export function PasswordInput({ label, id, className, ...props }: PasswordInputP
     <div className="relative w-full">
       <FloatingInput
         label={label}
+        isError={isError}
         className={className}
         id={inputId}
         type={show ? 'text' : 'password'}

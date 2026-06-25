@@ -1,4 +1,4 @@
-import { SignupForm } from '@/src/features/register-by-email/ui/SignupForm';
+import { SignupForm } from '@/src/features/register-by-email';
 import { Button } from '@/src/shared/ui/button';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
