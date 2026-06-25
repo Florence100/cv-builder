@@ -9,13 +9,8 @@ import { accessTokenVar } from '@/src/entities/session/model/session';
 import { useRouter } from 'next/navigation';
 import { CombinedGraphQLErrors } from '@apollo/client';
 import { useForm } from 'react-hook-form';
-
-interface SignupFormData {
-  email: string;
-  password: string;
-}
-
-const EMAIL_REGEXP = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+import { SignupFormData } from '../model/types';
+import { EMAIL_REGEXP } from '@/src/shared/lib/validation';
 
 export const SignupForm = () => {
   const t = useTranslations('features.registerByEmail');
