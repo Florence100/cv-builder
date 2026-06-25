@@ -4,23 +4,18 @@ import { Button } from '@/src/shared/ui/button';
 import { FloatingInput } from '@/src/shared/ui/floating-input';
 import { PasswordInput } from '@/src/shared/ui/password-input';
 import { useTranslations } from 'next-intl';
-import { useActionState } from 'react';
 import { useSignup } from '../api/signup';
 import { accessTokenVar } from '@/src/entities/session/model/session';
 import { useRouter } from 'next/navigation';
-import { validateAuthFields } from '../../auth-by-email/utils/validate';
 import { CombinedGraphQLErrors } from '@apollo/client';
+import { useForm } from 'react-hook-form';
 
-interface SignupFormState {
-  errors?: {
-    email?: string;
-    password?: string;
-    server?: string;
-  };
-  inputs?: {
-    email: string;
-  };
+interface SignupFormData {
+  email: string;
+  password: string;
 }
+
+const EMAIL_REGEXP = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
 export const SignupForm = () => {
   const t = useTranslations('features.registerByEmail');
@@ -28,82 +23,86 @@ export const SignupForm = () => {
   const [signup] = useSignup();
   const router = useRouter();
 
-  const initialState: SignupFormState = { errors: {}, inputs: { email: '' } };
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors },
+  } = useForm<SignupFormData>();
 
-  const [state, formAction, isPending] = useActionState(reducerAction, initialState);
-
-  async function reducerAction(
-    previousState: SignupFormState,
-    actionPayload: FormData
-  ): Promise<SignupFormState> {
-    const email = actionPayload.get('email') as string;
-    const password = actionPayload.get('password') as string;
-
-    const validationErrors = validateAuthFields({ email: email, password: password }, tErr);
-
-    if (validationErrors) {
-      return {
-        errors: validationErrors,
-        inputs: { email },
-      };
-    }
-
+  const onSubmit = async (data: SignupFormData) => {
     try {
-      const response = await signup({ variables: { auth: { email: email, password: password } } });
+      const response = await signup({
+        variables: { auth: { email: data.email, password: data.password } },
+      });
       if (!response) throw Error;
+
+      console.log(response);
 
       const accessToken = response.data?.signup.access_token;
 
       if (accessToken) {
         localStorage.setItem('accessToken', accessToken);
-        accessTokenVar(accessToken);
+        accessTokenVar(response.data?.signup.access_token);
         router.replace('/users');
       }
-
-      return { errors: {} };
     } catch (error) {
       if (CombinedGraphQLErrors.is(error)) {
         const graphQLError = error.errors[0];
 
+        console.log(graphQLError.message.toLocaleLowerCase());
+
         if (graphQLError.message.toLocaleLowerCase() === 'user already exists') {
-          return { errors: { server: tErr('userExists') } };
+          console.log(123);
+          setError('root.server', { message: tErr('userExists') });
+        } else {
+          setError('root.server', { message: tErr('uninspectedServerError') });
         }
       }
-      return { errors: { server: tErr('uninspectedServerError') } };
     }
-  }
+  };
 
   return (
-    <form action={formAction} className="w-full flex flex-col gap-5 items-center">
+    <form onSubmit={handleSubmit(onSubmit)} className="w-full flex flex-col gap-5 items-center">
       <div className="w-full flex flex-col gap-1">
         <FloatingInput
-          type="email"
-          name="email"
           label={t('emailPlaceholder')}
-          defaultValue={state?.inputs?.email}
-          isError={!!state?.errors?.email}
+          isError={!!errors.email}
+          {...register('email', {
+            required: tErr('emailRequired'),
+            pattern: {
+              value: EMAIL_REGEXP,
+              message: tErr('emailInvalid'),
+            },
+          })}
         />
-        {state?.errors?.email && (
-          <span className="text-primary text-xs self-start px-1">{state.errors.email}</span>
+        {errors.email && (
+          <span className="text-primary text-xs self-start px-1">{errors.email.message}</span>
         )}
       </div>
       <div className="w-full flex flex-col gap-1">
         <PasswordInput
-          name="password"
           label={t('passwordPlaceholder')}
-          isError={!!state?.errors?.email}
+          isError={!!errors.password}
+          {...register('password', {
+            required: tErr('passwordRequired'),
+            minLength: {
+              value: 8,
+              message: tErr('passwordTooShort'),
+            },
+          })}
         />
-        {state?.errors?.password && (
-          <span className="text-primary text-xs self-start px-1">{state.errors.password}</span>
+        {errors.password && (
+          <span className="text-primary text-xs self-start px-1">{errors.password.message}</span>
         )}
       </div>
 
-      {state?.errors?.server && (
-        <div className="text-primary text-sm text-center mt-2">{state.errors.server}</div>
+      {errors.root?.server && (
+        <div className="text-primary text-sm text-center mt-2">{errors.root?.server.message}</div>
       )}
 
       <Button
-        disabled={isPending}
+        type="submit"
         className="w-55 h-12 rounded-full uppercase text-sm mt-10 shadow-sm hover:bg-btn-hovered cursor-pointer"
       >
         {t('submitButton')}

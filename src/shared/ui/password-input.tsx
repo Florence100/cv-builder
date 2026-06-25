@@ -6,7 +6,7 @@ import { FloatingInput } from './floating-input';
 import { useTranslations } from 'next-intl';
 
 type PasswordInputProps = Omit<
-  ComponentProps<'input'> & { label: string; isError: boolean },
+  ComponentProps<'input'> & { label: string; isError?: boolean },
   'type'
 >;
 
