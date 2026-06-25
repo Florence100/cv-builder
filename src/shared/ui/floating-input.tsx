@@ -17,8 +17,8 @@ export function FloatingInput({ label, isError, id, className, ...props }: Float
         id={inputId}
         placeholder={props.placeholder ?? ' '}
         className={cn(
-          'h-12 p-3 text-base placeholder:text-base bg-transparent border-border rounded-none outline-none hover:border-border-hovered peer',
-          isError && 'border-primary hover:border-primary',
+          'h-12 p-3 text-base placeholder:text-base bg-transparent border-border rounded-none outline-none hover:border-border-hovered focus-visible:border-border-focused peer',
+          isError && 'border-primary hover:border-primary focus-visible:border-primary',
           className
         )}
         {...props}
@@ -31,7 +31,7 @@ export function FloatingInput({ label, isError, id, className, ...props }: Float
           peer-focus:top-0 peer-focus:text-sm peer-focus:bg-background peer-focus:p-1
           peer-not-placeholder-shown:top-0 peer-not-placeholder-shown:text-sm peer-not-placeholder-shown:bg-background peer-not-placeholder-shown:p-1
           peer-autofill:top-0 peer-autofill:text-sm peer-autofill:bg-background peer-autofill:p-1`,
-          isError ? 'text-primary' : 'text-muted-foreground peer-focus:text-primary'
+          isError ? 'text-primary' : 'text-muted-foreground peer-focus:text-muted-foreground'
         )}
       >
         {label}

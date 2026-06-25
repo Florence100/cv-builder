@@ -23,6 +23,7 @@
   --destructive: oklch(0.577 0.245 27.325);
   --border: rgba(0, 0, 0, 0.23);
   --border-hovered: rgba(46, 46, 46, 1);
+  --border-focused: rgba(46, 46, 46, 1);
   --input: rgb(245, 245, 245, 1);
   --ring: oklch(0.708 0 0);
   --chart-1: oklch(0.87 0 0);
@@ -63,6 +64,7 @@
   --color-input: var(--input);
   --color-border: var(--border);
   --color-border-hovered: var(--border-hovered);
+  --color-border-focused: var(--border-focused);
   --color-destructive: var(--destructive);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
