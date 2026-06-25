@@ -16,7 +16,7 @@
   --primary-foreground: rgba(255, 255, 255, 1);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
+  --muted: rgba(118, 118, 118, 0.04);
   --muted-foreground: rgba(0, 0, 0, 0.6);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);

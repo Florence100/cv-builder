@@ -15,7 +15,7 @@ import { EMAIL_REGEXP } from '@/src/shared/lib/validation';
 export const SignupForm = () => {
   const t = useTranslations('features.registerByEmail');
   const tErr = useTranslations('shared.validation.errors');
-  const [signup] = useSignup();
+  const [signup, { loading }] = useSignup();
   const router = useRouter();
 
   const {
@@ -92,6 +92,7 @@ export const SignupForm = () => {
       )}
 
       <Button
+        disabled={loading}
         type="submit"
         className="w-55 h-12 rounded-full uppercase text-sm mt-10 shadow-sm hover:bg-btn-hovered cursor-pointer"
       >

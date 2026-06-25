@@ -15,7 +15,7 @@ import { LoginFormData } from '../model/types';
 export const LoginForm = () => {
   const t = useTranslations('features.authByEmail');
   const tErr = useTranslations('shared.validation.errors');
-  const [loginTrigger] = useLogin();
+  const [loginTrigger, { loading }] = useLogin();
   const router = useRouter();
 
   const {
@@ -92,6 +92,7 @@ export const LoginForm = () => {
       )}
 
       <Button
+        disabled={loading}
         type="submit"
         className="w-55 h-12 rounded-full uppercase text-sm mt-10 shadow-sm hover:bg-btn-hovered cursor-pointer"
       >
