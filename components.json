@@ -14,8 +14,8 @@
   "rtl": false,
   "aliases": {
     "components": "@/shared/ui",
-    "ui": "@/shared/ui",
-    "utils": "@/shared/lib/classNames"
+    "ui": "@/src/shared/ui",
+    "utils": "@/src/shared/lib/class-names"
   },
   "menuColor": "default",
   "menuAccent": "subtle",
