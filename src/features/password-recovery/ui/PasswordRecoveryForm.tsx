@@ -28,7 +28,7 @@ export const PasswordRecoveryForm = () => {
       const response = await forgotPassword({
         variables: { auth: { email: data.email } },
       });
-      if (!response) throw Error;
+      if (!response) throw Error(tErr('uninspectedServerError'));
 
       router.replace('/auth/login');
     } catch (error) {

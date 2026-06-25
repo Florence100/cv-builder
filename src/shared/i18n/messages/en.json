@@ -9,6 +9,10 @@
       "emailPlaceholder": "Email",
       "submitButton": "Reset password"
     },
+    "passwordReset": {
+      "passwordPlaceholder": "New password",
+      "submitButton": "Submit"
+    },
     "registerByEmail": {
       "emailPlaceholder": "Email",
       "passwordPlaceholder": "Password",
@@ -25,6 +29,11 @@
       "title": "Welcome back",
       "subtitle": "Hello again! Log in to continue",
       "forgetLink": "Forgot password"
+    },
+    "resetPassword": {
+      "title": "Set a new password",
+      "subtitle": "Almost done! Now create a new password",
+      "backToLoginButton": "Back to log in"
     },
     "signup": {
       "title": "Register now",
@@ -54,6 +63,7 @@
         "invalidCredentials": "Invalid сredentials",
         "userExists": "User already exists",
         "noEmail": "Failed to send an email",
+        "actionExpired": "This link has expired",
         "uninspectedServerError": "Server error. Please, try again"
       }
     }

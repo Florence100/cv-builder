@@ -30,7 +30,7 @@ export const SignupForm = () => {
       const response = await signup({
         variables: { auth: { email: data.email, password: data.password } },
       });
-      if (!response) throw Error;
+      if (!response) throw Error(tErr('uninspectedServerError'));
 
       const accessToken = response.data?.signup.access_token;
 

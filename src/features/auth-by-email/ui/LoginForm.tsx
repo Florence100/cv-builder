@@ -30,7 +30,7 @@ export const LoginForm = () => {
       const response = await loginTrigger({
         variables: { auth: { email: data.email, password: data.password } },
       });
-      if (!response) throw Error;
+      if (!response) throw Error(tErr('uninspectedServerError'));
 
       const accessToken = response.data?.login.access_token;
 

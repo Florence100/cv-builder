@@ -9,7 +9,8 @@ import {
 
 function makeClient() {
   const httpLink = new HttpLink({
-    uri: process.env.NEXT_PUBLIC_GRAPHQL_API_URL,
+    // uri: process.env.NEXT_PUBLIC_GRAPHQL_API_URL,
+    uri: 'https://cv-project-js.inno.ws/api/graphql',
     fetchOptions: {
       // Optional: Next.js-specific fetch options
       // Note: This doesn't work with `export const dynamic = "force-static"`
