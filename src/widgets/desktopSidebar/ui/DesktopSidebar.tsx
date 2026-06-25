@@ -1,7 +1,12 @@
 import { SidebarProvider } from '@/src/shared/ui/sidebar';
 import { AppSidebar } from '@/src/shared/ui/app-sidebar';
 
-export function DesktopSidebar({ children }: { children: React.ReactNode }) {
+type DesktopSidebarProps = {
+  children: React.ReactNode;
+  className?: string;
+};
+
+export function DesktopSidebar({ children }: DesktopSidebarProps) {
   return (
     <SidebarProvider>
       <AppSidebar />
