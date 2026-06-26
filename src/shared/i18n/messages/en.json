@@ -43,12 +43,16 @@
   },
   "widgets": {
     "authNavigation": {
-      "loginTab": "Login",
+      "loginTab": "Log in",
       "signupTab": "Sign up"
     }
   },
   "shared": {
     "ui": {
+      "mobileFallback": {
+        "title": "Desktop & Tablet Only",
+        "subtitle": "We apologize, but the CV-Builder application is currently optimized only for screens 768px and wider. Please switch to a larger device to continue."
+      },
       "passwordInput": {
         "btnShowPassword": "Show password",
         "btnHidePassword": "Hide password"

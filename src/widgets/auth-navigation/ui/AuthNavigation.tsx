@@ -9,16 +9,16 @@ export const AuthNavigation = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="flex justify-center">
+    <nav className="flex justify-center pt-1.5">
       <Link
-        className={`w-[150px] h-[3rem] flex items-center justify-center uppercase text-sm font-semibold focus:outline-none focus-visible:bg-[var(--primary-transparent)] ${pathname === '/auth/login' && ' border-b-2 border-primary text-primary'}`}
+        className={`w-37.5 h-12 flex items-center justify-center uppercase text-sm font-semibold focus:outline-none focus-visible:bg-(--primary-transparent) ${pathname === '/auth/login' && ' border-b-2 border-primary text-primary'}`}
         href="./login"
       >
         {t('loginTab')}
       </Link>
 
       <Link
-        className={`w-[150px] h-[3rem] flex items-center justify-center uppercase text-sm font-semibold focus:outline-none focus-visible:bg-[var(--primary-transparent)] ${pathname === '/auth/signup' && ' border-b-2 border-primary text-primary'}`}
+        className={`w-37.5 h-12 flex items-center justify-center uppercase text-sm font-semibold focus:outline-none focus-visible:bg-(--primary-transparent) ${pathname === '/auth/signup' && ' border-b-2 border-primary text-primary'}`}
         href="./signup"
       >
         {t('signupTab')}
