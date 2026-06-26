@@ -45,6 +45,12 @@
     "authNavigation": {
       "loginTab": "Log in",
       "signupTab": "Sign up"
+    },
+    "appNavigation": {
+      "employeersTab": "Employees",
+      "skillsTab": "Skills",
+      "languagesTab": "Languages",
+      "CVsTab": "CVs"
     }
   },
   "shared": {

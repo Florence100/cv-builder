@@ -60,7 +60,7 @@ export function PasswordInput({ label, isError, id, className, ...props }: Passw
         type="button"
         variant="ghost"
         size="icon"
-        className="absolute right-2 top-1 cursor-pointer w-10 h-10 rounded-full hover:bg-icon-hover active:scale-100"
+        className="absolute right-2 top-1 cursor-pointer w-10 h-10 rounded-full hover:bg-light-gray active:scale-100"
         onClick={() => setShow((v) => !v)}
         aria-label={show ? t('btnHidePassword') : t('btnShowPassword')}
       >

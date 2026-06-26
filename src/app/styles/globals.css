@@ -79,7 +79,7 @@
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
   --color-btn-hovered: rgb(138, 33, 34);
-  --color-icon-hover: rgba(0, 0, 0, 0.04);
+  --color-light-gray: rgba(0, 0, 0, 0.04);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -132,6 +132,10 @@
   }
   html {
     @apply font-sans;
+  }
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
   }
 }
 

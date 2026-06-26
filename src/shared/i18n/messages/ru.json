@@ -45,6 +45,12 @@
     "authNavigation": {
       "loginTab": "Войти",
       "signupTab": "Создать"
+    },
+    "appNavigation": {
+      "employeersTab": "Сотрудники",
+      "skillsTab": "Навыки",
+      "languagesTab": "Языки",
+      "CVsTab": "Резюме"
     }
   },
   "shared": {
