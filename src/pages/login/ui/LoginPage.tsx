@@ -16,8 +16,12 @@ export function LoginPage() {
 
         <LoginForm />
 
-        <Button variant="ghost" className="w-55 h-12 mt-2 uppercase text-muted-foreground" asChild>
-          <Link href="#">{t('forgetLink')}</Link>
+        <Button
+          variant="ghost"
+          className="w-55 h-12 mt-2 uppercase rounded-full text-muted-foreground"
+          asChild
+        >
+          <Link href="/auth/forgot-password">{t('forgetLink')}</Link>
         </Button>
       </div>
     </div>

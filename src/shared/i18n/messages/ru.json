@@ -5,6 +5,14 @@
       "passwordPlaceholder": "Пароль",
       "submitButton": "Создать аккаунт"
     },
+    "passwordRecovery": {
+      "emailPlaceholder": "Почта",
+      "submitButton": "Сбросить пароль"
+    },
+    "passwordReset": {
+      "passwordPlaceholder": "Новый пароль",
+      "submitButton": "Сохранить"
+    },
     "authByEmail": {
       "emailPlaceholder": "Почта",
       "passwordPlaceholder": "Пароль",
@@ -12,10 +20,20 @@
     }
   },
   "pages": {
+    "forgotPassword": {
+      "title": "Восстановление пароля",
+      "subtitle": "Мы отправим вам письмо с дальнейшими инструкциями",
+      "cancelButton": "Отмена"
+    },
     "login": {
       "title": "С возвращением",
       "subtitle": "Рады вас видеть! Войдите, чтобы продолжить",
       "forgetLink": "Забыли пароль"
+    },
+    "resetPassword": {
+      "title": "Установите новый пароль",
+      "subtitle": "Почти готово! Теперь придумайте новый пароль",
+      "backToLoginButton": "Вернуться на страницу входа"
     },
     "signup": {
       "title": "Зарегистрируйтесь",
@@ -31,6 +49,10 @@
   },
   "shared": {
     "ui": {
+      "mobileFallback": {
+        "title": "Только для компьютеров и планшетов",
+        "subtitle": "Приносим извинения, но приложение CV-Builder в настоящее время оптимизировано только для экранов шириной от 768px и более. Пожалуйста, используйте устройство с большим экраном, чтобы продолжить."
+      },
       "passwordInput": {
         "btnShowPassword": "Показать пароль",
         "btnHidePassword": "Спрятать пароль"
@@ -44,6 +66,8 @@
         "passwordTooShort": "Пароль должен содержать как минимум 8 символов",
         "invalidCredentials": "Неверные учетные данные",
         "userExists": "Пользователь уже зарегистрирован",
+        "noEmail": "Не удалось отправить письмо",
+        "actionExpired": "Ссылка недействительна",
         "uninspectedServerError": "Ошибка сервера. Пожалуйста, попробуйте еще раз"
       }
     }
