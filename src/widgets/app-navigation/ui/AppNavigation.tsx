@@ -27,7 +27,7 @@ function NavigationList() {
         key={item.href}
         className={`p-2 lg:pl-4 flex h-10 w-full justify-center lg:justify-start lg:h-[3.5rem] gap-2 lg:gap-4 items-center rounded-full lg:rounded-l-none hover:bg-light-gray ${pathname === item.href ? ' bg-light-gray text-foreground' : 'text-muted-foreground'}`}
       >
-        <Icon fill={pathname === item.href ? '#2e2e2e' : '#00000099'} className="w-6 h-6" />
+        <Icon fill={pathname === item.href ? '#2e2e2e' : '#00000099'} className="size-6 shrink-0" />
         <p className={`text-left truncate lg:w-full ${open ? 'block' : 'hidden'}`}>
           {t(item.labelKey)}
         </p>

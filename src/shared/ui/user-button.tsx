@@ -7,7 +7,7 @@ export function UserButton() {
 
   return (
     <button className="flex gap-2 items-center">
-      <p className="rounded-full w-10 h-10 bg-primary flex items-center justify-center text-white text-xl font-medium">
+      <p className="shrink-0 rounded-full w-10 h-10 bg-primary flex items-center justify-center text-white text-xl font-medium">
         U
       </p>
       <p className={`text-left truncate w-32 ${open ? 'block' : 'hidden'}`}>User Name</p>
