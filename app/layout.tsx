@@ -3,6 +3,7 @@ import { Roboto } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { ApolloWrapper } from '@/src/app/providers';
 import '../src/app/styles/globals.css';
+import { MobileFallback } from '@/src/shared/ui/MobileFallback';
 
 const roboto = Roboto({
   variable: '--font-roboto',
@@ -21,9 +22,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${roboto.variable} antialiased`}>
-      <body className="min-h-dvh flex flex-col w-full items-center">
+      <body>
         <NextIntlClientProvider>
-          <ApolloWrapper>{children}</ApolloWrapper>
+          <ApolloWrapper>
+            <div className="hidden md:flex min-h-dvh w-full flex-col items-center">{children}</div>
+            <MobileFallback />
+          </ApolloWrapper>
         </NextIntlClientProvider>
       </body>
     </html>

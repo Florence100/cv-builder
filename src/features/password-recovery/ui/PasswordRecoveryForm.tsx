@@ -1,21 +1,19 @@
 'use client';
 
-import { Button } from '@/src/shared/ui/button';
-import { FloatingInput } from '@/src/shared/ui/floating-input';
-import { PasswordInput } from '@/src/shared/ui/password-input';
 import { useTranslations } from 'next-intl';
-import { accessTokenVar } from '@/src/entities/session/model/session';
+import { useForgotPasswordHook } from '../api/forgot-password';
 import { useRouter } from 'next/navigation';
-import { CombinedGraphQLErrors } from '@apollo/client';
+import { ForgotPasswordInput } from '../model/types';
 import { useForm } from 'react-hook-form';
+import { CombinedGraphQLErrors } from '@apollo/client';
 import { EMAIL_REGEXP } from '@/src/shared/lib/validation';
-import { useLogin } from '../api/api';
-import { LoginFormData } from '../model/types';
+import { FloatingInput } from '@/src/shared/ui/floating-input';
+import { Button } from '@/src/shared/ui/button';
 
-export const LoginForm = () => {
-  const t = useTranslations('features.authByEmail');
+export const PasswordRecoveryForm = () => {
+  const t = useTranslations('features.passwordRecovery');
   const tErr = useTranslations('shared.validation.errors');
-  const [loginTrigger, { loading }] = useLogin();
+  const [forgotPassword, { loading }] = useForgotPasswordHook();
   const router = useRouter();
 
   const {
@@ -23,28 +21,22 @@ export const LoginForm = () => {
     handleSubmit,
     setError,
     formState: { errors },
-  } = useForm<LoginFormData>();
+  } = useForm<ForgotPasswordInput>();
 
-  const onSubmit = async (data: LoginFormData) => {
+  const onSubmit = async (data: ForgotPasswordInput) => {
     try {
-      const response = await loginTrigger({
-        variables: { auth: { email: data.email, password: data.password } },
+      const response = await forgotPassword({
+        variables: { auth: { email: data.email } },
       });
       if (!response) throw Error(tErr('uninspectedServerError'));
 
-      const accessToken = response.data?.login.access_token;
-
-      if (accessToken) {
-        localStorage.setItem('accessToken', accessToken);
-        accessTokenVar(response.data?.login.access_token);
-        router.replace('/users');
-      }
+      router.replace('/auth/login');
     } catch (error) {
       if (CombinedGraphQLErrors.is(error)) {
         const graphQLError = error.errors[0];
 
-        if (graphQLError.message.toLocaleLowerCase() === 'invalid credentials') {
-          setError('root.server', { message: tErr('invalidCredentials') });
+        if (graphQLError.message.toLocaleLowerCase().includes('failed to send email')) {
+          setError('root.server', { message: tErr('noEmail') });
           return null;
         }
       }
@@ -70,30 +62,14 @@ export const LoginForm = () => {
           <span className="text-primary text-xs self-start px-1">{errors.email.message}</span>
         )}
       </div>
-      <div className="w-full flex flex-col gap-1">
-        <PasswordInput
-          label={t('passwordPlaceholder')}
-          isError={!!errors.password}
-          {...register('password', {
-            required: tErr('passwordRequired'),
-            minLength: {
-              value: 8,
-              message: tErr('passwordTooShort'),
-            },
-          })}
-        />
-        {errors.password && (
-          <span className="text-primary text-xs self-start px-1">{errors.password.message}</span>
-        )}
-      </div>
 
       {errors.root?.server && (
         <div className="text-primary text-sm text-center mt-2">{errors.root?.server.message}</div>
       )}
 
       <Button
-        disabled={loading}
         type="submit"
+        disabled={loading}
         className="w-55 h-12 rounded-full uppercase text-sm mt-10 shadow-sm hover:bg-btn-hovered cursor-pointer"
       >
         {t('submitButton')}
