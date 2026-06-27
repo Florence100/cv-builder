@@ -4,7 +4,6 @@ import { Button } from '@/src/shared/ui/button';
 import { FloatingInput } from '@/src/shared/ui/floating-input';
 import { PasswordInput } from '@/src/shared/ui/password-input';
 import { useTranslations } from 'next-intl';
-import { accessTokenVar } from '@/src/entities/session/model/session';
 import { useRouter } from 'next/navigation';
 import { CombinedGraphQLErrors } from '@apollo/client';
 import { useForm } from 'react-hook-form';
@@ -38,7 +37,6 @@ export const LoginForm = () => {
 
       if (accessToken && userId) {
         Cookies.set('accessToken', accessToken, { expires: 1 });
-        accessTokenVar(accessToken);
         router.replace(`/users/${userId}/profile`);
       }
     } catch (error) {
