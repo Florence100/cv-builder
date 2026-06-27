@@ -1,10 +1,11 @@
 import { makeVar } from '@apollo/client';
+import Cookies from 'js-cookie';
 
 let accessToken: string | null = null;
 
 if (typeof window !== 'undefined') {
   try {
-    accessToken = localStorage.getItem('accessToken');
+    accessToken = Cookies.get('accessToken') || null;
   } catch {
     console.error('Access token reading failed');
   }
