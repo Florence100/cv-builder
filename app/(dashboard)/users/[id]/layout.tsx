@@ -1,14 +1,14 @@
 import { UserProfileHeader } from '@/src/widgets/user-profile-header';
 import { UserProfileNav } from '@/src/widgets/user-profile-nav';
 
-export default async function Layout({
+export default function Layout({
   params,
   children,
 }: {
   params: { id: string };
   children: React.ReactNode;
 }) {
-  const { id } = await params;
+  const { id } = params;
   return (
     <>
       <div className="px-6">
