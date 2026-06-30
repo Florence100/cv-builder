@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { ApolloWrapper } from '@/src/app/providers';
+import { MobileFallback } from '@/src/shared/ui/mobile-fallback';
 import '../src/app/styles/globals.css';
-import { MobileFallback } from '@/src/shared/ui/MobileFallback';
 
 const roboto = Roboto({
   variable: '--font-roboto',
