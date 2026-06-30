@@ -1,3 +1,5 @@
+import { UsersPage } from '@/src/pages/users';
+
 export default function Users() {
-  return <>Users</>;
+  return <UsersPage />;
 }
