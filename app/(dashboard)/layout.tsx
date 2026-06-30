@@ -10,7 +10,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <AppSidebar />
       </div>
 
-      <main className="flex-1 pb-16 lg:pb-0 bg-background">{children}</main>
+      <main className="flex-1 pb-16 lg:pb-0 bg-background lg:pl-2">{children}</main>
 
       <div className="flex gap-2 lg:hidden fixed bottom-0 left-0 right-0 z-50 p-2 pl-4 pr-4 bg-background">
         <div className="flex-[4]">

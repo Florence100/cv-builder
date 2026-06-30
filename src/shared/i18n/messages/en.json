@@ -62,6 +62,9 @@
       "passwordInput": {
         "btnShowPassword": "Show password",
         "btnHidePassword": "Hide password"
+      },
+      "searchFullNameInput": {
+        "placeholder": "Search full name..."
       }
     },
     "validation": {
