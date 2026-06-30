@@ -15,9 +15,9 @@ export default async function Layout({
         <div className="pt-4 pb-1 pl-5">
           <UserProfileHeader userId={id} />
         </div>
-        <UserProfileNav />
+        <UserProfileNav userId={id} />
       </div>
-      <div className="p-8">{children}</div>
+      <div className="min-h-dvh p-8">{children}</div>
     </>
   );
 }
