@@ -80,6 +80,8 @@
   --color-card: var(--card);
   --color-btn-hovered: rgb(138, 33, 34);
   --color-light-gray: rgba(0, 0, 0, 0.04);
+  --color-table-avatar: rgb(189, 189, 189);
+  --color-table-border: rgb(224, 224, 224);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
