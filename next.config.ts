@@ -7,8 +7,8 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'res.cloudinary.com',
+        pathname: '/**',
         port: '',
-        pathname: '/cv-gen-cloud/**',
         search: '',
       },
     ],

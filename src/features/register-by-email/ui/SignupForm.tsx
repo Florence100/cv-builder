@@ -11,6 +11,7 @@ import { useForm } from 'react-hook-form';
 import { SignupFormData } from '../model/types';
 import { EMAIL_REGEXP } from '@/src/shared/lib/validation';
 import { setAuthCookies } from '@/src/shared/lib/actions';
+import Cookies from 'js-cookie';
 
 export const SignupForm = () => {
   const t = useTranslations('features.registerByEmail');
@@ -38,6 +39,7 @@ export const SignupForm = () => {
 
       if (accessToken && refreshToken && userId) {
         await setAuthCookies({ accessToken, refreshToken });
+        Cookies.set('userId', userId, { expires: 1 });
         router.replace(`/users/${userId}/profile`);
       }
     } catch (error) {
