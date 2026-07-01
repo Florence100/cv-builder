@@ -10,6 +10,7 @@ import { useForm } from 'react-hook-form';
 import { EMAIL_REGEXP } from '@/src/shared/lib/validation';
 import { useLogin } from '../api/api';
 import { LoginFormData } from '../model/types';
+import { setAuthCookies } from '@/src/shared/lib/actions';
 import Cookies from 'js-cookie';
 
 export const LoginForm = () => {
@@ -33,11 +34,13 @@ export const LoginForm = () => {
       if (!response) throw Error(tErr('uninspectedServerError'));
 
       const accessToken = response.data?.login.access_token;
+      const refreshToken = response.data?.login.refresh_token;
       const userId = response.data?.login.user.id;
 
-      if (accessToken && userId) {
-        Cookies.set('accessToken', accessToken, { expires: 1 });
+      if (accessToken && refreshToken && userId) {
+        await setAuthCookies({ accessToken, refreshToken });
         Cookies.set('userId', userId, { expires: 1 });
+
         router.replace(`/users/${userId}/profile`);
       }
     } catch (error) {

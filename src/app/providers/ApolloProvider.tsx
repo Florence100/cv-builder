@@ -13,7 +13,7 @@ import { SetContextLink } from '@apollo/client/link/context';
 import { ErrorLink } from '@apollo/client/link/error';
 import Cookies from 'js-cookie';
 
-const authLink = new SetContextLink(({ headers }) => {
+const authLink = new SetContextLink(async ({ headers }) => {
   const accessToken = Cookies.get('accessToken');
 
   return {
@@ -30,6 +30,7 @@ const errorLink = new ErrorLink(({ error }) => {
       console.error(message);
       if (message === 'Unauthorized') {
         Cookies.remove('accessToken');
+        Cookies.remove('refreshToken');
         if (typeof window !== 'undefined') {
           window.location.href = '/auth/login';
         }

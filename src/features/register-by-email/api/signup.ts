@@ -18,6 +18,7 @@ export const SIGNUP: TypedDocumentNode<SignupResult, SignupArgs> = gql`
         email
       }
       access_token
+      refresh_token
     }
   }
 `;
