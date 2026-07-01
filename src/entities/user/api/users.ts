@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
-import { useLazyQuery } from '@apollo/client/react';
 import type { User } from 'cv-graphql';
+import { getClient } from '@/src/shared/api/apollo-client';
 
 const USERS_QUERY = gql`
   query Users {
@@ -23,6 +23,12 @@ type UserResult = {
   users: User[];
 };
 
-export const useUsers = () => {
-  return useLazyQuery<UserResult>(USERS_QUERY);
-};
+export async function getUsers() {
+  const client = getClient();
+
+  const { data } = await client.query<UserResult>({
+    query: USERS_QUERY,
+  });
+
+  return data?.users || [];
+}
