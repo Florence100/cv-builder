@@ -62,6 +62,9 @@
       "passwordInput": {
         "btnShowPassword": "Показать пароль",
         "btnHidePassword": "Спрятать пароль"
+      },
+      "searchFullNameInput": {
+        "placeholder": "Поиск по полному имени..."
       }
     },
     "validation": {
