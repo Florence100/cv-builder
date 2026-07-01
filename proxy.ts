@@ -16,11 +16,15 @@ export async function proxy(request: NextRequest) {
     if (!accessToken) {
       needsRefresh = true; //acceessToken was deleted
     } else {
-      const decoded: { exp: number } = jwtDecode(accessToken);
-      const currentTime = Math.floor(Date.now() / 1000);
+      try {
+        const decoded: { exp: number } = jwtDecode(accessToken);
+        const currentTime = Math.floor(Date.now() / 1000);
 
-      if (decoded.exp - currentTime < 10) {
-        needsRefresh = true; //The access token is still valid, but it will expire soon. (less 10s)
+        if (decoded.exp - currentTime < 10) {
+          needsRefresh = true; //The access token is still valid, but it will expire soon. (less 10s)
+        }
+      } catch {
+        needsRefresh = true;
       }
     }
 
