@@ -10,7 +10,7 @@ import {
 import { SetContextLink } from '@apollo/client/link/context';
 import { ErrorLink } from '@apollo/client/link/error';
 import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
+// import { redirect } from 'next/navigation';
 
 const authLink = new SetContextLink(async ({ headers }) => {
   const cookieStore = await cookies();
@@ -28,9 +28,9 @@ const errorLink = new ErrorLink(({ error }) => {
   if (CombinedGraphQLErrors.is(error)) {
     error.errors.forEach(({ message }) => {
       console.error(message);
-      if (message === 'Unauthorized') {
-        redirect('/auth/login');
-      }
+      // if (message === 'Unauthorized') {
+      //   redirect('/auth/login');
+      // }
     });
   } else if (CombinedProtocolErrors.is(error)) {
     error.errors.forEach(({ message, extensions }) =>

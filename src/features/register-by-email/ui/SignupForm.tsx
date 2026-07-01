@@ -10,7 +10,7 @@ import { CombinedGraphQLErrors } from '@apollo/client';
 import { useForm } from 'react-hook-form';
 import { SignupFormData } from '../model/types';
 import { EMAIL_REGEXP } from '@/src/shared/lib/validation';
-import Cookies from 'js-cookie';
+import { setAuthCookies } from '@/src/shared/lib/actions';
 
 export const SignupForm = () => {
   const t = useTranslations('features.registerByEmail');
@@ -33,10 +33,11 @@ export const SignupForm = () => {
       if (!response) throw Error(tErr('uninspectedServerError'));
 
       const accessToken = response.data?.signup.access_token;
+      const refreshToken = response.data?.signup.refresh_token;
       const userId = response.data?.signup.user.id;
 
-      if (accessToken && userId) {
-        Cookies.set('accessToken', accessToken, { expires: 1 });
+      if (accessToken && refreshToken && userId) {
+        await setAuthCookies({ accessToken, refreshToken });
         router.replace(`/users/${userId}/profile`);
       }
     } catch (error) {
