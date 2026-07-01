@@ -40,7 +40,7 @@ export const LoginForm = () => {
       if (accessToken && refreshToken && userId) {
         await setAuthCookies({ accessToken, refreshToken });
         Cookies.set('userId', userId, { expires: 1 });
-        
+
         router.replace(`/users/${userId}/profile`);
       }
     } catch (error) {
