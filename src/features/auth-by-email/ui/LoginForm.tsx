@@ -37,6 +37,7 @@ export const LoginForm = () => {
 
       if (accessToken && userId) {
         Cookies.set('accessToken', accessToken, { expires: 1 });
+        Cookies.set('userId', userId, { expires: 1 });
         router.replace(`/users/${userId}/profile`);
       }
     } catch (error) {

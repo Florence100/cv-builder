@@ -1,7 +1,18 @@
+'use client';
+
 import { Tabs, TabsList, TabsTrigger } from '@/src/shared/ui/tabs';
-export const UserProfileNav = () => {
+import { usePathname, useRouter } from 'next/navigation';
+export const UserProfileNav = ({ userId }: { userId: string }) => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const activeTab = pathname?.split('/').pop();
+
+  const handleTabChange = (page: string) => {
+    router.push(`/users/${userId}/${page}`);
+  };
+
   return (
-    <Tabs defaultValue="profile" className="pt-1.5">
+    <Tabs defaultValue={activeTab} onValueChange={handleTabChange} className="pt-1.5">
       <TabsList variant="line">
         <TabsTrigger
           value="profile"
