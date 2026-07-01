@@ -11,6 +11,7 @@ import { EMAIL_REGEXP } from '@/src/shared/lib/validation';
 import { useLogin } from '../api/api';
 import { LoginFormData } from '../model/types';
 import { setAuthCookies } from '@/src/shared/lib/actions';
+import Cookies from 'js-cookie';
 
 export const LoginForm = () => {
   const t = useTranslations('features.authByEmail');
@@ -38,6 +39,8 @@ export const LoginForm = () => {
 
       if (accessToken && refreshToken && userId) {
         await setAuthCookies({ accessToken, refreshToken });
+        Cookies.set('userId', userId, { expires: 1 });
+        
         router.replace(`/users/${userId}/profile`);
       }
     } catch (error) {
