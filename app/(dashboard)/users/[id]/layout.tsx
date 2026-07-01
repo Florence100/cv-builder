@@ -17,7 +17,7 @@ export default async function Layout({
         </div>
         <UserProfileNav userId={id} />
       </div>
-      <div className="h-full overflow-hidden p-8">{children}</div>
+      <div className="h-full overflow-y-auto p-8">{children}</div>
     </>
   );
 }

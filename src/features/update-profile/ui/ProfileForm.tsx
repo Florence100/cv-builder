@@ -18,6 +18,7 @@ import { useMutation } from '@apollo/client/react';
 import { UPDATE_PROFILE, UPDATE_USER, UPLOAD_AVATAR } from '../api/mutations';
 import { useRouter } from 'next/navigation';
 import { fileToBase64 } from '@/src/shared/lib/file-to-base64';
+import { useTransition } from 'react';
 
 type ProfileFormValues = {
   firstName: string;
@@ -49,13 +50,16 @@ export const ProfileForm = ({ user, departments, positions }: ProfileFormProps) 
     }
   }
 
+  const [isPending, startTransition] = useTransition();
+
   const {
     register,
     handleSubmit,
     control,
-    formState: { isSubmitting },
+    resetField,
+    formState: { isSubmitting, isDirty },
   } = useForm<ProfileFormValues>({
-    defaultValues: {
+    values: {
       firstName: user?.profile?.first_name || '',
       lastName: user?.profile?.last_name || '',
       department: user?.department?.id || '',
@@ -67,7 +71,7 @@ export const ProfileForm = ({ user, departments, positions }: ProfileFormProps) 
   const [updateUser, { loading: loadingUser }] = useMutation(UPDATE_USER);
   const [uploadAvatar, { loading: loadingAvatar }] = useMutation(UPLOAD_AVATAR);
 
-  const isBusy = isSubmitting || loadingProfile || loadingUser || loadingAvatar;
+  const isBusy = isSubmitting || loadingProfile || loadingUser || loadingAvatar || isPending;
   const router = useRouter();
 
   const onSubmit = async (data: ProfileFormValues) => {
@@ -121,6 +125,14 @@ export const ProfileForm = ({ user, departments, positions }: ProfileFormProps) 
       }
 
       await Promise.all(promises);
+
+      startTransition(() => {
+        router.refresh();
+      });
+
+      if (data.avatar && data.avatar.length > 0) {
+        resetField('avatar');
+      }
 
       router.refresh();
     } catch (error) {
@@ -196,7 +208,7 @@ export const ProfileForm = ({ user, departments, positions }: ProfileFormProps) 
               control={control}
               name="department"
               render={({ field }) => (
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <Select onValueChange={field.onChange} value={field.value}>
                   <SelectTrigger className="h-12 w-full bg-transparent border-border rounded-none hover:border-border-hovered focus-visible:border-border-focused">
                     <SelectValue placeholder="" />
                   </SelectTrigger>
@@ -219,7 +231,7 @@ export const ProfileForm = ({ user, departments, positions }: ProfileFormProps) 
               control={control}
               name="position"
               render={({ field }) => (
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <Select onValueChange={field.onChange} value={field.value}>
                   <SelectTrigger className="h-12 w-full bg-transparent border-border rounded-none hover:border-border-hovered focus-visible:border-border-focused">
                     <SelectValue placeholder="" />
                   </SelectTrigger>
@@ -237,8 +249,8 @@ export const ProfileForm = ({ user, departments, positions }: ProfileFormProps) 
           <div className="lg:col-start-2">
             <Button
               type="submit"
-              disabled={isBusy}
-              className="w-full h-12 bg-primary disabled:bg-black/12 hover:opacity-80 text-primary-foreground disabled:text-black/26 font-medium tracking-wide rounded-full"
+              disabled={isBusy || !isDirty}
+              className="w-full h-12 bg-primary disabled:opacity-100 disabled:bg-black/12 hover:opacity-90 text-primary-foreground disabled:text-black/26 font-medium tracking-wide rounded-full"
             >
               {isBusy ? 'UPDATING...' : 'UPDATE'}
             </Button>
