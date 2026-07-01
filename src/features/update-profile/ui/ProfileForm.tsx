@@ -32,9 +32,10 @@ type ProfileFormProps = {
   user: User | null;
   departments: Department[];
   positions: Position[];
+  isOwner: boolean;
 };
 
-export const ProfileForm = ({ user, departments, positions }: ProfileFormProps) => {
+export const ProfileForm = ({ user, departments, positions, isOwner }: ProfileFormProps) => {
   const avatarUrl = user?.profile?.avatar;
   const fullName = user?.profile?.full_name || 'User Name';
   const email = user?.email || 'email@example.com';
@@ -157,19 +158,21 @@ export const ProfileForm = ({ user, departments, positions }: ProfileFormProps) 
           </div>
         )}
 
-        <div className="flex flex-col items-center text-center justify-center gap-1">
-          <label className="cursor-pointer flex items-center gap-4 group hover:opacity-80 transition-opacity">
-            <Upload className="w-7 h-7 text-foreground" strokeWidth={2.5} />
-            <span className="text-xl font-medium text-foreground">Upload avatar image</span>
-            <input
-              type="file"
-              className="hidden"
-              accept=".png, .jpg, .gif"
-              {...register('avatar')}
-            />
-          </label>
-          <p className="text-muted-foreground">png, jpg or gif no more than 0.5MB</p>
-        </div>
+        {isOwner && (
+          <div className="flex flex-col items-center text-center justify-center gap-1">
+            <label className="cursor-pointer flex items-center gap-4 group hover:opacity-80 transition-opacity">
+              <Upload className="w-7 h-7 text-foreground" strokeWidth={2.5} />
+              <span className="text-xl font-medium text-foreground">Upload avatar image</span>
+              <input
+                type="file"
+                className="hidden"
+                accept=".png, .jpg, .gif"
+                {...register('avatar')}
+              />
+            </label>
+            <p className="text-muted-foreground">png, jpg or gif no more than 0.5MB</p>
+          </div>
+        )}
       </div>
 
       <div className="text-center">
@@ -186,6 +189,7 @@ export const ProfileForm = ({ user, departments, positions }: ProfileFormProps) 
             </Label>
             <Input
               type="text"
+              disabled={!isOwner}
               className="h-12 bg-transparent border-border rounded-none hover:border-border-hovered focus-visible:border-border-focused"
               {...register('firstName')}
             />
@@ -196,6 +200,7 @@ export const ProfileForm = ({ user, departments, positions }: ProfileFormProps) 
             </Label>
             <Input
               type="text"
+              disabled={!isOwner}
               className="h-12 bg-transparent border-border rounded-none hover:border-border-hovered focus-visible:border-border-focused"
               {...register('lastName')}
             />
@@ -208,7 +213,7 @@ export const ProfileForm = ({ user, departments, positions }: ProfileFormProps) 
               control={control}
               name="department"
               render={({ field }) => (
-                <Select onValueChange={field.onChange} value={field.value}>
+                <Select onValueChange={field.onChange} value={field.value} disabled={!isOwner}>
                   <SelectTrigger className="h-12 w-full bg-transparent border-border rounded-none hover:border-border-hovered focus-visible:border-border-focused">
                     <SelectValue placeholder="" />
                   </SelectTrigger>
@@ -231,7 +236,7 @@ export const ProfileForm = ({ user, departments, positions }: ProfileFormProps) 
               control={control}
               name="position"
               render={({ field }) => (
-                <Select onValueChange={field.onChange} value={field.value}>
+                <Select onValueChange={field.onChange} value={field.value} disabled={!isOwner}>
                   <SelectTrigger className="h-12 w-full bg-transparent border-border rounded-none hover:border-border-hovered focus-visible:border-border-focused">
                     <SelectValue placeholder="" />
                   </SelectTrigger>
@@ -246,15 +251,17 @@ export const ProfileForm = ({ user, departments, positions }: ProfileFormProps) 
               )}
             />
           </div>
-          <div className="lg:col-start-2">
-            <Button
-              type="submit"
-              disabled={isBusy || !isDirty}
-              className="w-full h-12 bg-primary disabled:opacity-100 disabled:bg-black/12 hover:opacity-90 text-primary-foreground disabled:text-black/26 font-medium tracking-wide rounded-full"
-            >
-              {isBusy ? 'UPDATING...' : 'UPDATE'}
-            </Button>
-          </div>
+          {isOwner && (
+            <div className="lg:col-start-2">
+              <Button
+                type="submit"
+                disabled={isBusy || !isDirty}
+                className="w-full h-12 bg-primary disabled:opacity-100 disabled:bg-black/12 hover:opacity-90 text-primary-foreground disabled:text-black/26 font-medium tracking-wide rounded-full"
+              >
+                {isBusy ? 'UPDATING...' : 'UPDATE'}
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </form>
