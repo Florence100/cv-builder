@@ -15,8 +15,9 @@ import { Button } from '@/src/shared/ui/button';
 import { Department, Position, User } from 'cv-graphql';
 import { Controller, useForm } from 'react-hook-form';
 import { useMutation } from '@apollo/client/react';
-import { UPDATE_PROFILE, UPDATE_USER } from '../api/mutations';
+import { UPDATE_PROFILE, UPDATE_USER, UPLOAD_AVATAR } from '../api/mutations';
 import { useRouter } from 'next/navigation';
+import { fileToBase64 } from '@/src/shared/lib/file-to-base64';
 
 type ProfileFormValues = {
   firstName: string;
@@ -37,9 +38,16 @@ export const ProfileForm = ({ user, departments, positions }: ProfileFormProps) 
   const fullName = user?.profile?.full_name || 'User Name';
   const email = user?.email || 'email@example.com';
   const initial = fullName.charAt(0).toUpperCase();
-  const date = user?.created_at
-    ? new Date(user.created_at).toDateString()
-    : new Date().toDateString();
+
+  let date = new Date().toDateString();
+  if (user?.created_at) {
+    const isTimestamp = /^\d+$/.test(user.created_at);
+    const parsedDate = new Date(isTimestamp ? Number(user.created_at) : user.created_at);
+
+    if (!isNaN(parsedDate.getTime())) {
+      date = parsedDate.toDateString();
+    }
+  }
 
   const {
     register,
@@ -57,8 +65,9 @@ export const ProfileForm = ({ user, departments, positions }: ProfileFormProps) 
 
   const [updateProfile, { loading: loadingProfile }] = useMutation(UPDATE_PROFILE);
   const [updateUser, { loading: loadingUser }] = useMutation(UPDATE_USER);
+  const [uploadAvatar, { loading: loadingAvatar }] = useMutation(UPLOAD_AVATAR);
 
-  const isBusy = isSubmitting || loadingProfile || loadingUser;
+  const isBusy = isSubmitting || loadingProfile || loadingUser || loadingAvatar;
   const router = useRouter();
 
   const onSubmit = async (data: ProfileFormValues) => {
@@ -87,6 +96,24 @@ export const ProfileForm = ({ user, departments, positions }: ProfileFormProps) 
                 userId: user.id,
                 ...(data.department ? { departmentId: data.department } : {}),
                 ...(data.position ? { positionId: data.position } : {}),
+              },
+            },
+          })
+        );
+      }
+
+      if (data.avatar && data.avatar.length > 0) {
+        const file = data.avatar[0];
+        const base64 = await fileToBase64(file);
+
+        promises.push(
+          uploadAvatar({
+            variables: {
+              avatar: {
+                userId: user.id,
+                base64,
+                size: file.size,
+                type: file.type,
               },
             },
           })

@@ -1,3 +1,3 @@
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return <div className="min-h-dvh">{children}</div>;
+  return <div className="h-full flex flex-col overflow-hidden">{children}</div>;
 }

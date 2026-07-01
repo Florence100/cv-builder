@@ -1,5 +1,11 @@
 import { gql, TypedDocumentNode } from '@apollo/client';
-import type { User, Profile, UpdateUserInput, UpdateProfileInput } from 'cv-graphql';
+import type {
+  User,
+  Profile,
+  UpdateUserInput,
+  UpdateProfileInput,
+  UploadAvatarInput,
+} from 'cv-graphql';
 
 export type UpdateProfileArgs = { profile: UpdateProfileInput };
 export type UpdateProfileResult = { updateProfile: Profile };
@@ -29,5 +35,14 @@ export const UPDATE_USER: TypedDocumentNode<UpdateUserResult, UpdateUserArgs> = 
         name
       }
     }
+  }
+`;
+
+export type UploadAvatarArgs = { avatar: UploadAvatarInput };
+export type UploadAvatarResult = { uploadAvatar: string };
+
+export const UPLOAD_AVATAR: TypedDocumentNode<UploadAvatarResult, UploadAvatarArgs> = gql`
+  mutation UploadAvatar($avatar: UploadAvatarInput!) {
+    uploadAvatar(avatar: $avatar)
   }
 `;
