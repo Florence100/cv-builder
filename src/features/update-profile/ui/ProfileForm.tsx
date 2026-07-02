@@ -126,8 +126,8 @@ export const ProfileForm = ({ user, departments, positions, isOwner }: ProfileFo
         variables: {
           profile: {
             userId: user.id,
-            ...(data.firstName ? { first_name: data.firstName } : {}),
-            ...(data.lastName ? { last_name: data.lastName } : {}),
+            first_name: data.firstName,
+            last_name: data.lastName,
           },
         },
       });
@@ -221,12 +221,6 @@ export const ProfileForm = ({ user, departments, positions, isOwner }: ProfileFo
             >
               <Upload className="w-7 h-7 text-foreground" strokeWidth={2.5} />
               <span className="text-xl font-medium text-foreground">Upload avatar image</span>
-              <input
-                type="file"
-                className="hidden"
-                accept=".png, .jpg, .gif"
-                {...register('avatar')}
-              />
             </label>
             <p className="text-muted-foreground">png, jpg or gif no more than 0.5MB</p>
             {errors.avatar && (
