@@ -2,7 +2,7 @@
 
 import { Input } from '@/src/shared/ui/input';
 import { Label } from '@/src/shared/ui/label';
-import { Upload } from 'lucide-react';
+import { Trash2, Upload } from 'lucide-react';
 import Image from 'next/image';
 import {
   Select,
@@ -15,7 +15,7 @@ import { Button } from '@/src/shared/ui/button';
 import { Department, Position, User } from 'cv-graphql';
 import { Controller, useForm, useWatch } from 'react-hook-form';
 import { useMutation } from '@apollo/client/react';
-import { UPDATE_PROFILE, UPDATE_USER, UPLOAD_AVATAR } from '../api/mutations';
+import { DELETE_AVATAR, UPDATE_PROFILE, UPDATE_USER, UPLOAD_AVATAR } from '../api/mutations';
 import { fileToBase64 } from '@/src/shared/lib/file-to-base64';
 import { useRouter } from 'next/navigation';
 import { GET_USER } from '@/src/entities/user/api/queries';
@@ -88,7 +88,32 @@ export const ProfileForm = ({ user, departments, positions, isOwner }: ProfileFo
   const [uploadAvatar] = useMutation(UPLOAD_AVATAR, {
     refetchQueries: [GET_USER],
   });
+  const [deleteAvatar, { loading: isDeletingAvatar }] = useMutation(DELETE_AVATAR, {
+    refetchQueries: [GET_USER],
+  });
+
   const isBusy = isSubmitting;
+
+  const handleDeleteAvatar = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (!user?.id) return;
+
+    try {
+      await deleteAvatar({
+        variables: {
+          avatar: { userId: user.id },
+        },
+      });
+
+      resetField('avatar');
+
+      router.refresh();
+    } catch (error) {
+      console.error('Failed to delete avatar:', error);
+    }
+  };
 
   const handleDrag = (e: React.DragEvent) => {
     e.preventDefault();
@@ -192,7 +217,6 @@ export const ProfileForm = ({ user, departments, positions, isOwner }: ProfileFo
             dragActive ? 'scale-105 ring-4 ring-primary ring-offset-4 ring-offset-background' : ''
           }`}
         >
-          {/* [8] Wrapped the avatar image/placeholder in a label pointing to 'avatar-upload' so clicking it opens the file picker */}
           <label
             htmlFor={isOwner ? 'avatar-upload' : undefined}
             className={`block ${isOwner ? 'cursor-pointer hover:opacity-90' : ''}`}
@@ -226,6 +250,20 @@ export const ProfileForm = ({ user, departments, positions, isOwner }: ProfileFo
             {errors.avatar && (
               <p className="text-destructive text-sm mt-1 font-medium">{errors.avatar.message}</p>
             )}
+
+            {user?.profile?.avatar && (
+              <Button
+                type="button"
+                variant="ghost"
+                onClick={handleDeleteAvatar}
+                disabled={isDeletingAvatar}
+                className="mt-1 text-base text-foreground hover:bg-destructive/10 hover:text-destructive flex items-center gap-2"
+              >
+                <Trash2 className="w-4 h-4" />
+                {isDeletingAvatar ? 'Deleting...' : 'Delete avatar'}
+              </Button>
+            )}
+
             <input
               id="avatar-upload"
               type="file"
