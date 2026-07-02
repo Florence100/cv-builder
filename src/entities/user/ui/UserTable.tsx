@@ -21,6 +21,7 @@ import {
 } from '@/src/shared/ui/table';
 import { SearchInput } from '@/src/shared/ui/search-input';
 import { useTranslations } from 'next-intl';
+import { useMediaQuery } from 'react-responsive';
 
 interface UserTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -29,10 +30,19 @@ interface UserTableProps<TData, TValue> {
 
 export function UserTable<TData, TValue>({ columns, data }: UserTableProps<TData, TValue>) {
   const tSearch = useTranslations('shared.ui.searchFullNameInput');
-  const t = useTranslations('widgets.appNavigation');
+  const t = useTranslations('entities.user');
 
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+
+  const isLessThan1280 = useMediaQuery({ maxWidth: 1280 });
+  const isLessThan1024 = useMediaQuery({ maxWidth: 1024 });
+
+  const columnVisibility = {
+    full_name: false,
+    email: !isLessThan1280,
+    last_name: !isLessThan1024,
+  };
 
   const table = useReactTable({
     data,
@@ -45,15 +55,13 @@ export function UserTable<TData, TValue>({ columns, data }: UserTableProps<TData
     state: {
       sorting,
       columnFilters,
-      columnVisibility: {
-        full_name: false,
-      },
+      columnVisibility: columnVisibility,
     },
   });
 
   return (
     <div>
-      <h1 className="pt-4 pl-4 text-muted-foreground">{t('employeersTab')}</h1>
+      <h1 className="pt-4 pl-4 text-muted-foreground">{t('title')}</h1>
       <div className="flex items-center py-4 pl-4">
         <SearchInput
           placeholder={tSearch('placeholder')}

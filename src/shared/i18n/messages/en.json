@@ -80,5 +80,19 @@
         "uninspectedServerError": "Server error. Please, try again"
       }
     }
+  },
+  "entities": {
+    "user": {
+      "title": "Employees",
+      "table": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email",
+        "department": "Department",
+        "position": "Position",
+        "profileBtn": "Profile",
+        "updateBtn": "Update"
+      }
+    }
   }
 }
