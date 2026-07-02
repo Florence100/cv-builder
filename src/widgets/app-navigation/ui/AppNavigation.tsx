@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useSidebar } from '@/src/shared/ui/sidebar';
-import { EmployeeIcon, SkillsIcon, CVsIcon, LanguagesIcon } from '@/src/shared/ui/svg-icons';
+import { EmployeeIcon, SkillsIcon, CVsIcon, LanguagesIcon } from '@/src/shared/ui/icons/nav-icons';
 
 const NAV_ITEMS = [
   { href: '/users', labelKey: 'employeersTab', Icon: EmployeeIcon },

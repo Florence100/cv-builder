@@ -80,5 +80,19 @@
         "uninspectedServerError": "Ошибка сервера. Пожалуйста, попробуйте еще раз"
       }
     }
+  },
+  "entities": {
+    "user": {
+      "title": "Работники",
+      "table": {
+        "firstName": "Имя",
+        "lastName": "Фамилия",
+        "email": "Почта",
+        "department": "Отделение",
+        "position": "Позиция",
+        "profileBtn": "Профиль",
+        "updateBtn": "Обновить"
+      }
+    }
   }
 }
