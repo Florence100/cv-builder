@@ -7,8 +7,10 @@ import {
   BreadcrumbSeparator,
 } from '@/src/shared/ui/breadcrumb';
 import { PersonIcon } from '@/src/shared/ui/icons/person-icon';
+import { getTranslations } from 'next-intl/server';
 
 export const UserProfileHeader = async ({ userId }: { userId: string }) => {
+  const t = await getTranslations('widgets.userProfileHeader');
   const user = await fetchUser(userId);
 
   const firstName = user?.profile?.first_name || '';
@@ -20,7 +22,7 @@ export const UserProfileHeader = async ({ userId }: { userId: string }) => {
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink href="/users" className="text-base">
-            Employees
+            {t('employeesTab')}
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />

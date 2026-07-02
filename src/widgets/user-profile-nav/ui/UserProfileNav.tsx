@@ -1,8 +1,10 @@
 'use client';
 
 import { Tabs, TabsList, TabsTrigger } from '@/src/shared/ui/tabs';
+import { useTranslations } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
 export const UserProfileNav = ({ userId }: { userId: string }) => {
+  const t = useTranslations('widgets.userProfileNav');
   const router = useRouter();
   const pathname = usePathname();
   const activeTab = pathname?.split('/').pop();
@@ -18,19 +20,19 @@ export const UserProfileNav = ({ userId }: { userId: string }) => {
           value="profile"
           className="px-12 h-12 uppercase text-foreground data-[state=active]:text-primary after:bg-primary group-data-horizontal/tabs:after:-bottom-[1px]"
         >
-          Profile
+          {t('profileTab')}
         </TabsTrigger>
         <TabsTrigger
           value="skills"
           className="px-12 h-12 uppercase text-foreground data-[state=active]:text-primary after:bg-primary group-data-horizontal/tabs:after:-bottom-[1px]"
         >
-          Skills
+          {t('skillsTab')}
         </TabsTrigger>
         <TabsTrigger
           value="languages"
           className="px-12 h-12 uppercase text-foreground data-[state=active]:text-primary after:bg-primary group-data-horizontal/tabs:after:-bottom-[1px]"
         >
-          Languages
+          {t('languagesTab')}
         </TabsTrigger>
       </TabsList>
     </Tabs>

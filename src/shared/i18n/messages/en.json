@@ -51,6 +51,14 @@
       "skillsTab": "Skills",
       "languagesTab": "Languages",
       "CVsTab": "CVs"
+    },
+    "userProfileHeader": {
+      "employeesTab": "Employees"
+    },
+    "userProfileNav": {
+      "profileTab": "Profile",
+      "skillsTab": "Skills",
+      "languagesTab": "Languages"
     }
   },
   "shared": {

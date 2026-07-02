@@ -51,6 +51,14 @@
       "skillsTab": "Навыки",
       "languagesTab": "Языки",
       "CVsTab": "Резюме"
+    },
+    "userProfileHeader": {
+      "employeesTab": "Сотрудники"
+    },
+    "userProfileNav": {
+      "profileTab": "Профиль",
+      "skillsTab": "Навыки",
+      "languagesTab": "Языки"
     }
   },
   "shared": {
