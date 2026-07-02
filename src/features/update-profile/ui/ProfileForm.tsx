@@ -13,12 +13,13 @@ import {
 } from '@/src/shared/ui/select';
 import { Button } from '@/src/shared/ui/button';
 import { Department, Position, User } from 'cv-graphql';
-import { Controller, useForm } from 'react-hook-form';
+import { Controller, useForm, useWatch } from 'react-hook-form';
 import { useMutation } from '@apollo/client/react';
 import { UPDATE_PROFILE, UPDATE_USER, UPLOAD_AVATAR } from '../api/mutations';
-import { useRouter } from 'next/navigation';
 import { fileToBase64 } from '@/src/shared/lib/file-to-base64';
-import { useTransition } from 'react';
+import { useRouter } from 'next/navigation';
+import { GET_USER } from '@/src/entities/user/api/queries';
+import { useState } from 'react';
 
 type ProfileFormValues = {
   firstName: string;
@@ -36,10 +37,41 @@ type ProfileFormProps = {
 };
 
 export const ProfileForm = ({ user, departments, positions, isOwner }: ProfileFormProps) => {
-  const avatarUrl = user?.profile?.avatar;
-  const fullName = user?.profile?.full_name || 'User Name';
-  const email = user?.email || 'email@example.com';
+  const router = useRouter();
+  const [dragActive, setDragActive] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    control,
+    resetField,
+    reset,
+    setValue,
+    formState: { isSubmitting, isDirty, errors },
+  } = useForm<ProfileFormValues>({
+    defaultValues: {
+      firstName: user?.profile?.first_name || '',
+      lastName: user?.profile?.last_name || '',
+      department: user?.department?.id || '',
+      position: user?.position?.id || '',
+      avatar: undefined,
+    },
+  });
+
+  const serverFirstName = user?.profile?.first_name || '';
+  const serverLastName = user?.profile?.last_name || '';
+  const fullName = `${serverFirstName} ${serverLastName}`.trim() || 'User Name';
   const initial = fullName.charAt(0).toUpperCase();
+
+  const avatarFiles = useWatch({
+    control,
+    name: 'avatar',
+  });
+
+  const previewUrl =
+    avatarFiles && avatarFiles.length > 0 ? URL.createObjectURL(avatarFiles[0]) : null;
+  const displayAvatarUrl = previewUrl || user?.profile?.avatar;
+  const email = user?.email || 'email@example.com';
 
   let date = new Date().toDateString();
   if (user?.created_at) {
@@ -51,68 +83,73 @@ export const ProfileForm = ({ user, departments, positions, isOwner }: ProfileFo
     }
   }
 
-  const [isPending, startTransition] = useTransition();
-
-  const {
-    register,
-    handleSubmit,
-    control,
-    resetField,
-    formState: { isSubmitting, isDirty },
-  } = useForm<ProfileFormValues>({
-    values: {
-      firstName: user?.profile?.first_name || '',
-      lastName: user?.profile?.last_name || '',
-      department: user?.department?.id || '',
-      position: user?.position?.id || '',
-    },
+  const [updateProfile] = useMutation(UPDATE_PROFILE);
+  const [updateUser] = useMutation(UPDATE_USER);
+  const [uploadAvatar] = useMutation(UPLOAD_AVATAR, {
+    refetchQueries: [GET_USER],
   });
+  const isBusy = isSubmitting;
 
-  const [updateProfile, { loading: loadingProfile }] = useMutation(UPDATE_PROFILE);
-  const [updateUser, { loading: loadingUser }] = useMutation(UPDATE_USER);
-  const [uploadAvatar, { loading: loadingAvatar }] = useMutation(UPLOAD_AVATAR);
+  const handleDrag = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!isOwner) return;
 
-  const isBusy = isSubmitting || loadingProfile || loadingUser || loadingAvatar || isPending;
-  const router = useRouter();
+    if (e.type === 'dragenter' || e.type === 'dragover') {
+      setDragActive(true);
+    } else if (e.type === 'dragleave') {
+      setDragActive(false);
+    }
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+    if (!isOwner) return;
+
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      const dataTransfer = new DataTransfer();
+      dataTransfer.items.add(e.dataTransfer.files[0]);
+      setValue('avatar', dataTransfer.files, { shouldValidate: true, shouldDirty: true });
+    }
+  };
 
   const onSubmit = async (data: ProfileFormValues) => {
     if (!user?.id) return;
 
-    try {
-      const promises = [];
+    console.log('--- SUBMIT TRIGGERED ---');
+    console.log('Entire Form Data:', data);
 
-      promises.push(
-        updateProfile({
-          variables: {
-            profile: {
-              userId: user.id,
-              first_name: data.firstName,
-              last_name: data.lastName,
-            },
+    try {
+      await updateProfile({
+        variables: {
+          profile: {
+            userId: user.id,
+            ...(data.firstName ? { first_name: data.firstName } : {}),
+            ...(data.lastName ? { last_name: data.lastName } : {}),
           },
-        })
-      );
+        },
+      });
 
       if (data.department || data.position) {
-        promises.push(
-          updateUser({
-            variables: {
-              user: {
-                userId: user.id,
-                ...(data.department ? { departmentId: data.department } : {}),
-                ...(data.position ? { positionId: data.position } : {}),
-              },
+        await updateUser({
+          variables: {
+            user: {
+              userId: user.id,
+              ...(data.department ? { departmentId: data.department } : {}),
+              ...(data.position ? { positionId: data.position } : {}),
             },
-          })
-        );
+          },
+        });
       }
 
       if (data.avatar && data.avatar.length > 0) {
         const file = data.avatar[0];
         const base64 = await fileToBase64(file);
 
-        promises.push(
-          uploadAvatar({
+        try {
+          await uploadAvatar({
             variables: {
               avatar: {
                 userId: user.id,
@@ -121,19 +158,21 @@ export const ProfileForm = ({ user, departments, positions, isOwner }: ProfileFo
                 type: file.type,
               },
             },
-          })
-        );
+          });
+        } catch (avatarError) {
+          console.error('Avatar Mutation FAILED:', avatarError);
+        }
       }
 
-      await Promise.all(promises);
+      resetField('avatar');
 
-      startTransition(() => {
-        router.refresh();
+      reset({
+        firstName: data.firstName || '',
+        lastName: data.lastName || '',
+        department: data.department || '',
+        position: data.position || '',
+        avatar: undefined,
       });
-
-      if (data.avatar && data.avatar.length > 0) {
-        resetField('avatar');
-      }
 
       router.refresh();
     } catch (error) {
@@ -144,23 +183,42 @@ export const ProfileForm = ({ user, departments, positions, isOwner }: ProfileFo
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="min-h-dvh flex flex-col gap-8 items-center">
       <div className="flex gap-16 items-center justify-center">
-        {avatarUrl ? (
-          <Image
-            src={avatarUrl}
-            alt="Avatar"
-            width={120}
-            height={120}
-            className="rounded-full h-30 w-30 object-cover"
-          />
-        ) : (
-          <div className="flex rounded-full w-30 h-30 bg-table-avatar text-background items-center justify-center text-4xl font-normal">
-            {initial}
-          </div>
-        )}
+        <div
+          onDragEnter={handleDrag}
+          onDragLeave={handleDrag}
+          onDragOver={handleDrag}
+          onDrop={handleDrop}
+          className={`relative rounded-full transition-all duration-200 ${
+            dragActive ? 'scale-105 ring-4 ring-primary ring-offset-4 ring-offset-background' : ''
+          }`}
+        >
+          {/* [8] Wrapped the avatar image/placeholder in a label pointing to 'avatar-upload' so clicking it opens the file picker */}
+          <label
+            htmlFor={isOwner ? 'avatar-upload' : undefined}
+            className={`block ${isOwner ? 'cursor-pointer hover:opacity-90' : ''}`}
+          >
+            {displayAvatarUrl ? (
+              <Image
+                src={displayAvatarUrl}
+                alt="Avatar"
+                width={120}
+                height={120}
+                className="rounded-full h-30 w-30 object-cover"
+              />
+            ) : (
+              <div className="flex rounded-full w-30 h-30 bg-table-avatar text-background items-center justify-center text-4xl font-normal">
+                {initial}
+              </div>
+            )}
+          </label>
+        </div>
 
         {isOwner && (
           <div className="flex flex-col items-center text-center justify-center gap-1">
-            <label className="cursor-pointer flex items-center gap-4 group hover:opacity-80 transition-opacity">
+            <label
+              htmlFor="avatar-upload"
+              className="cursor-pointer flex items-center gap-4 group hover:opacity-80 transition-opacity"
+            >
               <Upload className="w-7 h-7 text-foreground" strokeWidth={2.5} />
               <span className="text-xl font-medium text-foreground">Upload avatar image</span>
               <input
@@ -171,6 +229,31 @@ export const ProfileForm = ({ user, departments, positions, isOwner }: ProfileFo
               />
             </label>
             <p className="text-muted-foreground">png, jpg or gif no more than 0.5MB</p>
+            {errors.avatar && (
+              <p className="text-destructive text-sm mt-1 font-medium">{errors.avatar.message}</p>
+            )}
+            <input
+              id="avatar-upload"
+              type="file"
+              className="hidden"
+              accept=".png, .jpg, .jpeg, .gif"
+              {...register('avatar', {
+                validate: {
+                  lessThan500KB: (files) => {
+                    if (!files || files.length === 0) return true;
+                    return files[0].size <= 500 * 1024 || 'Maximum file size is 500 Kb';
+                  },
+                  acceptedFormats: (files) => {
+                    if (!files || files.length === 0) return true;
+                    const validTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/gif'];
+                    return (
+                      validTypes.includes(files[0].type) ||
+                      'Supported file formats are png, jpg, jpeg and gif'
+                    );
+                  },
+                },
+              })}
+            />
           </div>
         )}
       </div>

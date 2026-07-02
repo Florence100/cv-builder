@@ -1,19 +1,28 @@
-import { fetchDepartments, fetchPositions, fetchUser } from '@/src/entities/user/api/user';
+'use client';
+
+import { GET_DEPARTMENTS, GET_POSITIONS, GET_USER } from '@/src/entities/user/api/queries';
 import { ProfileForm } from '@/src/features/update-profile';
-import { cookies } from 'next/headers';
+import { useQuery } from '@apollo/client/react';
 
-export const ProfilePage = async ({ userId }: { userId: string }) => {
-  const [user, departmentsRes, positionsRes] = await Promise.all([
-    fetchUser(userId),
-    fetchDepartments(),
-    fetchPositions(),
-  ]);
+type ProfilePageProps = {
+  userId: string;
+  loggedInUserId?: string;
+};
 
-  const departments = departmentsRes || [];
-  const positions = positionsRes || [];
+export const ProfilePage = ({ userId, loggedInUserId }: ProfilePageProps) => {
+  const { data: userData, loading: loadingUser } = useQuery(GET_USER, {
+    variables: { userId },
+    fetchPolicy: 'cache-and-network',
+  });
+  const { data: deptData, loading: loadingDepts } = useQuery(GET_DEPARTMENTS);
+  const { data: posData, loading: loadingPos } = useQuery(GET_POSITIONS);
 
-  const cookieStore = await cookies();
-  const loggedInUserId = cookieStore.get('userId')?.value;
+  if (loadingUser || loadingDepts || loadingPos) {
+    return <div className="flex justify-center items-center min-h-dvh">Loading profile...</div>;
+  }
+  const departments = deptData?.departments || [];
+  const positions = posData?.positions || [];
+  const user = userData?.user || null;
 
   const isOwner = loggedInUserId === userId;
 
