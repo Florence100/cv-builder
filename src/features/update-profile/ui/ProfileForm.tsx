@@ -16,9 +16,9 @@ import { Department, Position, User } from 'cv-graphql';
 import { Controller, useForm } from 'react-hook-form';
 import { useMutation } from '@apollo/client/react';
 import { UPDATE_PROFILE, UPDATE_USER, UPLOAD_AVATAR } from '../api/mutations';
-import { useRouter } from 'next/navigation';
 import { fileToBase64 } from '@/src/shared/lib/file-to-base64';
-import { useTransition } from 'react';
+import { useRouter } from 'next/navigation';
+import { GET_USER } from '@/src/entities/user/api/queries';
 
 type ProfileFormValues = {
   firstName: string;
@@ -36,10 +36,30 @@ type ProfileFormProps = {
 };
 
 export const ProfileForm = ({ user, departments, positions, isOwner }: ProfileFormProps) => {
-  const avatarUrl = user?.profile?.avatar;
-  const fullName = user?.profile?.full_name || 'User Name';
-  const email = user?.email || 'email@example.com';
+  const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    control,
+    resetField,
+    reset,
+    formState: { isSubmitting, isDirty },
+  } = useForm<ProfileFormValues>({
+    defaultValues: {
+      firstName: user?.profile?.first_name || '',
+      lastName: user?.profile?.last_name || '',
+      department: user?.department?.id || '',
+      position: user?.position?.id || '',
+    },
+  });
+
+  const serverFirstName = user?.profile?.first_name || '';
+  const serverLastName = user?.profile?.last_name || '';
+  const fullName = `${serverFirstName} ${serverLastName}`.trim() || 'User Name';
   const initial = fullName.charAt(0).toUpperCase();
+
+  const avatarUrl = user?.profile?.avatar;
+  const email = user?.email || 'email@example.com';
 
   let date = new Date().toDateString();
   if (user?.created_at) {
@@ -51,68 +71,52 @@ export const ProfileForm = ({ user, departments, positions, isOwner }: ProfileFo
     }
   }
 
-  const [isPending, startTransition] = useTransition();
-
-  const {
-    register,
-    handleSubmit,
-    control,
-    resetField,
-    formState: { isSubmitting, isDirty },
-  } = useForm<ProfileFormValues>({
-    values: {
-      firstName: user?.profile?.first_name || '',
-      lastName: user?.profile?.last_name || '',
-      department: user?.department?.id || '',
-      position: user?.position?.id || '',
-    },
+  const [updateProfile] = useMutation(UPDATE_PROFILE);
+  const [updateUser] = useMutation(UPDATE_USER);
+  const [uploadAvatar] = useMutation(UPLOAD_AVATAR, {
+    refetchQueries: [GET_USER], // This is 100x more reliable than passing a string!
   });
-
-  const [updateProfile, { loading: loadingProfile }] = useMutation(UPDATE_PROFILE);
-  const [updateUser, { loading: loadingUser }] = useMutation(UPDATE_USER);
-  const [uploadAvatar, { loading: loadingAvatar }] = useMutation(UPLOAD_AVATAR);
-
-  const isBusy = isSubmitting || loadingProfile || loadingUser || loadingAvatar || isPending;
-  const router = useRouter();
+  const isBusy = isSubmitting;
 
   const onSubmit = async (data: ProfileFormValues) => {
     if (!user?.id) return;
 
-    try {
-      const promises = [];
+    // ADD THESE TWO LINES:
+    console.log('--- SUBMIT TRIGGERED ---');
+    console.log('Entire Form Data:', data);
 
-      promises.push(
-        updateProfile({
+    try {
+      // 1. Update the names first, and WAIT for it to finish
+      await updateProfile({
+        variables: {
+          profile: {
+            userId: user.id,
+            ...(data.firstName ? { first_name: data.firstName } : {}),
+            ...(data.lastName ? { last_name: data.lastName } : {}),
+          },
+        },
+      });
+
+      // 2. Update the department and position, and WAIT for it to finish
+      if (data.department || data.position) {
+        await updateUser({
           variables: {
-            profile: {
+            user: {
               userId: user.id,
-              first_name: data.firstName,
-              last_name: data.lastName,
+              ...(data.department ? { departmentId: data.department } : {}),
+              ...(data.position ? { positionId: data.position } : {}),
             },
           },
-        })
-      );
-
-      if (data.department || data.position) {
-        promises.push(
-          updateUser({
-            variables: {
-              user: {
-                userId: user.id,
-                ...(data.department ? { departmentId: data.department } : {}),
-                ...(data.position ? { positionId: data.position } : {}),
-              },
-            },
-          })
-        );
+        });
       }
 
+      // 3. Finally, upload the avatar, and WAIT for it to finish
       if (data.avatar && data.avatar.length > 0) {
         const file = data.avatar[0];
         const base64 = await fileToBase64(file);
 
-        promises.push(
-          uploadAvatar({
+        try {
+          await uploadAvatar({
             variables: {
               avatar: {
                 userId: user.id,
@@ -121,20 +125,24 @@ export const ProfileForm = ({ user, departments, positions, isOwner }: ProfileFo
                 type: file.type,
               },
             },
-          })
-        );
+          });
+        } catch (avatarError) {
+          console.error('Avatar Mutation FAILED:', avatarError);
+        }
       }
 
-      await Promise.all(promises);
-
-      startTransition(() => {
-        router.refresh();
+      reset({
+        firstName: data.firstName,
+        lastName: data.lastName,
+        department: data.department,
+        position: data.position,
+        // Omit avatar to ensure the file input clears
       });
 
-      if (data.avatar && data.avatar.length > 0) {
-        resetField('avatar');
-      }
+      // Clear the visual file input memory
+      resetField('avatar');
 
+      // 4. Force Next.js Server Components (like UserProfileHeader) to sync
       router.refresh();
     } catch (error) {
       console.error('Failed to update:', error);

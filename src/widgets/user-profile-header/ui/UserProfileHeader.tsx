@@ -11,7 +11,9 @@ import { PersonIcon } from '@/src/shared/ui/icons/person-icon';
 export const UserProfileHeader = async ({ userId }: { userId: string }) => {
   const user = await fetchUser(userId);
 
-  console.log(user);
+  const firstName = user?.profile?.first_name || '';
+  const lastName = user?.profile?.last_name || '';
+  const displayName = `${firstName} ${lastName}`.trim() || 'User Name';
 
   return (
     <Breadcrumb>
@@ -29,7 +31,7 @@ export const UserProfileHeader = async ({ userId }: { userId: string }) => {
           >
             <div className="flex justify-center items-center gap-1.5">
               <PersonIcon />
-              <span>{user?.profile.full_name ? user?.profile.full_name : 'User Name'}</span>
+              <span>{displayName}</span>
             </div>
           </BreadcrumbLink>
         </BreadcrumbItem>
