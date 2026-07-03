@@ -33,15 +33,15 @@ export async function proxy(request: NextRequest) {
         const data = await refreshTokens(refreshToken);
 
         response.cookies.set('accessToken', data.access_token, {
-          httpOnly: true,
-          secure: process.env.NODE_ENV === 'production',
+          // httpOnly: true,
+          // secure: process.env.NODE_ENV === 'production',
           maxAge: 60 * 10,
           path: '/',
         });
 
         response.cookies.set('refreshToken', data.refresh_token, {
-          httpOnly: true,
-          secure: process.env.NODE_ENV === 'production',
+          // httpOnly: true,
+          // secure: process.env.NODE_ENV === 'production',
           maxAge: 60 * 60 * 24 * 7,
           path: '/',
         });

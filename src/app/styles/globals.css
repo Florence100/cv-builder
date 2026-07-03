@@ -40,6 +40,8 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --select-item: rgba(235, 235, 235, 1);
+  --positive: rgba(11, 170, 0, 1);
 }
 
 @theme inline {
@@ -82,6 +84,8 @@
   --color-light-gray: rgba(0, 0, 0, 0.04);
   --color-table-avatar: rgb(189, 189, 189);
   --color-table-border: rgb(224, 224, 224);
+  --color-select-item: var(--select-item);
+  --color-positive: var(--positive);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
