@@ -2,8 +2,12 @@ import { SidebarProvider } from '@/src/shared/ui/sidebar';
 import { AppSidebar } from '@/src/shared/ui/app-sidebar';
 import { AppNavigation } from '@/src/widgets/app-navigation';
 import { UserButton } from '@/src/shared/ui/user-button';
+import { cookies } from 'next/headers';
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default async function Layout({ children }: { children: React.ReactNode }) {
+  const cookieStore = await cookies();
+  const userId = cookieStore.get('userId')?.value;
+
   return (
     <SidebarProvider>
       <div className="hidden lg:block bg-background">
@@ -14,7 +18,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       <div className="flex gap-2 lg:hidden fixed bottom-0 left-0 right-0 z-50 p-2 pl-4 pr-4 bg-background">
         <div className="flex-[4]">
-          <AppNavigation />
+          <AppNavigation userId={userId} />
         </div>
         <div className="flex-[1]">
           <UserButton />

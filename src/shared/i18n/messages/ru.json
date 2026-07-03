@@ -65,6 +65,12 @@
       },
       "searchFullNameInput": {
         "placeholder": "Поиск по полному имени..."
+      },
+      "addBtn": {
+        "skill": "добавить навык"
+      },
+      "removeBtn": {
+        "skill": "удалить навык"
       }
     },
     "validation": {
