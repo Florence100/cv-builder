@@ -13,7 +13,7 @@ interface AppNavigationProps {
 function NavigationList({ userId }: AppNavigationProps) {
   const t = useTranslations('widgets.appNavigation');
   const { open } = useSidebar();
-  const pathname = usePathname();
+  const pathname = usePathname() || '';
 
   const NAV_ITEMS = [
     { href: '/users', labelKey: 'employeersTab', Icon: EmployeeIcon },
@@ -25,13 +25,28 @@ function NavigationList({ userId }: AppNavigationProps) {
   const listItems = NAV_ITEMS.map((item) => {
     const Icon = item.Icon;
 
+    const isActive = (href: string) => {
+      if (href === '/users') {
+        return pathname === '/users';
+      }
+
+      if (href.includes('/skills')) {
+        return /^\/users\/\d+\/skills$/.test(pathname);
+      }
+
+      return pathname === href;
+    };
+    console.log(isActive);
+
     return (
       <Link
         href={item.href}
         key={item.href}
-        className={`p-2 lg:pl-4 flex h-10 w-full justify-center lg:justify-start lg:h-[3.5rem] gap-2 lg:gap-4 items-center rounded-full lg:rounded-l-none hover:bg-neutral-subtle ${pathname === item.href ? ' bg-neutral-subtle text-foreground' : 'text-muted-foreground'}`}
+        className={`p-2 lg:pl-4 flex h-10 w-full justify-center lg:justify-start lg:h-[3.5rem] gap-2 lg:gap-4 items-center rounded-full lg:rounded-l-none hover:bg-neutral-subtle ${
+          isActive(item.href) ? 'bg-neutral-subtle text-foreground' : 'text-muted-foreground'
+        }`}
       >
-        <Icon fill={pathname === item.href ? '#2e2e2e' : '#00000099'} className="size-6 shrink-0" />
+        <Icon fill={isActive(item.href) ? '#2e2e2e' : '#00000099'} className="size-6 shrink-0" />
         <p className={`text-left truncate lg:w-full ${open ? 'block' : 'hidden'}`}>
           {t(item.labelKey)}
         </p>
