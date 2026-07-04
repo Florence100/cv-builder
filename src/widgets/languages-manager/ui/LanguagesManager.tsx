@@ -1,8 +1,6 @@
 import { fetchLanguages } from '@/src/entities/language/api/server-fetch';
 import { LanguageList } from '@/src/entities/language/ui/LanguageList';
 import { fetchProfile } from '@/src/entities/profile/api/server-fetch';
-import { AddLanguageModal } from '@/src/features/add-language';
-import { RemoveButton } from '@/src/shared/ui/removeButton';
 import { InteractiveLanguagesArea } from '../../interactive-languages-area';
 
 type LanguagesManagerProps = {
