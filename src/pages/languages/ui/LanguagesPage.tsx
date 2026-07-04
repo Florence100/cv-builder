@@ -1,4 +1,4 @@
-import { LnaguagesManager } from '@/src/widgets/languages-manager/ui/LnaguagesManager';
+import { LanguagesManager } from '@/src/widgets/languages-manager/ui/LanguagesManager';
 
 type LanguagesPageProps = {
   userId: string;
@@ -6,5 +6,5 @@ type LanguagesPageProps = {
 };
 
 export const LanguagesPage = ({ userId, loggedInUserId }: LanguagesPageProps) => {
-  return <LnaguagesManager userId={userId} loggedInUserId={loggedInUserId} />;
+  return <LanguagesManager userId={userId} loggedInUserId={loggedInUserId} />;
 };

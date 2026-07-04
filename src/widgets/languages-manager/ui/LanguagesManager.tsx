@@ -9,7 +9,7 @@ type LanguagesManagerProps = {
   loggedInUserId?: string;
 };
 
-export const LnaguagesManager = async ({ userId, loggedInUserId }: LanguagesManagerProps) => {
+export const LanguagesManager = async ({ userId, loggedInUserId }: LanguagesManagerProps) => {
   const profile = await fetchProfile(userId);
   const isOwner = loggedInUserId === userId;
   const allLanguages = await fetchLanguages();
