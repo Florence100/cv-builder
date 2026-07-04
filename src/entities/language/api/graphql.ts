@@ -1,5 +1,11 @@
 import { gql, TypedDocumentNode } from '@apollo/client';
-import { AddProfileLanguageInput, Language, Profile, UpdateProfileLanguageInput } from 'cv-graphql';
+import {
+  AddProfileLanguageInput,
+  DeleteProfileLanguageInput,
+  Language,
+  Profile,
+  UpdateProfileLanguageInput,
+} from 'cv-graphql';
 
 export type GetLanguagesResult = {
   languages: Language[];
@@ -45,6 +51,23 @@ export const UPDATE_PROFILE_LANGUAGE: TypedDocumentNode<
       languages {
         name
         proficiency
+      }
+    }
+  }
+`;
+
+export type DeleteProfileLanguageArgs = { language: DeleteProfileLanguageInput };
+export type DeleteProfileLanguageResult = { deleteProfileLanguage: Profile };
+
+export const DELETE_PROFILE_LANGUAGE: TypedDocumentNode<
+  DeleteProfileLanguageResult,
+  DeleteProfileLanguageArgs
+> = gql`
+  mutation DeleteProfileLanguage($language: DeleteProfileLanguageInput!) {
+    deleteProfileLanguage(language: $language) {
+      id
+      languages {
+        name
       }
     }
   }
