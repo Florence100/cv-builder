@@ -19,7 +19,7 @@ export const LnaguagesManager = async ({ userId, loggedInUserId }: LanguagesMana
   return (
     <div className="flex-1 flex flex-col h-full overflow-hidden items-center">
       <div className="felx-1 flex flex-col w-3xl pt-10 gap-8">
-        <LanguageList languages={profile?.languages || []} />
+        <LanguageList userId={userId} languages={profile?.languages || []} />
 
         {isOwner && (
           <div className="flex justify-end gap-6 mt-4">

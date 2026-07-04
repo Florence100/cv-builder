@@ -27,6 +27,14 @@
       "emailPlaceholder": "Почта",
       "passwordPlaceholder": "Пароль",
       "submitButton": "Войти"
+    },
+    "updateLanguage": {
+      "error": "Не удалось обновить уровень владения языком",
+      "header": "Обновить уровень владения языком",
+      "languageLabel": "Язык",
+      "proficiencyLabel": "Уровень владения языком",
+      "cancelButton": "Отмена",
+      "confirmButton": "Подтвердить"
     }
   },
   "pages": {

@@ -27,6 +27,14 @@
       "emailPlaceholder": "Email",
       "passwordPlaceholder": "Password",
       "submitButton": "Create an account"
+    },
+    "updateLanguage": {
+      "error": "Failed to update language",
+      "header": "Update language",
+      "languageLabel": "Language",
+      "proficiencyLabel": "Language proficiency",
+      "cancelButton": "Cancel",
+      "confirmButton": "Confirm"
     }
   },
   "pages": {

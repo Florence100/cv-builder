@@ -1,18 +1,16 @@
+import { UpdateLanguageModal } from '@/src/features/update-language';
 import { LanguageProficiency } from 'cv-graphql';
 
-export const LanguageList = ({ languages }: { languages: LanguageProficiency[] }) => {
+type LanguageListProps = {
+  userId: string;
+  languages: LanguageProficiency[];
+};
+
+export const LanguageList = ({ userId, languages }: LanguageListProps) => {
   return (
-    <div className="grid grid-cols-2 gap-x-32 gap-y-4 w-fit h-fit">
+    <div className="grid grid-cols-2 gap-x-32 gap-y-3 w-fit h-fit">
       {languages.map((item) => {
-        const isNative = item.proficiency.toLowerCase() === 'native';
-        return (
-          <div key={item.name} className="flex items-center gap-6 text-base">
-            <span className={`w-16 ${isNative ? 'text-primary' : 'text-positive'}`}>
-              {item.proficiency}
-            </span>
-            <span className="text-muted-foreground">{item.name}</span>
-          </div>
-        );
+        return <UpdateLanguageModal key={item.name} userId={userId} languageData={item} />;
       })}
     </div>
   );
