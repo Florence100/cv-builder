@@ -1,5 +1,15 @@
 {
   "features": {
+    "addLanguage": {
+      "error": "Failed to add language",
+      "header": "Add language",
+      "addButton": "Add language",
+      "languageLabel": "Language",
+      "proficiencyLabel": "Language proficiency",
+      "cancelButton": "Cancel",
+      "confirmButton": "Confirm",
+      "disabledButtonTitle": "You have added all available languages"
+    },
     "authByEmail": {
       "emailPlaceholder": "Email",
       "passwordPlaceholder": "Password",

@@ -21,6 +21,7 @@ import {
 } from '@/src/shared/ui/select';
 import { useMutation } from '@apollo/client/react';
 import { Language, Proficiency } from 'cv-graphql';
+import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
@@ -37,6 +38,7 @@ interface AddLanguageModalProps {
 
 export const AddLanguageModal = ({ userId, languagesList }: AddLanguageModalProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const t = useTranslations('features.addLanguage');
   const router = useRouter();
 
   const {
@@ -67,7 +69,7 @@ export const AddLanguageModal = ({ userId, languagesList }: AddLanguageModalProp
         },
       });
     } catch (error) {
-      console.error('Failed to add language:', error);
+      console.error(`${t('error')}:`, error);
     }
 
     setIsOpen(false);
@@ -86,8 +88,12 @@ export const AddLanguageModal = ({ userId, languagesList }: AddLanguageModalProp
 
   if (hasNoLanguagesLeft) {
     return (
-      <div title="You have added all available languages!">
-        <AddButton value="ADD LANGUAGE" className="opacity-50 cursor-default" disabled />
+      <div title={t('disabledButtonTitle')}>
+        <AddButton
+          value={t('addButton').toUpperCase()}
+          className="opacity-50 cursor-default"
+          disabled
+        />
       </div>
     );
   }
@@ -96,20 +102,20 @@ export const AddLanguageModal = ({ userId, languagesList }: AddLanguageModalProp
     <Dialog open={isOpen} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
         <div>
-          <AddButton value="ADD LANGUAGE" />
+          <AddButton value={t('addButton').toUpperCase()} />
         </div>
       </DialogTrigger>
       <DialogContent className="sm:max-w-125 p-4 bg-background rounded-sm border-none text-foreground shadow-xl overflow-hidden">
         <DialogHeader>
           <DialogTitle className="text-lg font-normal tracking-wide text-foreground">
-            Add language
+            {t('header')}
           </DialogTitle>
         </DialogHeader>
 
         <form onSubmit={handleSubmit(onSubmit)} className="py-2 flex flex-col gap-6">
           <div className="relative">
             <Label className="absolute -top-2 left-3 bg-background px-1 text-xs text-muted-foreground font-normal z-10">
-              Language
+              {t('languageLabel')}
             </Label>
             <Controller
               name="languageName"
@@ -137,7 +143,7 @@ export const AddLanguageModal = ({ userId, languagesList }: AddLanguageModalProp
           </div>
           <div className="relative">
             <Label className="absolute -top-2 left-3 bg-background px-1 text-xs text-muted-foreground font-normal z-10">
-              Language proficiency
+              {t('proficiencyLabel')}
             </Label>
             <Controller
               name="proficiency"
@@ -171,14 +177,14 @@ export const AddLanguageModal = ({ userId, languagesList }: AddLanguageModalProp
               onClick={() => handleOpenChange(false)}
               className="rounded-full px-10 h-10 bg-transparent border-border hover:border-border-hovered text-muted-foreground hover:bg-gray-150 font-medium tracking-wide uppercase text-sm"
             >
-              Cancel
+              {t('cancelButton')}
             </Button>
             <Button
               type="submit"
               disabled={!isValid}
               className="rounded-full px-10 h-10 bg-primary hover:bg-primary/80 text-white border-none font-medium tracking-wide uppercase text-sm"
             >
-              Confirm
+              {t('confirmButton')}
             </Button>
           </div>
         </form>
