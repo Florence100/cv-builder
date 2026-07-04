@@ -15,7 +15,7 @@
   --primary-transparent: rgba(198, 48, 49, 0.04);
   --primary-foreground: rgba(255, 255, 255, 1);
   --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
+  --secondary-foreground: rgb(23, 23, 23);
   --muted: rgba(118, 118, 118, 0.04);
   --muted-foreground: rgba(0, 0, 0, 0.6);
   --accent: oklch(0.97 0 0);
@@ -81,7 +81,8 @@
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
   --color-btn-hovered: rgb(138, 33, 34);
-  --color-light-gray: rgba(0, 0, 0, 0.04);
+  --color-neutral-default: rgb(118, 118, 118);
+  --color-neutral-subtle: rgba(0, 0, 0, 0.04);
   --color-table-avatar: rgb(189, 189, 189);
   --color-table-border: rgb(224, 224, 224);
   --color-select-item: var(--select-item);

@@ -91,6 +91,12 @@
       },
       "searchFullNameInput": {
         "placeholder": "Search full name..."
+      },
+      "addBtn": {
+        "skill": "add skill"
+      },
+      "removeBtn": {
+        "skill": "remove skill"
       }
     },
     "validation": {
