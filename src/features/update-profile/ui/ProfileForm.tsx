@@ -143,9 +143,6 @@ export const ProfileForm = ({ user, departments, positions, isOwner }: ProfileFo
   const onSubmit = async (data: ProfileFormValues) => {
     if (!user?.id) return;
 
-    console.log('--- SUBMIT TRIGGERED ---');
-    console.log('Entire Form Data:', data);
-
     try {
       await updateProfile({
         variables: {

@@ -8,7 +8,7 @@ export function RemoveButton({ value }: React.ComponentProps<'button'>) {
       size="lg"
       className="uppercase text-primary text-sm px-4 hover:opacity-80 hover:text-primary focus-visible:ring-primary"
     >
-      <RemoveIcon className="size-[1.5rem] mr-2" /> {value}
+      <RemoveIcon className="size-6 mr-2" /> {value}
     </Button>
   );
 }

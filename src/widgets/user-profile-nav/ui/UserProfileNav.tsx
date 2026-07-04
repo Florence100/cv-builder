@@ -18,19 +18,19 @@ export const UserProfileNav = ({ userId }: { userId: string }) => {
       <TabsList variant="line">
         <TabsTrigger
           value="profile"
-          className="px-12 h-12 uppercase text-foreground data-[state=active]:text-primary after:bg-primary group-data-horizontal/tabs:after:-bottom-[1px]"
+          className="px-12 h-12 uppercase text-foreground data-[state=active]:text-primary after:bg-primary group-data-horizontal/tabs:after:-bottom-px"
         >
           {t('profileTab')}
         </TabsTrigger>
         <TabsTrigger
           value="skills"
-          className="px-12 h-12 uppercase text-foreground data-[state=active]:text-primary after:bg-primary group-data-horizontal/tabs:after:-bottom-[1px]"
+          className="px-12 h-12 uppercase text-foreground data-[state=active]:text-primary after:bg-primary group-data-horizontal/tabs:after:-bottom-px"
         >
           {t('skillsTab')}
         </TabsTrigger>
         <TabsTrigger
           value="languages"
-          className="px-12 h-12 uppercase text-foreground data-[state=active]:text-primary after:bg-primary group-data-horizontal/tabs:after:-bottom-[1px]"
+          className="px-12 h-12 uppercase text-foreground data-[state=active]:text-primary after:bg-primary group-data-horizontal/tabs:after:-bottom-px"
         >
           {t('languagesTab')}
         </TabsTrigger>

@@ -20,7 +20,7 @@ export default async function Layout({ children }: { children: React.ReactNode }
         <div className="flex-[4]">
           <AppNavigation userId={userId} />
         </div>
-        <div className="flex-[1]">
+        <div className="flex-1">
           <UserButton />
         </div>
       </div>

@@ -1,5 +1,15 @@
 {
   "features": {
+    "addLanguage": {
+      "error": "Не удалось добавить язык",
+      "header": "Добавить язык",
+      "addButton": "Добавить язык",
+      "languageLabel": "Язык",
+      "proficiencyLabel": "Уровень владения языком",
+      "cancelButton": "Отмена",
+      "confirmButton": "Подтвердить",
+      "disabledButtonTitle": "Вы добавили все доступные языки"
+    },
     "registerByEmail": {
       "emailPlaceholder": "Почта",
       "passwordPlaceholder": "Пароль",
@@ -17,6 +27,14 @@
       "emailPlaceholder": "Почта",
       "passwordPlaceholder": "Пароль",
       "submitButton": "Войти"
+    },
+    "updateLanguage": {
+      "error": "Не удалось обновить уровень владения языком",
+      "header": "Обновить уровень владения языком",
+      "languageLabel": "Язык",
+      "proficiencyLabel": "Уровень владения языком",
+      "cancelButton": "Отмена",
+      "confirmButton": "Подтвердить"
     }
   },
   "pages": {

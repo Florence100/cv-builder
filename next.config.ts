@@ -13,6 +13,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  transpilePackages: ['cv-graphql'],
 };
 
 const withNextIntl = createNextIntlPlugin('./src/shared/i18n/request.ts');
