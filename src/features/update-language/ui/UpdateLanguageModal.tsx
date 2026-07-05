@@ -86,7 +86,7 @@ export const UpdateLanguageModal = ({ userId, languageData }: UpdateLanguageModa
   return (
     <Dialog open={isOpen} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
-        <div className="flex items-center gap-6 text-base cursor-pointer px-4 py-2 rounded-md hover:bg-muted">
+        <div className="flex items-center gap-6 text-base cursor-pointer px-4 py-2 border border-transparent rounded-md hover:bg-muted transition-all duration-200">
           <span className={`w-16 ${isNative ? 'text-primary' : 'text-positive'}`}>
             {languageData.proficiency}
           </span>

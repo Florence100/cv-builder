@@ -33,10 +33,10 @@ type FormValues = {
 
 interface AddLanguageModalProps {
   userId: string;
-  languagesList: Language[];
+  remainedLanguages: Language[];
 }
 
-export const AddLanguageModal = ({ userId, languagesList }: AddLanguageModalProps) => {
+export const AddLanguageModal = ({ userId, remainedLanguages }: AddLanguageModalProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const t = useTranslations('features.addLanguage');
   const router = useRouter();
@@ -84,7 +84,7 @@ export const AddLanguageModal = ({ userId, languagesList }: AddLanguageModalProp
     }
   };
 
-  const hasNoLanguagesLeft = languagesList.length === 0;
+  const hasNoLanguagesLeft = remainedLanguages.length === 0;
 
   if (hasNoLanguagesLeft) {
     return (
@@ -127,7 +127,7 @@ export const AddLanguageModal = ({ userId, languagesList }: AddLanguageModalProp
                     <SelectValue placeholder="" />
                   </SelectTrigger>
                   <SelectContent className="bg-background">
-                    {languagesList.map((lang) => (
+                    {remainedLanguages.map((lang) => (
                       <SelectItem
                         key={lang.id}
                         value={lang.name}
