@@ -18,7 +18,7 @@ function NavigationList({ userId }: AppNavigationProps) {
   const NAV_ITEMS = [
     { href: '/users', labelKey: 'employeersTab', Icon: EmployeeIcon },
     { href: `/users/${userId}/skills`, labelKey: 'skillsTab', Icon: SkillsIcon },
-    { href: '/languages', labelKey: 'languagesTab', Icon: LanguagesIcon },
+    { href: `/users/${userId}/languages`, labelKey: 'languagesTab', Icon: LanguagesIcon },
     { href: '/cvs', labelKey: 'CVsTab', Icon: CVsIcon },
   ];
 
@@ -30,13 +30,16 @@ function NavigationList({ userId }: AppNavigationProps) {
         return pathname === '/users';
       }
 
+      if (href.includes('/languages')) {
+        return /^\/users\/\d+\/languages$/.test(pathname);
+      }
+
       if (href.includes('/skills')) {
         return /^\/users\/\d+\/skills$/.test(pathname);
       }
 
       return pathname === href;
     };
-    console.log(isActive);
 
     return (
       <Link
