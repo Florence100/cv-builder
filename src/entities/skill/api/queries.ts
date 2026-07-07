@@ -1,7 +1,7 @@
-import type { SkillMastery, SkillCategory } from 'cv-graphql';
+import type { SkillMastery, Skill } from 'cv-graphql';
 import { gql } from '@apollo/client';
 
-export const SKILLS_QUERY = gql`
+export const USER_SKILLS_QUERY = gql`
   query Profile($userId: ID!) {
     profile(userId: $userId) {
       skills {
@@ -13,12 +13,28 @@ export const SKILLS_QUERY = gql`
   }
 `;
 
-export type SkillsArgs = {
+export type UserSkillsArgs = {
   userId: string;
 };
 
-export type SkillsResult = {
+export type UserSkillsResult = {
   profile: {
     skills: SkillMastery[];
   };
+};
+
+export const SKILLS_QUERY = gql`
+  query Skills {
+    skills {
+      id
+      name
+      category {
+        id
+      }
+    }
+  }
+`;
+
+export type SkillsResult = {
+  skills: Skill[];
 };

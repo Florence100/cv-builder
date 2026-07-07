@@ -7,8 +7,16 @@
       "languageLabel": "Язык",
       "proficiencyLabel": "Уровень владения языком",
       "cancelButton": "Отмена",
-      "confirmButton": "Подтвердить",
+      "confirmButton": "Отмена",
       "disabledButtonTitle": "Вы добавили все доступные языки"
+    },
+    "addSkill": {
+      "error": "Не удалось  добавить навык",
+      "skillLabel": "Навык",
+      "masterLabel": "Уровень владения навыком",
+      "cancelButton": "Отмена",
+      "confirmButton": "Отмена",
+      "disabledButtonTitle": "Вы добавили все доступные навыки"
     },
     "registerByEmail": {
       "emailPlaceholder": "Почта",
@@ -77,6 +85,11 @@
       "profileTab": "Профиль",
       "skillsTab": "Навыки",
       "languagesTab": "Языки"
+    },
+    "userSkills": {
+      "dialog": {
+        "title": "Добавить навык"
+      }
     }
   },
   "shared": {

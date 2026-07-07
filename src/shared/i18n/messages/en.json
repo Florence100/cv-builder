@@ -10,6 +10,14 @@
       "confirmButton": "Confirm",
       "disabledButtonTitle": "You have added all available languages"
     },
+    "addSkill": {
+      "error": "Failed to add skill",
+      "skillLabel": "Skill",
+      "masterLabel": "Skill Mastery",
+      "cancelButton": "Cancel",
+      "confirmButton": "Confirm",
+      "disabledButtonTitle": "You have added all available skills"
+    },
     "authByEmail": {
       "emailPlaceholder": "Email",
       "passwordPlaceholder": "Password",
@@ -77,6 +85,11 @@
       "profileTab": "Profile",
       "skillsTab": "Skills",
       "languagesTab": "Languages"
+    },
+    "userSkills": {
+      "dialog": {
+        "title": "Add skill"
+      }
     }
   },
   "shared": {
