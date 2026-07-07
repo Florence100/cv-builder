@@ -1,7 +1,7 @@
 'use client';
 
 import type { SkillMastery, SkillCategory, Skill } from 'cv-graphql';
-import { SkillList } from '@/src/entities/skill';
+import { SkillList } from '@/src/entities/skill/ui/SkillList';
 import { groupSkillsByRootCategory } from '@/src/entities/skill/index';
 import { useTranslations } from 'next-intl';
 import {
@@ -34,6 +34,12 @@ export function UserSkills({ userId, userSkills, isOwner, categories, skills }: 
   const [deleteProfileSkill, { loading }] = useDeleteProfileSkill();
   const router = useRouter();
 
+  const toggleSelectedSkill = (skillName: string) => {
+    setSelectedSkills((prev) =>
+      prev.includes(skillName) ? prev.filter((name) => name !== skillName) : [...prev, skillName]
+    );
+  };
+
   const tUI = useTranslations('shared.ui');
   const t = useTranslations('widgets.userSkills');
 
@@ -56,10 +62,11 @@ export function UserSkills({ userId, userSkills, isOwner, categories, skills }: 
         });
 
         setSelectedSkills([]);
-        setIsDeletedMode(false);
         router.refresh();
       } catch (e) {
         console.error(e);
+      } finally {
+        setIsDeletedMode(false);
       }
     }
   };
@@ -74,11 +81,12 @@ export function UserSkills({ userId, userSkills, isOwner, categories, skills }: 
         <div key={item.id} className="flex flex-col">
           <h3 className="mt-8">{item.name}</h3>
           <SkillList
+            userId={userId}
             userSkills={item.skills}
             isOwner={isOwner}
             isDeletedMode={isDeletedMode}
-            setSelectedSkills={setSelectedSkills}
             selectedSkills={selectedSkills}
+            toggleSelectedSkill={toggleSelectedSkill}
           />
         </div>
       ))}
@@ -116,7 +124,7 @@ export function UserSkills({ userId, userSkills, isOwner, categories, skills }: 
               }}
               className="rounded-full px-10 h-10 bg-transparent border-border hover:border-border-hovered text-muted-foreground hover:bg-gray-150 font-medium tracking-wide uppercase text-sm"
             >
-              CLOSE
+              {t('closeBtn')}
             </Button>
 
             <Button
@@ -124,7 +132,7 @@ export function UserSkills({ userId, userSkills, isOwner, categories, skills }: 
               disabled={selectedSkills.length === 0 || loading}
               className="rounded-full px-10 h-10 bg-primary hover:bg-primary/80 text-white border-none font-medium tracking-wide uppercase text-sm"
             >
-              {loading ? 'DELETING...' : 'DELETE'}
+              {loading ? `${'deleteProcessBtn'}` : `${'deleteBtn'}`}
               {selectedSkills.length > 0 && (
                 <span className="flex items-center justify-center w-5 h-5 ml-1 bg-white text-primary rounded-full text-xs font-bold">
                   {selectedSkills.length}

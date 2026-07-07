@@ -89,7 +89,10 @@
     "userSkills": {
       "dialog": {
         "title": "Добавить навык"
-      }
+      },
+      "closeBtn": "Закрыть",
+      "deleteBtn": "Удалить",
+      "deleteProcessBtn": "Удаление..."
     }
   },
   "shared": {
@@ -137,6 +140,13 @@
         "position": "Позиция",
         "profileBtn": "Профиль",
         "updateBtn": "Обновить"
+      }
+    },
+    "skill": {
+      "skillCard": {
+        "dialog": {
+          "title": "Обновить навык"
+        }
       }
     }
   }

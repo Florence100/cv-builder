@@ -1,6 +1,6 @@
 import { getUserSkills, getSkills } from '@/src/entities/skill/api/server';
 import { getCategories } from '@/src/entities/categories';
-import { UserSkills } from '@/src/widgets/user-skills';
+import { UserSkills } from '@/src/widgets/user-skills/ui/UserSkills';
 
 type SkillsPageProps = {
   userId: string;

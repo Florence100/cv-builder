@@ -89,7 +89,10 @@
     "userSkills": {
       "dialog": {
         "title": "Add skill"
-      }
+      },
+      "closeBtn": "Close",
+      "deleteBtn": "Delete",
+      "deleteProcessBtn": "Deleting..."
     }
   },
   "shared": {
@@ -137,6 +140,13 @@
         "position": "Position",
         "profileBtn": "Profile",
         "updateBtn": "Update"
+      }
+    },
+    "skill": {
+      "skillCard": {
+        "dialog": {
+          "title": "Update skill"
+        }
       }
     }
   }

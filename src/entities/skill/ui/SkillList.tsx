@@ -1,13 +1,13 @@
 import type { SkillMastery } from 'cv-graphql';
 import { SkillCard } from './SkillCard';
-import { SetStateAction, Dispatch } from 'react';
 
 interface UserSkillsProps {
+  userId: string;
   userSkills: SkillMastery[];
   isOwner: boolean;
   isDeletedMode: boolean;
   selectedSkills: string[];
-  setSelectedSkills: Dispatch<SetStateAction<string[]>>;
+  toggleSelectedSkill(skillName: string): void;
 }
 
 export function SkillList({
@@ -15,14 +15,12 @@ export function SkillList({
   isOwner,
   isDeletedMode,
   selectedSkills,
-  setSelectedSkills,
+  toggleSelectedSkill,
+  userId,
 }: UserSkillsProps) {
-  const clickHandler = (skillName: string) => {
+  const clickHandler = (skill: SkillMastery) => {
     if (isDeletedMode) {
-      setSelectedSkills((prev) =>
-        prev.includes(skillName) ? prev.filter((name) => name !== skillName) : [...prev, skillName]
-      );
-    } else {
+      toggleSelectedSkill(skill.name);
     }
   };
 
@@ -32,11 +30,13 @@ export function SkillList({
         <div className="w-full grid grid-cols-2 gap-y-8 lg:grid-cols-3">
           {userSkills.map((skill) => (
             <SkillCard
+              userId={userId}
               key={skill.name}
               skill={skill}
               isSelectable={isOwner}
               clickHandler={clickHandler}
               isSelected={selectedSkills.includes(skill.name)}
+              isDeletedMode={isDeletedMode}
             />
           ))}
         </div>
