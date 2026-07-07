@@ -36,13 +36,12 @@ function NavigationList({ userId }: AppNavigationProps) {
 
       return pathname === href;
     };
-    console.log(isActive);
 
     return (
       <Link
         href={item.href}
         key={item.href}
-        className={`p-2 lg:pl-4 flex h-10 w-full justify-center lg:justify-start lg:h-[3.5rem] gap-2 lg:gap-4 items-center rounded-full lg:rounded-l-none hover:bg-neutral-subtle ${
+        className={`p-2 lg:pl-4 flex h-10 w-full justify-center lg:justify-start lg:h-14 gap-2 lg:gap-4 items-center rounded-full lg:rounded-l-none hover:bg-neutral-subtle ${
           isActive(item.href) ? 'bg-neutral-subtle text-foreground' : 'text-muted-foreground'
         }`}
       >

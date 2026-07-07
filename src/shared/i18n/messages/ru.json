@@ -70,6 +70,15 @@
       "languagesTab": "Языки",
       "CVsTab": "Резюме"
     },
+    "userCvHeader": {
+      "cvsTab": "Резюме"
+    },
+    "userCvNav": {
+      "detailsTab": "Детали",
+      "skillsTab": "Навыки",
+      "projectsTab": "Проекты",
+      "previewTab": "Предпросмотр"
+    },
     "userProfileHeader": {
       "employeesTab": "Сотрудники"
     },

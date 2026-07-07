@@ -70,6 +70,15 @@
       "languagesTab": "Languages",
       "CVsTab": "CVs"
     },
+    "userCvHeader": {
+      "cvsTab": "CVs"
+    },
+    "userCvNav": {
+      "detailsTab": "Details",
+      "skillsTab": "Skills",
+      "projectsTab": "Projects",
+      "previewTab": "Preview"
+    },
     "userProfileHeader": {
       "employeesTab": "Employees"
     },
