@@ -28,6 +28,13 @@
       "passwordPlaceholder": "Password",
       "submitButton": "Create an account"
     },
+    "updateCv": {
+      "error": "Failed to update CV",
+      "nameLabel": "Name",
+      "educationLabel": "Education",
+      "descriptionLabel": "Description",
+      "updateButton": "Update"
+    },
     "updateLanguage": {
       "error": "Failed to update language",
       "header": "Update language",
@@ -38,6 +45,9 @@
     }
   },
   "pages": {
+    "cvDetails": {
+      "noCv": "Could not find the CV you are looking for."
+    },
     "forgotPassword": {
       "title": "Forgot password",
       "subtitle": "We will sent you an email with further instructions",
@@ -69,6 +79,15 @@
       "skillsTab": "Skills",
       "languagesTab": "Languages",
       "CVsTab": "CVs"
+    },
+    "userCvHeader": {
+      "cvsTab": "CVs"
+    },
+    "userCvNav": {
+      "detailsTab": "Details",
+      "skillsTab": "Skills",
+      "projectsTab": "Projects",
+      "previewTab": "Preview"
     },
     "userProfileHeader": {
       "employeesTab": "Employees"

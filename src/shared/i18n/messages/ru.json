@@ -28,6 +28,13 @@
       "passwordPlaceholder": "Пароль",
       "submitButton": "Войти"
     },
+    "updateCv": {
+      "error": "Не удалось обновить резюме",
+      "nameLabel": "Имя",
+      "educationLabel": "Образование",
+      "descriptionLabel": "Описание",
+      "updateButton": "Обновить"
+    },
     "updateLanguage": {
       "error": "Не удалось обновить уровень владения языком",
       "header": "Обновить уровень владения языком",
@@ -38,6 +45,9 @@
     }
   },
   "pages": {
+    "cvDetails": {
+      "noCv": "Не удалось найти резюме."
+    },
     "forgotPassword": {
       "title": "Восстановление пароля",
       "subtitle": "Мы отправим вам письмо с дальнейшими инструкциями",
@@ -69,6 +79,15 @@
       "skillsTab": "Навыки",
       "languagesTab": "Языки",
       "CVsTab": "Резюме"
+    },
+    "userCvHeader": {
+      "cvsTab": "Резюме"
+    },
+    "userCvNav": {
+      "detailsTab": "Детали",
+      "skillsTab": "Навыки",
+      "projectsTab": "Проекты",
+      "previewTab": "Предпросмотр"
     },
     "userProfileHeader": {
       "employeesTab": "Сотрудники"

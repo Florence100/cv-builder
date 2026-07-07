@@ -28,7 +28,7 @@ export const UserProfileHeader = async ({ userId }: { userId: string }) => {
         <BreadcrumbSeparator />
         <BreadcrumbItem>
           <BreadcrumbLink
-            href={`/users/${user?.id}/profile`}
+            href={`/users/${userId}/profile`}
             className="text-base text-primary/60 hover:text-primary/80"
           >
             <div className="flex justify-center items-center gap-1.5">
