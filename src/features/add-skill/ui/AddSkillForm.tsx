@@ -16,6 +16,7 @@ import { MASTERY_LIST } from '@/src/entities/skill';
 import { useAddProfileSkill } from '../api/mutations';
 import { useRouter } from 'next/navigation';
 import { DialogClose } from '@/src/shared/ui/dialog';
+import { AddButton } from '@/src/shared/ui/addButton';
 
 type FormValues = {
   userId: string;
@@ -49,8 +50,6 @@ export const AddSkillForm = ({ userId, skills }: AddSkillModalProps) => {
   const onSubmit = async (data: FormValues) => {
     if (!userId) return;
 
-    console.log('data: ', data);
-
     try {
       await addProfileSkill({
         variables: {
@@ -70,15 +69,15 @@ export const AddSkillForm = ({ userId, skills }: AddSkillModalProps) => {
     router.refresh();
   };
 
-  // const hasNoSkillsLeft = remainedSkills.length === 0;
+  const hasNoSkillsLeft = skills.length === 0;
 
-  // if (hasNoSkillsLeft) {
-  //   return (
-  //     <div title={t('disabledButtonTitle')}>
-  //       <AddButton value={t('addBtn')} className="opacity-50 cursor-default" disabled />
-  //     </div>
-  //   );
-  // }
+  if (hasNoSkillsLeft) {
+    return (
+      <div title={t('disabledButtonTitle')}>
+        <AddButton value={t('addBtn')} className="opacity-50 cursor-default" disabled />
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="py-2 flex flex-col gap-6">

@@ -6,8 +6,8 @@ import { Progress } from '@/src/shared/ui/progress';
 interface SkillCardProps {
   skill: SkillMastery;
   isSelected?: boolean;
-  isSelectable?: boolean;
-  onClick?: () => void;
+  isSelectable: boolean;
+  clickHandler: (skillName: string) => void;
 }
 
 enum SkillProgress {
@@ -18,14 +18,15 @@ enum SkillProgress {
   Expert = 100,
 }
 
-export function SkillCard({ skill, isSelected, isSelectable, onClick }: SkillCardProps) {
+export function SkillCard({ skill, isSelectable, isSelected, clickHandler }: SkillCardProps) {
   const skillName = skill.name;
   const skillMastery = skill.mastery;
   const progressValue = SkillProgress[skillMastery];
 
   return (
     <div
-      className={`w-70 p-2 rounded-full flex gap-4 items-center text-neutral-default ${isSelectable && 'cursor-pointer hover:bg-neutral-subtle'}`}
+      onClick={() => clickHandler(skillName)}
+      className={`w-70 p-2 rounded-full flex gap-4 items-center text-neutral-default ${isSelectable && 'cursor-pointer hover:bg-neutral-subtle'} ${isSelected && 'bg-neutral-subtle'}`}
     >
       <Progress value={progressValue} />
       {skillName}

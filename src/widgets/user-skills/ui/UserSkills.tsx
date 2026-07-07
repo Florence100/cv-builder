@@ -4,7 +4,6 @@ import type { SkillMastery, SkillCategory, Skill } from 'cv-graphql';
 import { SkillList } from '@/src/entities/skill';
 import { groupSkillsByRootCategory } from '@/src/entities/skill/index';
 import { useTranslations } from 'next-intl';
-import { AddButton } from '@/src/shared/ui/addButton';
 import {
   Dialog,
   DialogContent,
@@ -14,7 +13,11 @@ import {
 } from '@/src/shared/ui/dialog';
 import { useState } from 'react';
 import { RemoveButton } from '@/src/shared/ui/removeButton';
+import { AddButton } from '@/src/shared/ui/addButton';
+import { Button } from '@/src/shared/ui/button';
 import { AddSkillForm } from '@/src/features/add-skill/ui/AddSkillForm';
+import { useDeleteProfileSkill } from '@/src/features/remove-skill';
+import { useRouter } from 'next/navigation';
 
 interface UserSkillsProps {
   userSkills: SkillMastery[];
@@ -26,11 +29,39 @@ interface UserSkillsProps {
 
 export function UserSkills({ userId, userSkills, isOwner, categories, skills }: UserSkillsProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDeletedMode, setIsDeletedMode] = useState(false);
+  const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
+  const [deleteProfileSkill, { loading }] = useDeleteProfileSkill();
+  const router = useRouter();
+
   const tUI = useTranslations('shared.ui');
   const t = useTranslations('widgets.userSkills');
 
   const handleOpenChange = (open: boolean) => {
     setIsOpen(open);
+  };
+
+  const deleteHandler = async () => {
+    if (selectedSkills.length === 0) {
+      setIsDeletedMode(true);
+    } else {
+      try {
+        await deleteProfileSkill({
+          variables: {
+            skill: {
+              userId: userId,
+              name: selectedSkills,
+            },
+          },
+        });
+
+        setSelectedSkills([]);
+        setIsDeletedMode(false);
+        router.refresh();
+      } catch (e) {
+        console.error(e);
+      }
+    }
   };
 
   const grouped = groupSkillsByRootCategory(categories, userSkills);
@@ -42,11 +73,17 @@ export function UserSkills({ userId, userSkills, isOwner, categories, skills }: 
       {grouped.map((item) => (
         <div key={item.id} className="flex flex-col">
           <h3 className="mt-8">{item.name}</h3>
-          <SkillList userSkills={item.skills} isOwner={isOwner} />
+          <SkillList
+            userSkills={item.skills}
+            isOwner={isOwner}
+            isDeletedMode={isDeletedMode}
+            setSelectedSkills={setSelectedSkills}
+            selectedSkills={selectedSkills}
+          />
         </div>
       ))}
 
-      {isOwner && (
+      {isOwner && !isDeletedMode && (
         <div className="mt-10 flex gap-6 justify-end">
           <Dialog open={isOpen} onOpenChange={handleOpenChange}>
             <DialogTrigger asChild>
@@ -63,7 +100,38 @@ export function UserSkills({ userId, userSkills, isOwner, categories, skills }: 
               </DialogHeader>
             </DialogContent>
           </Dialog>
-          <RemoveButton value={tUI('removeBtn.skill')} />
+          <RemoveButton value={tUI('removeBtn.skill')} onClick={deleteHandler} />
+        </div>
+      )}
+
+      {isDeletedMode && (
+        <div className="mt-10 flex gap-6 justify-end">
+          <div className="flex items-center gap-4 animate-in fade-in zoom-in-95 duration-200">
+            <Button
+              variant="outline"
+              disabled={loading}
+              onClick={() => {
+                setIsDeletedMode(false);
+                setSelectedSkills([]);
+              }}
+              className="rounded-full px-10 h-10 bg-transparent border-border hover:border-border-hovered text-muted-foreground hover:bg-gray-150 font-medium tracking-wide uppercase text-sm"
+            >
+              CLOSE
+            </Button>
+
+            <Button
+              onClick={deleteHandler}
+              disabled={selectedSkills.length === 0 || loading}
+              className="rounded-full px-10 h-10 bg-primary hover:bg-primary/80 text-white border-none font-medium tracking-wide uppercase text-sm"
+            >
+              {loading ? 'DELETING...' : 'DELETE'}
+              {selectedSkills.length > 0 && (
+                <span className="flex items-center justify-center w-5 h-5 ml-1 bg-white text-primary rounded-full text-xs font-bold">
+                  {selectedSkills.length}
+                </span>
+              )}
+            </Button>
+          </div>
         </div>
       )}
     </div>

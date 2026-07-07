@@ -7,7 +7,7 @@ export type AddSkillArgs = {
 };
 
 export type AddSkillResult = {
-  addProfileSkill: Profile;
+  progile: Profile;
 };
 
 export const ADD_PROFILE_SKILL: TypedDocumentNode<AddSkillResult, AddSkillArgs> = gql`
