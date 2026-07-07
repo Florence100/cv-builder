@@ -4,7 +4,7 @@ import { ComponentProps } from 'react';
 export function SearchInput(props: ComponentProps<'input'>) {
   return (
     <div className="relative">
-      <Input className="w-80 rounded-full h-10 p-4 pl-8" {...props} />
+      <Input className="w-80 rounded-full h-10 p-4 pl-9" {...props} />
       <svg
         width="24"
         height="24"

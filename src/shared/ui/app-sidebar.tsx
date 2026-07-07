@@ -8,8 +8,8 @@ export async function AppSidebar() {
   const userId = cookieStore.get('userId')?.value;
 
   return (
-    <Sidebar>
-      <SidebarContent className="pt-[2.75rem] bg-background">
+    <Sidebar className="p-0">
+      <SidebarContent className="pt-11 bg-background">
         <AppNavigation userId={userId} />
       </SidebarContent>
       <SidebarFooter className="p-2 flex flex-col gap-4 bg-background">
