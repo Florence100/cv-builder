@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 import { UPDATE_CV } from '../api/graphql';
 import { useMutation } from '@apollo/client/react';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 type CvDetailsFormValues = {
   name: string;
@@ -17,6 +18,8 @@ type CvDetailsFormValues = {
 };
 
 export const CvDetailsForm = ({ cv, isOwner }: { cv: Cv; isOwner: boolean }) => {
+  const t = useTranslations('features.updateCv');
+
   const {
     register,
     handleSubmit,
@@ -61,7 +64,7 @@ export const CvDetailsForm = ({ cv, isOwner }: { cv: Cv; isOwner: boolean }) => 
 
       router.refresh();
     } catch (error) {
-      console.error('Failed to update:', error);
+      console.error(`${t('error')}:`, error);
     }
   };
 
@@ -70,7 +73,7 @@ export const CvDetailsForm = ({ cv, isOwner }: { cv: Cv; isOwner: boolean }) => 
       <div className="w-full flex flex-col max-w-3xl gap-9">
         <div className="relative">
           <Label className="absolute -top-2 left-3 bg-background px-1 text-xs text-muted-foreground font-normal z-10">
-            Name
+            {t('nameLabel')}
           </Label>
           <Input
             type="text"
@@ -81,7 +84,7 @@ export const CvDetailsForm = ({ cv, isOwner }: { cv: Cv; isOwner: boolean }) => 
         </div>
         <div className="relative">
           <Label className="absolute -top-2 left-3 bg-background px-1 text-xs text-muted-foreground font-normal z-10">
-            Education
+            {t('educationLabel')}
           </Label>
           <Input
             type="text"
@@ -92,7 +95,7 @@ export const CvDetailsForm = ({ cv, isOwner }: { cv: Cv; isOwner: boolean }) => 
         </div>
         <div className="relative">
           <Label className="absolute -top-2 left-3 bg-background px-1 text-xs text-muted-foreground font-normal z-10">
-            Description
+            {t('descriptionLabel')}
           </Label>
           <div className="h-48 p-10 bg-transparent border border-border rounded-none focus-within:border-border-focused hover:border-border-hovered transition-colors">
             <Textarea
@@ -107,9 +110,9 @@ export const CvDetailsForm = ({ cv, isOwner }: { cv: Cv; isOwner: boolean }) => 
           <Button
             type="submit"
             disabled={isSubmitting || !isDirty}
-            className="w-[45%] h-12 self-end bg-primary disabled:opacity-100 disabled:bg-black/12 hover:opacity-90 text-primary-foreground disabled:text-black/26 font-medium tracking-wide rounded-full"
+            className="w-[45%] h-12 text-base uppercase self-end bg-primary disabled:opacity-100 disabled:bg-black/12 hover:opacity-90 text-primary-foreground disabled:text-black/26 font-medium tracking-wide rounded-full"
           >
-            {isSubmitting ? 'UPDATING...' : 'UPDATE'}
+            {t('updateButton')}
           </Button>
         )}
       </div>
