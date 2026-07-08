@@ -34,6 +34,14 @@
       "confirmButton": "Confirm",
       "disabledButtonTitle": "You have added all available languages"
     },
+    "addSkill": {
+      "error": "Failed to add skill",
+      "skillLabel": "Skill",
+      "masterLabel": "Skill Mastery",
+      "cancelButton": "Cancel",
+      "confirmButton": "Confirm",
+      "disabledButtonTitle": "You have added all available skills"
+    },
     "authByEmail": {
       "emailPlaceholder": "Email",
       "passwordPlaceholder": "Password",
@@ -120,6 +128,14 @@
       "profileTab": "Profile",
       "skillsTab": "Skills",
       "languagesTab": "Languages"
+    },
+    "userSkills": {
+      "dialog": {
+        "title": "Add skill"
+      },
+      "closeBtn": "Close",
+      "deleteBtn": "Delete",
+      "deleteProcessBtn": "Deleting..."
     }
   },
   "shared": {
@@ -153,6 +169,27 @@
         "noEmail": "Failed to send an email",
         "actionExpired": "This link has expired",
         "uninspectedServerError": "Server error. Please, try again"
+      }
+    }
+  },
+  "entities": {
+    "user": {
+      "title": "Employees",
+      "table": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email",
+        "department": "Department",
+        "position": "Position",
+        "profileBtn": "Profile",
+        "updateBtn": "Update"
+      }
+    },
+    "skill": {
+      "skillCard": {
+        "dialog": {
+          "title": "Update skill"
+        }
       }
     }
   }

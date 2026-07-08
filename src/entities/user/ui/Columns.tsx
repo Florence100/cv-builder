@@ -23,6 +23,7 @@ const HeaderWithTranslation = ({
   translationKey: string;
 }) => {
   const t = useTranslations('entities.user.table');
+
   const isSorted = column.getIsSorted();
 
   return (
