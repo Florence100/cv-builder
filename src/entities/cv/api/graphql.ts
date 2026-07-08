@@ -22,3 +22,22 @@ export const GET_CV: TypedDocumentNode<GetCvResult, GetCvArgs> = gql`
     }
   }
 `;
+
+export type GetCvsResult = {
+  cvs: Cv[];
+};
+
+export const GET_CVS: TypedDocumentNode<GetCvsResult, Record<string, never>> = gql`
+  query GetCvs {
+    cvs {
+      id
+      name
+      education
+      description
+      user {
+        id
+        email
+      }
+    }
+  }
+`;
