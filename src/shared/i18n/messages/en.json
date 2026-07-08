@@ -64,7 +64,13 @@
       "cancelButton": "Cancel",
       "submitButton": "Create"
     },
-
+    "deleteCv": {
+      "deleteButton": "Delete",
+      "error": "Failed to delete CV",
+      "header": "Delete CV",
+      "cancelButton": "Cancel",
+      "confirmButton": "Confirm"
+    },
     "passwordRecovery": {
       "emailPlaceholder": "Email",
       "submitButton": "Reset password"

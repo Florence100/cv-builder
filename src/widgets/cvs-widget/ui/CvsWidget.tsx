@@ -13,7 +13,6 @@ export const CvsWidget = async () => {
   }
 
   const cvs = await fetchCvs();
-  console.log(cvs);
   const cvsList = cvs.map((cv) => ({
     ...cv,
     isCurrentUserCv: cv.user?.id === currentUserId,

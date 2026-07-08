@@ -3,12 +3,14 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/src/shared/ui/popover
 import { SeeMoreIcon } from '@/src/shared/ui/icons/see-more-icon';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
+import { DeleteCvModal } from '@/src/features/delete-cv/ui/DeleteCvModal';
 
 interface CvPopoverProps {
   cvId: string;
+  name: string;
 }
 
-export function CvPopover({ cvId }: CvPopoverProps) {
+export function CvPopover({ cvId, name }: CvPopoverProps) {
   const t = useTranslations('entities.cv.cvsTable');
 
   return (
@@ -23,7 +25,7 @@ export function CvPopover({ cvId }: CvPopoverProps) {
           <Button variant="ghost">
             <Link href={`/cvs/${cvId}/details`}>{t('updateBtn')}</Link>
           </Button>
-          <Button variant="ghost">{t('deleteBtn')}</Button>
+          <DeleteCvModal cvId={cvId} name={name} />
         </div>
       </PopoverContent>
     </Popover>

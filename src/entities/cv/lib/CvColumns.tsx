@@ -62,8 +62,9 @@ export const cvColumns: ColumnDef<CvT>[] = [
     header: '',
     cell: ({ row }) => {
       const id = row.original.id;
+      const name = row.original.name;
       return row.original.isCurrentUserCv ? (
-        <CvPopover cvId={id} />
+        <CvPopover cvId={id} name={name} />
       ) : (
         <Button variant="ghost" className="w-12" aria-label="See the options">
           <Link href={`/users/${id}/profile`}>
