@@ -1,5 +1,6 @@
 import type { SkillMastery } from 'cv-graphql';
 import { SkillCard } from './SkillCard';
+import { SkillsPageMood } from '@/src/shared/types/index';
 
 interface UserSkillsProps {
   userId: string;
@@ -7,6 +8,8 @@ interface UserSkillsProps {
   isOwner: boolean;
   isDeletedMode: boolean;
   selectedSkills: string[];
+  mood?: SkillsPageMood;
+  cvId?: string;
   toggleSelectedSkill(skillName: string): void;
 }
 
@@ -17,6 +20,8 @@ export function SkillList({
   selectedSkills,
   toggleSelectedSkill,
   userId,
+  mood = 'ProfilePage',
+  cvId,
 }: UserSkillsProps) {
   const clickHandler = (skill: SkillMastery) => {
     if (isDeletedMode) {
@@ -37,6 +42,8 @@ export function SkillList({
               clickHandler={clickHandler}
               isSelected={selectedSkills.includes(skill.name)}
               isDeletedMode={isDeletedMode}
+              mood={mood}
+              cvId={cvId}
             />
           ))}
         </div>

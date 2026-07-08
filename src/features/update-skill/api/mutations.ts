@@ -1,5 +1,5 @@
 import { gql, TypedDocumentNode } from '@apollo/client';
-import type { UpdateProfileSkillInput, Profile } from 'cv-graphql';
+import type { UpdateProfileSkillInput, Profile, UpdateCvSkillInput, Cv } from 'cv-graphql';
 import { useMutation } from '@apollo/client/react';
 
 export type UpdateSkillArgs = {
@@ -8,6 +8,14 @@ export type UpdateSkillArgs = {
 
 export type UpdateSkillResult = {
   progile: Profile;
+};
+
+export type UpdateCvSkillArgs = {
+  skill: UpdateCvSkillInput;
+};
+
+export type UpdateCvSkillResult = {
+  cv: Cv;
 };
 
 export const UPDATE_PROFILE_SKILL: TypedDocumentNode<UpdateSkillResult, UpdateSkillArgs> = gql`
@@ -23,6 +31,19 @@ export const UPDATE_PROFILE_SKILL: TypedDocumentNode<UpdateSkillResult, UpdateSk
   }
 `;
 
+export const UPDATE_CV_SKILL: TypedDocumentNode<UpdateCvSkillResult, UpdateCvSkillArgs> = gql`
+  mutation UpdateCvSkill($skill: UpdateCvSkillInput!) {
+    updateCvSkill(skill: $skill) {
+      id
+      name
+    }
+  }
+`;
+
 export const useUpdateProfileSkill = () => {
   return useMutation(UPDATE_PROFILE_SKILL);
+};
+
+export const useUpdateCvSkill = () => {
+  return useMutation(UPDATE_CV_SKILL);
 };

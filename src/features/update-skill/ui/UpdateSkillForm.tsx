@@ -13,10 +13,10 @@ import {
 } from '@/src/shared/ui/select';
 import { Button } from '@/src/shared/ui/button';
 import { MASTERY_LIST } from '@/src/entities/skill';
-import { useUpdateProfileSkill } from '../api/mutations';
+import { useUpdateProfileSkill, useUpdateCvSkill } from '../api/mutations';
 import { useRouter } from 'next/navigation';
 import { DialogClose } from '@/src/shared/ui/dialog';
-// import { SetStateAction, Dispatch } from 'react';
+import { SkillsPageMood } from '@/src/shared/types/index';
 
 type FormValues = {
   userId: string;
@@ -28,14 +28,23 @@ type FormValues = {
 interface AddSkillModalProps {
   userId: string;
   skill: SkillMastery;
+  mood?: SkillsPageMood;
+  cvId?: string;
   setIsUpdatedMode(isUpdatedMode: boolean): void;
-  // setIsUpdatedMode: Dispatch<SetStateAction<boolean>>;
 }
 
-export const UpdateSkillForm = ({ userId, skill, setIsUpdatedMode }: AddSkillModalProps) => {
+export const UpdateSkillForm = ({
+  userId,
+  skill,
+  setIsUpdatedMode,
+  mood = 'ProfilePage',
+  cvId,
+}: AddSkillModalProps) => {
   const t = useTranslations('features.addSkill');
-  const [updateProfileSkill] = useUpdateProfileSkill();
   const router = useRouter();
+
+  const [updateProfileSkill] = useUpdateProfileSkill();
+  const [updateCvSkill] = useUpdateCvSkill();
 
   const {
     control,
@@ -53,16 +62,30 @@ export const UpdateSkillForm = ({ userId, skill, setIsUpdatedMode }: AddSkillMod
     if (!userId) return;
 
     try {
-      await updateProfileSkill({
-        variables: {
-          skill: {
-            userId: userId,
-            name: skill.name,
-            categoryId: skill.categoryId,
-            mastery: data.mastery,
+      if (mood === 'ProfilePage') {
+        await updateProfileSkill({
+          variables: {
+            skill: {
+              userId: userId,
+              name: skill.name,
+              categoryId: skill.categoryId,
+              mastery: data.mastery,
+            },
           },
-        },
-      });
+        });
+      } else if (mood === 'CvPage' && cvId) {
+        await updateCvSkill({
+          variables: {
+            skill: {
+              cvId: cvId,
+              name: skill.name,
+              categoryId: skill.categoryId,
+              mastery: data.mastery,
+            },
+          },
+        });
+      }
+
       reset();
       router.refresh();
     } catch (error) {

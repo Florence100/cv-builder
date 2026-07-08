@@ -1,28 +1,4 @@
 {
-  "entities": {
-    "cv": {
-      "cvsTable": {
-        "name": "Name",
-        "education": "Education",
-        "employee": "Employee",
-        "updateBtn": "Update",
-        "deleteBtn": "Delete",
-        "searchPlaceholder": "Search name or description..."
-      }
-    },
-    "user": {
-      "title": "Employees",
-      "table": {
-        "firstName": "First Name",
-        "lastName": "Last Name",
-        "email": "Email",
-        "department": "Department",
-        "position": "Position",
-        "profileBtn": "Profile",
-        "updateBtn": "Update"
-      }
-    }
-  },
   "features": {
     "addLanguage": {
       "error": "Failed to add language",
@@ -173,6 +149,16 @@
     }
   },
   "entities": {
+    "cv": {
+      "cvsTable": {
+        "name": "Name",
+        "education": "Education",
+        "employee": "Employee",
+        "updateBtn": "Update",
+        "deleteBtn": "Delete",
+        "searchPlaceholder": "Search name or description..."
+      }
+    },
     "user": {
       "title": "Employees",
       "table": {

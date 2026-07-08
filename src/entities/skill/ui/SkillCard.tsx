@@ -6,6 +6,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/src/shared/u
 import { UpdateSkillForm } from '@/src/features/update-skill/ui/UpdateSkillForm';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
+import { SkillsPageMood } from '@/src/shared/types/index';
 
 interface SkillCardProps {
   userId: string;
@@ -13,6 +14,8 @@ interface SkillCardProps {
   isSelected?: boolean;
   isSelectable: boolean;
   isDeletedMode: boolean;
+  mood?: SkillsPageMood;
+  cvId?: string;
   clickHandler(skill: SkillMastery): void;
 }
 
@@ -30,6 +33,8 @@ export function SkillCard({
   isSelectable,
   isSelected,
   isDeletedMode,
+  mood = 'ProfilePage',
+  cvId,
   clickHandler,
 }: SkillCardProps) {
   const t = useTranslations('entities.skill.skillCard');
@@ -62,7 +67,13 @@ export function SkillCard({
             <DialogTitle className="text-lg font-normal tracking-wide text-foreground">
               {t('dialog.title')}
             </DialogTitle>
-            <UpdateSkillForm userId={userId} skill={skill} setIsUpdatedMode={setIsUpdatedMode} />
+            <UpdateSkillForm
+              userId={userId}
+              skill={skill}
+              setIsUpdatedMode={setIsUpdatedMode}
+              mood={mood}
+              cvId={cvId}
+            />
           </DialogHeader>
         </DialogContent>
       </Dialog>

@@ -1,16 +1,23 @@
 import { useLazyQuery } from '@apollo/client/react';
 import {
-  USER_SKILLS_QUERY,
+  PROFILE_SKILLS_QUERY,
   SKILLS_QUERY,
-  UserSkillsArgs,
-  UserSkillsResult,
+  CV_SKILLS_QUERY,
+  ProfileSkillsArgs,
+  ProfileSkillsResult,
   SkillsResult,
+  CvSkillsArgs,
+  CvSkillsResult,
 } from './queries';
 
 export const useUserSkills = () => {
-  return useLazyQuery<UserSkillsResult, UserSkillsArgs>(USER_SKILLS_QUERY);
+  return useLazyQuery<ProfileSkillsResult, ProfileSkillsArgs>(PROFILE_SKILLS_QUERY);
 };
 
 export const useSkills = () => {
   return useLazyQuery<SkillsResult>(SKILLS_QUERY);
+};
+
+export const useCVSkills = () => {
+  return useLazyQuery<CvSkillsResult, CvSkillsArgs>(CV_SKILLS_QUERY);
 };
