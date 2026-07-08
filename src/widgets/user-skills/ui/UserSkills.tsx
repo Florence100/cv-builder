@@ -17,7 +17,9 @@ import { AddButton } from '@/src/shared/ui/addButton';
 import { Button } from '@/src/shared/ui/button';
 import { AddSkillForm } from '@/src/features/add-skill/ui/AddSkillForm';
 import { useDeleteProfileSkill } from '@/src/features/remove-skill';
+import { useDeleteCvSkill } from '@/src/features/remove-skill';
 import { useRouter } from 'next/navigation';
+import { SkillsPageMood } from '@/src/shared/types/index';
 
 interface UserSkillsProps {
   userSkills: SkillMastery[];
@@ -25,13 +27,24 @@ interface UserSkillsProps {
   isOwner: boolean;
   categories: SkillCategory[];
   userId: string;
+  mood?: SkillsPageMood;
+  cvId?: string;
 }
 
-export function UserSkills({ userId, userSkills, isOwner, categories, skills }: UserSkillsProps) {
+export function UserSkills({
+  userId,
+  userSkills,
+  isOwner,
+  categories,
+  skills,
+  mood = 'ProfilePage',
+  cvId,
+}: UserSkillsProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isDeletedMode, setIsDeletedMode] = useState(false);
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
-  const [deleteProfileSkill, { loading }] = useDeleteProfileSkill();
+  const [deleteProfileSkill, { loading: deleteProfileSkillLoading }] = useDeleteProfileSkill();
+  const [deleteCvSkill, { loading: deleteCvSkillLoading }] = useDeleteCvSkill();
   const router = useRouter();
 
   const toggleSelectedSkill = (skillName: string) => {
@@ -52,14 +65,25 @@ export function UserSkills({ userId, userSkills, isOwner, categories, skills }: 
       setIsDeletedMode(true);
     } else {
       try {
-        await deleteProfileSkill({
-          variables: {
-            skill: {
-              userId: userId,
-              name: selectedSkills,
+        if (mood === 'ProfilePage') {
+          await deleteProfileSkill({
+            variables: {
+              skill: {
+                userId: userId,
+                name: selectedSkills,
+              },
             },
-          },
-        });
+          });
+        } else if (mood === 'CvPage' && cvId) {
+          await deleteCvSkill({
+            variables: {
+              skill: {
+                cvId: cvId,
+                name: selectedSkills,
+              },
+            },
+          });
+        }
 
         setSelectedSkills([]);
         router.refresh();
@@ -87,6 +111,8 @@ export function UserSkills({ userId, userSkills, isOwner, categories, skills }: 
             isDeletedMode={isDeletedMode}
             selectedSkills={selectedSkills}
             toggleSelectedSkill={toggleSelectedSkill}
+            mood={mood}
+            cvId={cvId}
           />
         </div>
       ))}
@@ -104,7 +130,7 @@ export function UserSkills({ userId, userSkills, isOwner, categories, skills }: 
                 <DialogTitle className="text-lg font-normal tracking-wide text-foreground">
                   {t('dialog.title')}
                 </DialogTitle>
-                <AddSkillForm userId={userId} skills={skills} />
+                <AddSkillForm userId={userId} skills={skills} mood={mood} cvId={cvId} />
               </DialogHeader>
             </DialogContent>
           </Dialog>
@@ -117,7 +143,7 @@ export function UserSkills({ userId, userSkills, isOwner, categories, skills }: 
           <div className="flex items-center gap-4 animate-in fade-in zoom-in-95 duration-200">
             <Button
               variant="outline"
-              disabled={loading}
+              disabled={deleteProfileSkillLoading || deleteCvSkillLoading}
               onClick={() => {
                 setIsDeletedMode(false);
                 setSelectedSkills([]);
@@ -129,10 +155,14 @@ export function UserSkills({ userId, userSkills, isOwner, categories, skills }: 
 
             <Button
               onClick={deleteHandler}
-              disabled={selectedSkills.length === 0 || loading}
+              disabled={
+                selectedSkills.length === 0 || deleteProfileSkillLoading || deleteCvSkillLoading
+              }
               className="rounded-full px-10 h-10 bg-primary hover:bg-primary/80 text-white border-none font-medium tracking-wide uppercase text-sm"
             >
-              {loading ? `${'deleteProcessBtn'}` : `${'deleteBtn'}`}
+              {deleteProfileSkillLoading || deleteCvSkillLoading
+                ? `${'deleteProcessBtn'}`
+                : `${'deleteBtn'}`}
               {selectedSkills.length > 0 && (
                 <span className="flex items-center justify-center w-5 h-5 ml-1 bg-white text-primary rounded-full text-xs font-bold">
                   {selectedSkills.length}

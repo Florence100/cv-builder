@@ -13,10 +13,11 @@ import {
 } from '@/src/shared/ui/select';
 import { Button } from '@/src/shared/ui/button';
 import { MASTERY_LIST } from '@/src/entities/skill';
-import { useAddProfileSkill } from '../api/mutations';
+import { useAddProfileSkill, useAddCvSkill } from '../api/mutations';
 import { useRouter } from 'next/navigation';
 import { DialogClose } from '@/src/shared/ui/dialog';
 import { AddButton } from '@/src/shared/ui/addButton';
+import { SkillsPageMood } from '@/src/shared/types/index';
 
 type FormValues = {
   userId: string;
@@ -27,12 +28,21 @@ type FormValues = {
 interface AddSkillModalProps {
   userId: string;
   skills: Skill[];
+  mood?: SkillsPageMood;
+  cvId?: string;
 }
 
-export const AddSkillForm = ({ userId, skills }: AddSkillModalProps) => {
+export const AddSkillForm = ({
+  userId,
+  skills,
+  mood = 'ProfilePage',
+  cvId,
+}: AddSkillModalProps) => {
   const t = useTranslations('features.addSkill');
-  const [addProfileSkill] = useAddProfileSkill();
   const router = useRouter();
+
+  const [addProfileSkill] = useAddProfileSkill();
+  const [addCvSkill] = useAddCvSkill();
 
   const {
     control,
@@ -51,16 +61,29 @@ export const AddSkillForm = ({ userId, skills }: AddSkillModalProps) => {
     if (!userId) return;
 
     try {
-      await addProfileSkill({
-        variables: {
-          skill: {
-            userId: userId,
-            name: data.name.split(' ')[0],
-            categoryId: data.name.split(' ')[1] || null,
-            mastery: data.mastery,
+      if (mood === 'ProfilePage') {
+        await addProfileSkill({
+          variables: {
+            skill: {
+              userId: userId,
+              name: data.name.split(' ')[0],
+              categoryId: data.name.split(' ')[1] || null,
+              mastery: data.mastery,
+            },
           },
-        },
-      });
+        });
+      } else if (mood === 'CvPage' && cvId) {
+        await addCvSkill({
+          variables: {
+            skill: {
+              cvId: cvId,
+              name: data.name.split(' ')[0],
+              categoryId: data.name.split(' ')[1] || null,
+              mastery: data.mastery,
+            },
+          },
+        });
+      }
     } catch (error) {
       console.error(`${t('error')}:`, error);
     }

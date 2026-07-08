@@ -1,1 +1,1 @@
-export { useDeleteProfileSkill } from './api/mutations';
+export { useDeleteProfileSkill, useDeleteCvSkill } from './api/mutations';

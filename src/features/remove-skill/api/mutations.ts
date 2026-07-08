@@ -1,5 +1,5 @@
 import { gql, TypedDocumentNode } from '@apollo/client';
-import type { DeleteProfileSkillInput, Profile } from 'cv-graphql';
+import type { DeleteProfileSkillInput, Profile, DeleteCvSkillInput, Cv } from 'cv-graphql';
 import { useMutation } from '@apollo/client/react';
 
 export type DeleteSkillArgs = {
@@ -8,6 +8,14 @@ export type DeleteSkillArgs = {
 
 export type DeleteSkillResult = {
   profile: Profile;
+};
+
+export type DeleteCvSkillArgs = {
+  skill: DeleteCvSkillInput;
+};
+
+export type DeleteCvSkillResult = {
+  cv: Cv;
 };
 
 export const DELETE_PROFILE_SKILL: TypedDocumentNode<DeleteSkillResult, DeleteSkillArgs> = gql`
@@ -23,6 +31,19 @@ export const DELETE_PROFILE_SKILL: TypedDocumentNode<DeleteSkillResult, DeleteSk
   }
 `;
 
+export const DELEYE_CV_SKILL: TypedDocumentNode<DeleteCvSkillResult, DeleteCvSkillArgs> = gql`
+  mutation DeleteCvSkill($skill: DeleteCvSkillInput!) {
+    deleteCvSkill(skill: $skill) {
+      id
+      name
+    }
+  }
+`;
+
 export const useDeleteProfileSkill = () => {
   return useMutation(DELETE_PROFILE_SKILL);
+};
+
+export const useDeleteCvSkill = () => {
+  return useMutation(DELEYE_CV_SKILL);
 };

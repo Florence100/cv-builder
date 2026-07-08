@@ -1,11 +1,18 @@
 import { getClient } from '@/src/shared/api/apollo-client';
-import { USER_SKILLS_QUERY, SKILLS_QUERY, UserSkillsResult, SkillsResult } from './queries';
+import {
+  PROFILE_SKILLS_QUERY,
+  SKILLS_QUERY,
+  CV_SKILLS_QUERY,
+  ProfileSkillsResult,
+  SkillsResult,
+  CvSkillsResult,
+} from './queries';
 
-export async function getUserSkills(userId: string) {
+export async function getProfileSkills(userId: string) {
   const client = getClient();
 
-  const { data } = await client.query<UserSkillsResult>({
-    query: USER_SKILLS_QUERY,
+  const { data } = await client.query<ProfileSkillsResult>({
+    query: PROFILE_SKILLS_QUERY,
     variables: {
       userId: userId,
     },
@@ -22,4 +29,17 @@ export async function getSkills() {
   });
 
   return data?.skills;
+}
+
+export async function getCvSkills(cvId: string) {
+  const client = getClient();
+
+  const { data } = await client.query<CvSkillsResult>({
+    query: CV_SKILLS_QUERY,
+    variables: {
+      cvId: cvId,
+    },
+  });
+
+  return data?.cv;
 }

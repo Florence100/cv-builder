@@ -1,4 +1,4 @@
-import { getUserSkills, getSkills } from '@/src/entities/skill/api/server';
+import { getProfileSkills, getSkills } from '@/src/entities/skill/api/server';
 import { getCategories } from '@/src/entities/categories';
 import { UserSkills } from '@/src/widgets/user-skills/ui/UserSkills';
 
@@ -10,7 +10,7 @@ type SkillsPageProps = {
 export async function SkillsPage({ userId, loggedInUserId }: SkillsPageProps) {
   const isOwner = loggedInUserId === userId;
 
-  const userSkills = (await getUserSkills(userId)) || [];
+  const userSkills = (await getProfileSkills(userId)) || [];
   const categories = (await getCategories()) || [];
   const skills = (await getSkills()) || [];
   const userSkillNames = userSkills.map((skill) => skill.name);
