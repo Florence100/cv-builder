@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   description: 'The app for building CVs',
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
