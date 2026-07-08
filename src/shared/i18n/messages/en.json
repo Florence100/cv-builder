@@ -21,6 +21,13 @@
         "profileBtn": "Profile",
         "updateBtn": "Update"
       }
+    },
+    "skill": {
+      "skillCard": {
+        "dialog": {
+          "title": "Update skill"
+        }
+      }
     }
   },
   "features": {
@@ -47,6 +54,17 @@
       "passwordPlaceholder": "Password",
       "submitButton": "Log in"
     },
+    "createCv": {
+      "createButton": "Create CV",
+      "error": "Failed to create CV",
+      "header": "Create CV",
+      "nameLabel": "Name",
+      "educationLabel": "Education",
+      "descriptionLabel": "Description",
+      "cancelButton": "Cancel",
+      "submitButton": "Create"
+    },
+
     "passwordRecovery": {
       "emailPlaceholder": "Email",
       "submitButton": "Reset password"
@@ -169,27 +187,6 @@
         "noEmail": "Failed to send an email",
         "actionExpired": "This link has expired",
         "uninspectedServerError": "Server error. Please, try again"
-      }
-    }
-  },
-  "entities": {
-    "user": {
-      "title": "Employees",
-      "table": {
-        "firstName": "First Name",
-        "lastName": "Last Name",
-        "email": "Email",
-        "department": "Department",
-        "position": "Position",
-        "profileBtn": "Profile",
-        "updateBtn": "Update"
-      }
-    },
-    "skill": {
-      "skillCard": {
-        "dialog": {
-          "title": "Update skill"
-        }
       }
     }
   }
