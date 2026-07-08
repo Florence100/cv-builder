@@ -102,7 +102,9 @@ export const columns: ColumnDef<UserT>[] = [
     cell: ({ row }) => {
       const id = row.original.id;
       return row.original.isCurrentUser ? (
-        <PopoverDemo id={id} />
+        <div className="flex items-center justify-start">
+          <PopoverDemo id={id} />
+        </div>
       ) : (
         <Button variant="ghost" className="w-12" aria-label="See the options">
           <Link href={`/users/${id}/profile`}>
