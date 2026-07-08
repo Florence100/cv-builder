@@ -1,6 +1,6 @@
-import { getSkills } from '@/src/entities/skill';
+import { getUserSkills, getSkills } from '@/src/entities/skill/api/server';
 import { getCategories } from '@/src/entities/categories';
-import { UserSkills } from '@/src/widgets/user-skills';
+import { UserSkills } from '@/src/widgets/user-skills/ui/UserSkills';
 
 type SkillsPageProps = {
   userId: string;
@@ -8,9 +8,21 @@ type SkillsPageProps = {
 };
 
 export async function SkillsPage({ userId, loggedInUserId }: SkillsPageProps) {
-  const userSkills = (await getSkills(userId)) || [];
-  const categories = (await getCategories()) || [];
   const isOwner = loggedInUserId === userId;
 
-  return <UserSkills userSkills={userSkills} isOwner={isOwner} categories={categories} />;
+  const userSkills = (await getUserSkills(userId)) || [];
+  const categories = (await getCategories()) || [];
+  const skills = (await getSkills()) || [];
+  const userSkillNames = userSkills.map((skill) => skill.name);
+  const remainedSkills = skills.filter((skill) => !userSkillNames.includes(skill.name));
+
+  return (
+    <UserSkills
+      userId={userId}
+      userSkills={userSkills}
+      isOwner={isOwner}
+      categories={categories}
+      skills={remainedSkills}
+    />
+  );
 }

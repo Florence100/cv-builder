@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -35,14 +35,22 @@ export function UserTable<TData, TValue>({ columns, data }: UserTableProps<TData
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
+  const [columnVisibility, setColumnVisibility] = useState({
+    full_name: false,
+    email: true,
+    last_name: true,
+  });
+
   const isLessThan1280 = useMediaQuery({ maxWidth: 1280 });
   const isLessThan1024 = useMediaQuery({ maxWidth: 1024 });
 
-  const columnVisibility = {
-    full_name: false,
-    email: !isLessThan1280,
-    last_name: !isLessThan1024,
-  };
+  useEffect(() => {
+    setColumnVisibility({
+      full_name: false,
+      email: !isLessThan1280,
+      last_name: !isLessThan1024,
+    });
+  }, [isLessThan1280, isLessThan1024]);
 
   const table = useReactTable({
     data,
