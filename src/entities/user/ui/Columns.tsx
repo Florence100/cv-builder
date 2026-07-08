@@ -35,7 +35,7 @@ const HeaderWithTranslation = ({
       {t(translationKey)}
       {isSorted && (
         <ArrowDown
-          className={`ml-1 h-[4.5rem] w-[4.5rem] transition-transform duration-200 ${
+          className={`ml-1 h-18 w-18 transition-transform duration-200 ${
             isSorted === 'asc' ? 'rotate-180' : ''
           }`}
         />
