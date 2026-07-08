@@ -60,14 +60,16 @@ export const AddSkillForm = ({
   const onSubmit = async (data: FormValues) => {
     if (!userId) return;
 
+    const selectedSkill: { name: string; categoryId: string } = JSON.parse(data.name);
+
     try {
       if (mood === 'ProfilePage') {
         await addProfileSkill({
           variables: {
             skill: {
               userId: userId,
-              name: data.name.split(' ')[0],
-              categoryId: data.name.split(' ')[1] || null,
+              name: selectedSkill.name,
+              categoryId: selectedSkill.categoryId,
               mastery: data.mastery,
             },
           },
@@ -77,8 +79,8 @@ export const AddSkillForm = ({
           variables: {
             skill: {
               cvId: cvId,
-              name: data.name.split(' ')[0],
-              categoryId: data.name.split(' ')[1] || null,
+              name: selectedSkill.name,
+              categoryId: selectedSkill.categoryId,
               mastery: data.mastery,
             },
           },
@@ -121,7 +123,10 @@ export const AddSkillForm = ({
                 {skills.map((skill) => (
                   <SelectItem
                     key={skill.id}
-                    value={`${skill.name} ${skill.category ? skill.category.id : null}`}
+                    value={JSON.stringify({
+                      name: skill.name,
+                      categoryId: skill.category?.id ?? null,
+                    })}
                     className="bg-background focus:bg-select-item"
                   >
                     {skill.name}
