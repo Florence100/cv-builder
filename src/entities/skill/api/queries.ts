@@ -43,6 +43,7 @@ export const SKILLS_QUERY = gql`
     skills {
       id
       name
+      category_name
       category {
         id
       }

@@ -1,3 +1,7 @@
+import { getCategories } from '@/src/entities/categories';
+import { fetchCv } from '@/src/entities/cv/api/server';
+import { groupSkillsByRootCategory } from '@/src/entities/skill';
+import { getSkills } from '@/src/entities/skill/api/server';
 import { Button } from '@/src/shared/ui/button';
 import {
   Table,
@@ -7,13 +11,46 @@ import {
   TableHeader,
   TableRow,
 } from '@/src/shared/ui/table';
+import { getTranslations } from 'next-intl/server';
+import { formatSkillsForTable } from '../lib/formatSkillsForTable';
 
-export const CvPreviewPage = ({ cvId }: { cvId: string }) => {
+export const CvPreviewPage = async ({ cvId }: { cvId: string }) => {
+  const cv = await fetchCv(cvId);
+  const t = await getTranslations('pages.cvDetails');
+
+  if (!cv) {
+    return (
+      <div className="flex h-full items-center justify-center">
+        <p>{t('noCv')}</p>
+      </div>
+    );
+  }
+
+  console.log(cv);
+
+  const profile = cv.user?.profile;
+  const fullName =
+    profile?.full_name ||
+    [profile?.first_name, profile?.last_name].filter(Boolean).join(' ') ||
+    'User Name';
+  const position = cv.user?.position_name || 'Position';
+  const education = cv.education || '';
+  const languages = cv.languages || [];
+  const projects = cv.projects || [];
+  const cvName = cv.name || 'CV Name';
+  const cvDescription = cv.description || 'Your CV description';
+  const cvSkills = cv?.skills || [];
+  const skills = (await getSkills()) || [];
+  const categories = (await getCategories()) || [];
+  const cvSkillGroups = groupSkillsByRootCategory(categories, cvSkills);
+  const tableSKillGroups = formatSkillsForTable(skills, projects);
+  console.log(skills);
+
   return (
     <div className="max-w-4xl mx-auto flex flex-col gap-8 px-6 py-10 text-foreground">
       <header className="flex flex-col">
         <div className="flex justify-between items-center">
-          <h1 className="text-4xl font-normal">Rostislav Harlanov</h1>
+          <h1 className="text-4xl font-normal">{fullName}</h1>
           <Button
             variant="outline"
             className="rounded-full h-10 px-10 py-4 text-primary border-primary hover:bg-red-50 hover:text-primary uppercase"
@@ -21,56 +58,87 @@ export const CvPreviewPage = ({ cvId }: { cvId: string }) => {
             Export PDF
           </Button>
         </div>
-        <p className="uppercase">Software Engineer</p>
+        <p className="uppercase">{position}</p>
       </header>
 
       <section className="grid grid-cols-[240px_1fr] gap-x-6">
         <div className="space-y-4 py-4">
           <div className="space-y-2">
             <h3 className="font-bold">Education</h3>
-            <p>Computer Systems Design</p>
+            <p>{education}</p>
           </div>
           <div className="space-y-2">
             <h3 className="font-bold">Language proficiency</h3>
+            {languages.map((language) => (
+              <div key={language.name} className="grid grid-cols-2">
+                <p>{language.name}</p>
+                <p>{language.proficiency}</p>
+              </div>
+            ))}
           </div>
           <div className="space-y-2">
             <h3 className="font-bold">Domains</h3>
-            <p>IoT (Internet of Things)</p>
+            {projects.map((project) => (
+              <p key={project.id}>{project.domain}</p>
+            ))}
           </div>
         </div>
 
         <div className="border-l border-primary pl-6 space-y-4 py-4">
           <div className="space-y-2">
-            <h3 className="font-bold">Software Engineer with 5+ years of experience</h3>
-            <p>
-              Highly motivated and experienced Software Engineer with 5+ years of proven success in
-              designing and developing complex software solutions. Adept at utilizing cutting-edge
-              technologies such as React and Node.js to create user-friendly and scalable
-              applications. Possesses a strong understanding of Computer Systems Design principles
-              and methodologies. A results-oriented individual with a passion for delivering
-              high-quality work and exceeding expectations. A strong team leader and mentor with a
-              proven ability to guide and motivate others to achieve shared goals. Seeking a
-              challenging and rewarding Software Engineer position where I can leverage my skills
-              and experience to contribute to the success of a dynamic and innovative organization.
-            </p>
+            <h3 className="font-bold">{cvName}</h3>
+            <p>{cvDescription}</p>
           </div>
-          <div className="space-y-2">
-            <h3 className="font-bold">Programming languages</h3>
-            <p>JavaScript, TypeScript.</p>
-          </div>
-          <div className="space-y-2">
-            <h3 className="font-bold">Frontend</h3>
-            <p>React, Redux.</p>
-          </div>
-          <div className="space-y-2">
-            <h3 className="font-bold">Backend</h3>
-            <p>gRPC.</p>
-          </div>
+          {cvSkillGroups.map((group) => (
+            <div key={group.id} className="space-y-2">
+              <h3 className="font-bold">{group.name}</h3>
+              <p>{group.skills.map((skill) => skill.name).join(', ')}</p>
+            </div>
+          ))}
         </div>
       </section>
 
       <section className="flex flex-col gap-6">
         <h2 className="text-4xl font-normal">Projects</h2>
+
+        {projects.map((project) => (
+          <div key={project.id} className="grid grid-cols-[240px_1fr] gap-x-6">
+            <div className="space-y-2 py-4">
+              <h4 className="font-bold text-primary uppercase">{project.name}</h4>
+              <p>{project.description}</p>
+            </div>
+
+            <div className="border-l border-primary pl-6 space-y-4 py-4">
+              <div className="space-y-2">
+                <h3 className="font-bold">Project roles</h3>
+                <p>{project.roles.join(', ')}</p>
+              </div>
+              <div className="space-y-2">
+                <h3 className="font-bold">Period</h3>
+                <p>
+                  {project.start_date} — {project.end_date}
+                </p>
+              </div>
+              <div className="space-y-2">
+                <h3 className="font-bold">Responsibilities</h3>
+                <ul className="ml-2 space-y-1.5 ">
+                  {project.responsibilities.map((resp) => (
+                    <li
+                      key={resp}
+                      className="relative pl-4 before:absolute before:left-0 before:top-2.5 before:h-1 before:w-1 before:rounded-full before:bg-foreground"
+                    >
+                      {resp}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="space-y-2">
+                <h3 className="font-bold">Environment</h3>
+                <p>{project.environment.join(', ')}</p>
+              </div>
+            </div>
+          </div>
+        ))}
 
         <div className="grid grid-cols-[240px_1fr] gap-x-6">
           <div className="space-y-2 py-4">
@@ -166,6 +234,58 @@ export const CvPreviewPage = ({ cvId }: { cvId: string }) => {
               <TableCell className="text-center align-top px-4 pt-2.5 pb-7">2</TableCell>
               <TableCell className="text-center align-top px-4 pt-2.5 pb-7">2025</TableCell>
             </TableRow>
+          </TableBody>
+        </Table>
+
+        <Table>
+          <TableHeader className="[&_tr]:border-primary">
+            <TableRow className="border-b hover:bg-transparent">
+              <TableHead className="w-65 text-sm font-medium h-10 align-top px-4 py-2.5">
+                SKILLS
+              </TableHead>
+              <TableHead className="text-sm font-medium h-10 align-bottom px-4 py-2.5"></TableHead>
+              <TableHead className="text-sm font-medium text-center h-10 align-bottom px-4 py-2.5 w-37.5">
+                EXPERIENCE
+                <br />
+                IN YEARS
+              </TableHead>
+              <TableHead className="text-sm font-medium text-center h-10 align-top px-4 py-2.5 w-37.5">
+                LAST USED
+              </TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody className="[&_tr]:border-border-table">
+            {tableSKillGroups.map((group) => (
+              <TableRow key={group.categoryName} className="border-b hover:bg-transparent">
+                <TableCell className="text-primary font-medium align-top px-4 pt-2.5 pb-7">
+                  {group.categoryName}
+                </TableCell>
+
+                <TableCell className="align-top font-medium px-4 pt-2.5 pb-7">
+                  <div className="flex flex-col gap-4">
+                    {group.skills.map((skill) => (
+                      <span key={skill.id}>{skill.name}</span>
+                    ))}
+                  </div>
+                </TableCell>
+
+                <TableCell className="text-center align-top px-4 pt-2.5 pb-7">
+                  <div className="flex flex-col gap-4">
+                    {group.skills.map((skill) => (
+                      <span key={`exp-${skill.id}`}>{skill.experienceInYears}</span>
+                    ))}
+                  </div>
+                </TableCell>
+
+                <TableCell className="text-center align-top px-4 pt-2.5 pb-7">
+                  <div className="flex flex-col gap-4">
+                    {group.skills.map((skill) => (
+                      <span key={`lastUsed-${skill.id}`}>{skill.lastUsed}</span>
+                    ))}
+                  </div>
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </section>

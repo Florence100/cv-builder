@@ -16,8 +16,33 @@ export const GET_CV: TypedDocumentNode<GetCvResult, GetCvArgs> = gql`
       name
       education
       description
+      languages {
+        name
+        proficiency
+      }
+      projects {
+        id
+        description
+        domain
+        name
+        start_date
+        end_date
+        roles
+        environment
+        responsibilities
+      }
+      skills {
+        name
+        categoryId
+      }
       user {
         id
+        position_name
+        profile {
+          first_name
+          last_name
+          full_name
+        }
       }
     }
   }
