@@ -14,7 +14,7 @@ export const UserCvNav = ({ cvId }: { cvId: string }) => {
   };
 
   return (
-    <Tabs defaultValue={activeTab} onValueChange={handleTabChange} className="pt-1.5">
+    <Tabs defaultValue={activeTab} onValueChange={handleTabChange} className="mt-1.5">
       <TabsList variant="line">
         <TabsTrigger
           value="details"

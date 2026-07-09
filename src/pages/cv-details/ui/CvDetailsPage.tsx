@@ -21,5 +21,9 @@ export const CvDetailsPage = async ({ cvId, loggedInUserId }: CvDetailsPageProps
 
   const isOwner = loggedInUserId === cv?.user?.id;
 
-  return <CvDetailsForm cv={cv} isOwner={isOwner} />;
+  return (
+    <div className="p-8 pt-10">
+      <CvDetailsForm cv={cv} isOwner={isOwner} />;
+    </div>
+  );
 };
