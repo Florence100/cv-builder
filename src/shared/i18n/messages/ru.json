@@ -111,7 +111,11 @@
       },
       "closeBtn": "Закрыть",
       "deleteBtn": "Удалить",
-      "deleteProcessBtn": "Удаление..."
+      "deleteProcessBtn": "Удаление...",
+      "noSkills": "Нет добавленных навыков"
+    },
+    "cvProjects": {
+      "noProjects": "Нет добавленных проектов"
     }
   },
   "shared": {
@@ -166,6 +170,17 @@
         "dialog": {
           "title": "Обновить навык"
         }
+      }
+    },
+    "cvProject": {
+      "table": {
+        "name": "Название",
+        "domain": "Область",
+        "startDate": "Дата начала",
+        "endDate": "Дата окончания",
+        "searchPlaceholder": "Поиск по имени...",
+        "updateBtn": "Обновить",
+        "deleteBtn": "Удалить"
       }
     }
   }

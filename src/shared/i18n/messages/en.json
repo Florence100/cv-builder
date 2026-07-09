@@ -28,6 +28,17 @@
           "title": "Update skill"
         }
       }
+    },
+    "cvProject": {
+      "table": {
+        "name": "Name",
+        "domain": "Domain",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "searchPlaceholder": "Search name...",
+        "updateBtn": "Update",
+        "removeBtn": "Delete"
+      }
     }
   },
   "features": {
@@ -159,7 +170,11 @@
       },
       "closeBtn": "Close",
       "deleteBtn": "Delete",
-      "deleteProcessBtn": "Deleting..."
+      "deleteProcessBtn": "Deleting...",
+      "noSkills": "No skills added yet"
+    },
+    "cvProjects": {
+      "noProjects": "No projects added yet"
     }
   },
   "shared": {
