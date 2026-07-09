@@ -12,7 +12,6 @@ import {
 } from '@/src/shared/ui/table';
 import {
   ColumnDef,
-  ColumnFiltersState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
@@ -38,7 +37,7 @@ export const CvsTable = <TData extends { description?: string | null }, TValue>(
   const t = useTranslations('entities.cv.cvsTable');
 
   const [sorting, setSorting] = useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [globalFilter, setGlobalFilter] = useState('');
 
   const isLessThan1024 = useMediaQuery({ maxWidth: 1024 });
 
@@ -52,11 +51,20 @@ export const CvsTable = <TData extends { description?: string | null }, TValue>(
     getCoreRowModel: getCoreRowModel(),
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
-    onColumnFiltersChange: setColumnFilters,
+    onGlobalFilterChange: setGlobalFilter,
     getFilteredRowModel: getFilteredRowModel(),
+    globalFilterFn: (row, columnId, filterValue) => {
+      const name = (row.getValue('name') as string) || '';
+      const description = row.original.description || '';
+      const searchValue = String(filterValue).toLowerCase();
+
+      return (
+        name.toLowerCase().includes(searchValue) || description.toLowerCase().includes(searchValue)
+      );
+    },
     state: {
       sorting,
-      columnFilters,
+      globalFilter,
       columnVisibility: columnVisibility,
     },
   });
@@ -66,8 +74,8 @@ export const CvsTable = <TData extends { description?: string | null }, TValue>(
       <div className="flex items-center justify-between py-4 pl-5">
         <SearchInput
           placeholder={t('searchPlaceholder')}
-          value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
-          onChange={(event) => table.getColumn('name')?.setFilterValue(event.target.value)}
+          value={globalFilter}
+          onChange={(event) => setGlobalFilter(event.target.value)}
         />
         <CreateCvModal userId={currentUserId} />
       </div>
