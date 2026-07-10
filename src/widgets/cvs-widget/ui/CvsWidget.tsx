@@ -1,26 +1,28 @@
 import { cvColumns, CvsTable } from '@/src/entities/cv';
-import { fetchCvs } from '@/src/entities/cv/api/server';
-import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
+import { CreateCvModal } from '@/src/features/create-cv';
+import { Cv } from 'cv-graphql';
+import { useTranslations } from 'next-intl';
 
-export const CvsWidget = async () => {
-  const cookieStore = await cookies();
-  const currentUserId = cookieStore.get('userId')?.value;
+interface CvProjectsProps {
+  currentUserId: string;
+  cvs: Cv[];
+}
 
-  if (!currentUserId) {
-    console.error('The user is not logged in.');
-    redirect('/auth/login');
-  }
+export const CvsWidget = ({ currentUserId, cvs }: CvProjectsProps) => {
+  const t = useTranslations('widgets.cvsWidget');
 
-  const cvs = await fetchCvs();
   const cvsList = cvs.map((cv) => ({
     ...cv,
     isCurrentUserCv: cv.user?.id === currentUserId,
   }));
 
   return (
-    <div className="w-full mx-auto lg:container">
-      <CvsTable columns={cvColumns} data={cvsList} currentUserId={currentUserId} />
+    <div className="w-full mx-auto lg:container relative">
+      <div className="absolute top-4 right-0">
+        <CreateCvModal userId={currentUserId} />
+      </div>
+      {cvs.length === 0 && <p className="py-4 px-5 text-muted-foreground">{t('noCvs')}</p>}
+      {cvs.length > 0 && <CvsTable columns={cvColumns} data={cvsList} />}
     </div>
   );
 };

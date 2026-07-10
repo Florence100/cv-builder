@@ -190,8 +190,28 @@
       "deleteProcessBtn": "Deleting...",
       "noSkills": "No skills added yet"
     },
+    "cvPreviewWidget": {
+      "exportPdf": "Export PDF",
+      "education": "Education",
+      "proficiency": "Language proficiency",
+      "domains": "Domains",
+      "projects": "Projects",
+      "roles": "Project roles",
+      "period": "Period",
+      "responsibilities": "Responsibilities",
+      "environment": "Environment",
+      "profSkills": "Professional skills",
+      "skills": "Skills",
+      "experience": "Experience",
+      "inYears": "In years",
+      "lastUsed": "Last used",
+      "used": ""
+    },
     "cvProjects": {
       "noProjects": "No projects added yet"
+    },
+    "cvsWidget": {
+      "noCvs": "No cvs added yet"
     }
   },
   "shared": {

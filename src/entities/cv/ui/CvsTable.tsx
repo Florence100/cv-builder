@@ -1,6 +1,5 @@
 'use client';
 
-import { CreateCvModal } from '@/src/features/create-cv';
 import { SearchInput } from '@/src/shared/ui/search-input';
 import {
   Table,
@@ -26,13 +25,11 @@ import { useMediaQuery } from 'react-responsive';
 interface CvTableProps<TData extends { description?: string | null }, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  currentUserId: string;
 }
 
 export const CvsTable = <TData extends { description?: string | null }, TValue>({
   columns,
   data,
-  currentUserId,
 }: CvTableProps<TData, TValue>) => {
   const t = useTranslations('entities.cv.cvsTable');
 
@@ -77,7 +74,6 @@ export const CvsTable = <TData extends { description?: string | null }, TValue>(
           value={globalFilter}
           onChange={(event) => setGlobalFilter(event.target.value)}
         />
-        <CreateCvModal userId={currentUserId} />
       </div>
       <div className="overflow-hidden">
         <Table>
