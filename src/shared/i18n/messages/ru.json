@@ -50,6 +50,23 @@
       "proficiencyLabel": "Уровень владения языком",
       "cancelButton": "Отмена",
       "confirmButton": "Подтвердить"
+    },
+    "createCvProject": {
+      "createButton": "Добавить проект",
+      "header": "Добавить проект",
+      "modal": {
+        "inputLabels": {
+          "project": "Проект",
+          "domain": "Область",
+          "startDate": "Дата начала",
+          "endDate": "Дата окончания",
+          "description": "Описание",
+          "environment": "Окружение",
+          "responsibilities": "Обязанности"
+        },
+        "cancelButton": "Отмена",
+        "confirmButton": "Подтвердить"
+      }
     }
   },
   "pages": {

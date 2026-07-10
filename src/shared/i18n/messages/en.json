@@ -109,6 +109,23 @@
       "proficiencyLabel": "Language proficiency",
       "cancelButton": "Cancel",
       "confirmButton": "Confirm"
+    },
+    "createCvProject": {
+      "createButton": "Add project",
+      "header": "Add project",
+      "modal": {
+        "inputLabels": {
+          "project": "Project",
+          "domain": "Domain",
+          "startDate": "Start Date",
+          "endDate": "End Date",
+          "description": "Description",
+          "environment": "Environment",
+          "responsibilities": "Responsibilities"
+        },
+        "cancelButton": "Cancel",
+        "confirmButton": "Confirm"
+      }
     }
   },
   "pages": {

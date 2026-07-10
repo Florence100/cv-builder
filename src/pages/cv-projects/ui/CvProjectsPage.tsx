@@ -1,23 +1,17 @@
-import { getCvProjects } from '@/src/entities/project/api/server';
+import { getCvProjects, getProjects } from '@/src/entities/project/api/server';
 import { CvProjects } from '@/src/widgets/cv-projects';
-import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
+import { getSkills } from '@/src/entities/skill/api/server';
 
 type CvProjectPageProps = {
   cvId: string;
 };
 
 export const CvProjectsPage = async ({ cvId }: CvProjectPageProps) => {
-  const cookieStore = await cookies();
-  const currentUserId = cookieStore.get('userId')?.value;
-
-  if (!currentUserId) {
-    console.error('The user is not logged in.');
-    redirect('/auth/login');
-  }
-
   const cvProjects = (await getCvProjects(cvId)) || [];
-  console.log('cvProjects', cvProjects);
+  const projectsList = (await getProjects()) || [];
+  const skills = (await getSkills()) || [];
 
-  return <CvProjects cvProjects={cvProjects} />;
+  return (
+    <CvProjects cvProjects={cvProjects} projectList={projectsList} skills={skills} cvId={cvId} />
+  );
 };

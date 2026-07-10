@@ -1,5 +1,5 @@
 import { getClient } from '@/src/shared/api/apollo-client';
-import type { Project } from 'cv-graphql';
+import type { CvProject, Project } from 'cv-graphql';
 import { PROJECTS_QUERY, PROJECT_QUERY, CV_PROJECTS } from './queries';
 
 type ProjectsResult = {
@@ -12,7 +12,7 @@ type ProjectResult = {
 
 type CvProjectResult = {
   cv: {
-    projects: Project[];
+    projects: CvProject[];
   };
 };
 
