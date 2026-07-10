@@ -50,6 +50,7 @@ interface CreateCvProjectModalProps {
 
 export const CreateCvProjectModal = ({ projectList, skills, cvId }: CreateCvProjectModalProps) => {
   const [isOpen, setIsOpen] = useState(false);
+
   const t = useTranslations('features.createCvProject');
   const router = useRouter();
   const [addCvProject] = useAddCvProject();
@@ -87,32 +88,36 @@ export const CreateCvProjectModal = ({ projectList, skills, cvId }: CreateCvProj
   };
 
   const onSubmit = async (data: CreateCvProjectFormValues) => {
-    console.log('data:', data);
     const responsibilities = data.responsibilities
       .split(',')
       .map((item) => item.trim())
       .filter(Boolean);
 
+    const payload = {
+      cvId: cvId,
+      projectId: data.name,
+      start_date: data.start_date,
+      end_date: data.end_date || undefined,
+      roles: [],
+      responsibilities: responsibilities,
+    };
+
+    if (!data.end_date) {
+      delete payload.end_date;
+    }
+
     try {
-      addCvProject({
+      await addCvProject({
         variables: {
-          project: {
-            cvId: cvId,
-            projectId: data.name,
-            start_date: data.start_date,
-            end_date: data.end_date,
-            roles: [],
-            responsibilities: responsibilities,
-          },
+          project: payload,
         },
       });
+      router.refresh();
+      clearForm();
+      setIsOpen(false);
     } catch (e) {
       console.error(e);
     }
-
-    clearForm();
-    setIsOpen(false);
-    router.refresh();
   };
 
   const handleOpenChange = (open: boolean) => {
@@ -154,7 +159,7 @@ export const CreateCvProjectModal = ({ projectList, skills, cvId }: CreateCvProj
                 control={control}
                 name="name"
                 rules={{
-                  required: 'Project is required',
+                  required: t('modal.errors.projectRequired'),
                 }}
                 render={({ field }) => (
                   <Select
@@ -221,15 +226,13 @@ export const CreateCvProjectModal = ({ projectList, skills, cvId }: CreateCvProj
                 control={control}
                 name="start_date"
                 rules={{
-                  required: 'Start date is required',
+                  required: t('modal.errors.startDateRequired'),
                   validate: (value) => {
                     const end = getValues('end_date');
 
                     if (!end) return true;
 
-                    return (
-                      new Date(value) <= new Date(end) || 'Start date cannot be later than end date'
-                    );
+                    return new Date(value) <= new Date(end) || t('modal.errors.dateError');
                   },
                 }}
                 render={({ field }) => (
@@ -267,16 +270,12 @@ export const CreateCvProjectModal = ({ projectList, skills, cvId }: CreateCvProj
                 control={control}
                 name="end_date"
                 rules={{
-                  required: 'End date is required',
                   validate: (value) => {
                     const start = getValues('start_date');
 
                     if (!value) return true;
 
-                    return (
-                      new Date(value) >= new Date(start) ||
-                      'Start date cannot be later than end date'
-                    );
+                    return new Date(value) >= new Date(start) || t('modal.errors.dateError');
                   },
                 }}
                 render={({ field }) => (
@@ -346,8 +345,9 @@ export const CreateCvProjectModal = ({ projectList, skills, cvId }: CreateCvProj
             <Input
               type="text"
               {...register('responsibilities', {
-                required: 'Responsibilities are required',
+                required: t('modal.errors.responsibilitiesRequired'),
               })}
+              placeholder="Develop UI components, Optimize performance, Write unit tests"
               className="h-12 bg-transparent border-border rounded-none hover:border-border-hovered focus-visible:border-border-focused"
             />
           </div>

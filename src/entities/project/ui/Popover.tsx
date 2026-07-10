@@ -2,8 +2,14 @@ import { Button } from '@/src/shared/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/src/shared/ui/popover';
 import { SeeMoreIcon } from '@/src/shared/ui/icons/see-more-icon';
 import { useTranslations } from 'next-intl';
+import type { CvProject } from 'cv-graphql';
 
-export function PopoverDemo() {
+type PopoverDemoProps = {
+  onEdit(project: CvProject): void;
+  project: CvProject;
+};
+
+export function PopoverDemo({ onEdit, project }: PopoverDemoProps) {
   const t = useTranslations('entities.cvProject.table');
 
   return (
@@ -15,7 +21,14 @@ export function PopoverDemo() {
       </PopoverTrigger>
       <PopoverContent className="w-25">
         <div className="flex flex-col gap-1">
-          <Button variant="ghost">{t('updateBtn')}</Button>
+          <Button
+            onClick={() => {
+              onEdit(project);
+            }}
+            variant="ghost"
+          >
+            {t('updateBtn')}
+          </Button>
           <Button variant="ghost">{t('removeBtn')}</Button>
         </div>
       </PopoverContent>

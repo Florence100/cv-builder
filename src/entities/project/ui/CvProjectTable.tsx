@@ -33,6 +33,7 @@ interface CvProjectTableProps {
 export function CvProjectTable({ columns, data }: CvProjectTableProps) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+
   const t = useTranslations('entities.cvProject.table');
 
   const table = useReactTable({
@@ -103,10 +104,10 @@ export function CvProjectTable({ columns, data }: CvProjectTableProps) {
                     <TableRow className="hover:bg-transparent">
                       <TableCell colSpan={row.getVisibleCells().length} className="px-4 py-2">
                         <div className="flex gap-2">
-                          {row.original.responsibilities.map((responsibility) => (
+                          {row.original.responsibilities.map((responsibility, index) => (
                             <Badge
                               variant="secondary"
-                              key={row.original.id}
+                              key={index}
                               className="bg-neutral-default text-white"
                             >
                               {responsibility}

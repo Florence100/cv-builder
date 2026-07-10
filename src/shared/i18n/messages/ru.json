@@ -64,6 +64,13 @@
           "environment": "Окружение",
           "responsibilities": "Обязанности"
         },
+        "errors": {
+          "projectRequired": "Поле проект обязательно",
+          "responsibilitiesRequired": "Поле обязанности обязательно",
+          "startDateRequired": "Дата начала обязательна",
+          "endDateRequired": "Дата окончания обязательна",
+          "dateError": "Дата начала не может быть позднее даты окончания"
+        },
         "cancelButton": "Отмена",
         "confirmButton": "Подтвердить"
       }
