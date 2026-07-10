@@ -10,8 +10,7 @@ import { getTranslations } from 'next-intl/server';
 
 export const UserCvHeader = async ({ cvId }: { cvId: string }) => {
   const t = await getTranslations('widgets.userCvHeader');
-  // const cv = await fetchCv(cvId);
-  const cv = { name: 'First cv name' };
+  const cv = await fetchCv(cvId);
 
   const cvName = cv?.name || 'Cv Name';
 

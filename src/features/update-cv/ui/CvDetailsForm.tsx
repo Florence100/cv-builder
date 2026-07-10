@@ -97,7 +97,7 @@ export const CvDetailsForm = ({ cv, isOwner }: { cv: Cv; isOwner: boolean }) => 
           <Label className="absolute -top-2 left-3 bg-background px-1 text-xs text-muted-foreground font-normal z-10">
             {t('descriptionLabel')}
           </Label>
-          <div className="h-48 p-10 bg-transparent border border-border rounded-none focus-within:border-border-focused hover:border-border-hovered transition-colors">
+          <div className="h-48 p-8 bg-transparent border border-border rounded-none focus-within:border-border-focused hover:border-border-hovered transition-colors">
             <Textarea
               id="description-textarea"
               disabled={!isOwner}

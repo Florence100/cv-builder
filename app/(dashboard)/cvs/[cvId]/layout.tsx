@@ -17,7 +17,7 @@ export default async function Layout({
         </div>
         <UserCvNav cvId={cvId} />
       </div>
-      <div className="h-full overflow-y-auto p-8">{children}</div>
+      <div className="h-full overflow-y-auto">{children}</div>
     </>
   );
 }
