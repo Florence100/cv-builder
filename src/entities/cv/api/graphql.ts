@@ -1,5 +1,5 @@
 import { gql, TypedDocumentNode } from '@apollo/client';
-import { Cv } from 'cv-graphql';
+import { Cv, ExportPdfInput } from 'cv-graphql';
 
 export type GetCvArgs = {
   cvId: string;
@@ -64,5 +64,14 @@ export const GET_CVS: TypedDocumentNode<GetCvsResult, Record<string, never>> = g
         email
       }
     }
+  }
+`;
+
+export type ExportPdfArgs = { pdf: ExportPdfInput };
+export type ExportPdfResult = { exportPdf: string };
+
+export const EXPORT_PDF: TypedDocumentNode<ExportPdfResult, ExportPdfArgs> = gql`
+  mutation ExportPdf($pdf: ExportPdfInput!) {
+    exportPdf(pdf: $pdf)
   }
 `;

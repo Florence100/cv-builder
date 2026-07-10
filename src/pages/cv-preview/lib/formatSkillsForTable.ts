@@ -1,6 +1,6 @@
 import { CvProject, Skill } from 'cv-graphql';
 
-interface FormattedSkill {
+export interface FormattedSkill {
   id: string;
   name: string;
   experienceInYears: number;
