@@ -2,6 +2,7 @@
 
 import { GroupedCategory } from '@/src/entities/skill/lib/groupSkillsByRootCategory';
 import { exportPdf } from '@/src/features/export-pdf/api/server';
+import { useExportPdf } from '@/src/features/export-pdf/lib/useExportPdf';
 import { FormattedSkill } from '@/src/pages/cv-preview/lib/formatSkillsForTable';
 import { Button } from '@/src/shared/ui/button';
 import {
@@ -33,17 +34,7 @@ interface CvData {
 export const CvPreviewWidget = ({ cvData }: { cvData: CvData }) => {
   const cvRef = useRef<HTMLDivElement>(null);
 
-  const handleExport = async () => {
-    if (!cvRef.current) return;
-    const htmlString = cvRef.current.outerHTML;
-
-    try {
-      await exportPdf(htmlString);
-    } catch (error) {
-      console.error('Export failed', error);
-    }
-  };
-
+  const { handleExport } = useExportPdf();
   const {
     fullName,
     position,
@@ -60,7 +51,7 @@ export const CvPreviewWidget = ({ cvData }: { cvData: CvData }) => {
     <div className="relative max-w-4xl mx-auto px-6 py-10 text-foreground">
       <div className="absolute top-10 right-6">
         <Button
-          onClick={handleExport}
+          onClick={() => handleExport(cvRef, cvData.fullName)}
           variant="outline"
           className="rounded-full h-10 px-10 py-4 text-primary border-primary hover:bg-red-50 hover:text-primary uppercase"
         >
@@ -68,7 +59,7 @@ export const CvPreviewWidget = ({ cvData }: { cvData: CvData }) => {
         </Button>
       </div>
       <div ref={cvRef} className="flex flex-col gap-8">
-        <header className="flex flex-col">
+        <header className="flex flex-col break-after-avoid">
           <div className="flex justify-between items-center">
             <h1 className="text-4xl font-normal">{fullName}</h1>
           </div>
@@ -113,10 +104,10 @@ export const CvPreviewWidget = ({ cvData }: { cvData: CvData }) => {
         </section>
 
         <section className="flex flex-col gap-6">
-          <h2 className="text-4xl font-normal">Projects</h2>
+          <h2 className="text-4xl font-normal break-after-avoid">Projects</h2>
 
           {projects.map((project) => (
-            <div key={project.id} className="grid grid-cols-[240px_1fr] gap-x-6">
+            <div key={project.id} className="grid grid-cols-[240px_1fr] gap-x-6 break-inside-avoid">
               <div className="space-y-2 py-4">
                 <h4 className="font-bold text-primary uppercase">{project.name}</h4>
                 <p>{project.description}</p>
@@ -153,104 +144,10 @@ export const CvPreviewWidget = ({ cvData }: { cvData: CvData }) => {
               </div>
             </div>
           ))}
-
-          <div className="grid grid-cols-[240px_1fr] gap-x-6">
-            <div className="space-y-2 py-4">
-              <h4 className="font-bold text-primary uppercase">Saas Media Platform</h4>
-              <p>
-                A digital music, podcast, and video service that gives you access to millions of
-                songs and other content from creators all over the world. The user can connect and
-                manage service providers such as Spotify, Apple Music, Tidal and SoundCloud in a few
-                clicks and play content from them.
-              </p>
-            </div>
-
-            <div className="border-l border-primary pl-6 space-y-4 py-4">
-              <div className="space-y-2">
-                <h3 className="font-bold">Project roles</h3>
-                <p>Software Engineer</p>
-              </div>
-              <div className="space-y-2">
-                <h3 className="font-bold">Period</h3>
-                <p>08.2023 — Till now</p>
-              </div>
-              <div className="space-y-2">
-                <h3 className="font-bold">Responsibilities</h3>
-                <ul className="ml-2 space-y-1.5 ">
-                  <li className="relative pl-4 before:absolute before:left-0 before:top-2.5 before:h-1 before:w-1 before:rounded-full before:bg-foreground">
-                    Integrated Keycloak OAuth SSO login for seamless user authentication;
-                  </li>
-                  <li className="relative pl-4 before:absolute before:left-0 before:top-2.5 before:h-1 before:w-1 before:rounded-full before:bg-foreground">
-                    Developed web components according to the Figma design system to ensure a
-                    consistent and modern user interface;
-                  </li>
-                  <li className="relative pl-4 before:absolute before:left-0 before:top-2.5 before:h-1 before:w-1 before:rounded-full before:bg-foreground">
-                    Successfully managed and onboarded both wired and wireless IoT devices, enabling
-                    real-time data streaming and control;
-                  </li>
-                  <li className="relative pl-4 before:absolute before:left-0 before:top-2.5 before:h-1 before:w-1 before:rounded-full before:bg-foreground">
-                    Collaborated with the development team to integrate with third-party service
-                    providers such as Spotify, Apple Music, and Tidal, enhancing the user
-                    experience;
-                  </li>
-                  <li className="relative pl-4 before:absolute before:left-0 before:top-2.5 before:h-1 before:w-1 before:rounded-full before:bg-foreground">
-                    Contributed to the overall success of the project by implementing robust
-                    security measures and optimizing performance.
-                  </li>
-                </ul>
-              </div>
-              <div className="space-y-2">
-                <h3 className="font-bold">Environment</h3>
-                <p>TypeScript, React, Redux, Redux Toolkit, RTK Query, Radix UI, gRPC, Keycloak.</p>
-              </div>
-            </div>
-          </div>
         </section>
 
         <section className="flex flex-col gap-6">
-          <h2 className="text-4xl">Professional skills</h2>
-
-          <Table>
-            <TableHeader className="[&_tr]:border-primary">
-              <TableRow className="border-b hover:bg-transparent">
-                <TableHead className="w-65 text-sm font-medium h-10 align-top px-4 py-2.5">
-                  SKILLS
-                </TableHead>
-                <TableHead className="text-sm font-medium h-10 align-bottom px-4 py-2.5"></TableHead>
-                <TableHead className="text-sm font-medium text-center h-10 align-bottom px-4 py-2.5 w-37.5">
-                  EXPERIENCE
-                  <br />
-                  IN YEARS
-                </TableHead>
-                <TableHead className="text-sm font-medium text-center h-10 align-top px-4 py-2.5 w-37.5">
-                  LAST USED
-                </TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody className="[&_tr]:border-border-table">
-              <TableRow className="border-b hover:bg-transparent">
-                <TableCell className="text-primary font-medium align-top px-4 pt-2.5 pb-7">
-                  Programming languages
-                </TableCell>
-                <TableCell className="align-top font-medium px-4 pt-2.5 pb-7">
-                  <div className="flex flex-col gap-4">
-                    <span>TypeScript</span>
-                    <span>JavaScript</span>
-                  </div>
-                </TableCell>
-                <TableCell className="text-center align-top px-4 pt-2.5 pb-7">2</TableCell>
-                <TableCell className="text-center align-top px-4 pt-2.5 pb-7">2025</TableCell>
-              </TableRow>
-              <TableRow className="border-b hover:bg-transparent">
-                <TableCell className="text-primary font-medium align-top px-4 pt-2.5 pb-7">
-                  Frontend technologies
-                </TableCell>
-                <TableCell className="align-top font-medium px-4 pt-2.5 pb-7">React</TableCell>
-                <TableCell className="text-center align-top px-4 pt-2.5 pb-7">2</TableCell>
-                <TableCell className="text-center align-top px-4 pt-2.5 pb-7">2025</TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
+          <h2 className="text-4xl break-after-avoid">Professional skills</h2>
 
           <Table>
             <TableHeader className="[&_tr]:border-primary">
@@ -271,7 +168,10 @@ export const CvPreviewWidget = ({ cvData }: { cvData: CvData }) => {
             </TableHeader>
             <TableBody className="[&_tr]:border-border-table">
               {tableSKillGroups.map((group) => (
-                <TableRow key={group.categoryName} className="border-b hover:bg-transparent">
+                <TableRow
+                  key={group.categoryName}
+                  className="border-b hover:bg-transparent break-inside-avoid"
+                >
                   <TableCell className="text-primary font-medium align-top px-4 pt-2.5 pb-7">
                     {group.categoryName}
                   </TableCell>

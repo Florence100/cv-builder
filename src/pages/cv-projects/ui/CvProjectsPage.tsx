@@ -12,6 +12,8 @@ export const CvProjectsPage = async ({ cvId }: CvProjectPageProps) => {
   const skills = (await getSkills()) || [];
 
   return (
-    <CvProjects cvProjects={cvProjects} projectList={projectsList} skills={skills} cvId={cvId} />
+    <div className="p-6">
+      <CvProjects cvProjects={cvProjects} projectList={projectsList} skills={skills} cvId={cvId} />
+    </div>
   );
 };
