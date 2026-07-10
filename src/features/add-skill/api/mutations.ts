@@ -7,7 +7,7 @@ export type AddSkillArgs = {
 };
 
 export type AddSkillResult = {
-  progile: Profile;
+  profile: Profile;
 };
 
 export const useAddProfileSkill = () => {

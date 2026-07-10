@@ -7,7 +7,7 @@ export type UpdateSkillArgs = {
 };
 
 export type UpdateSkillResult = {
-  progile: Profile;
+  profile: Profile;
 };
 
 export type UpdateCvSkillArgs = {

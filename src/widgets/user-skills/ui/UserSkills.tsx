@@ -99,7 +99,7 @@ export function UserSkills({
 
   return (
     <div>
-      {userSkills.length === 0 && <p className="text-gray-500">No skills added yet.</p>}
+      {userSkills.length === 0 && <p className="text-gray-500">{t('noSkills')}</p>}
 
       {grouped.map((item) => (
         <div key={item.id} className="flex flex-col">

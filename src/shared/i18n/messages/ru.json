@@ -50,6 +50,23 @@
       "proficiencyLabel": "Уровень владения языком",
       "cancelButton": "Отмена",
       "confirmButton": "Подтвердить"
+    },
+    "createCvProject": {
+      "createButton": "Добавить проект",
+      "header": "Добавить проект",
+      "modal": {
+        "inputLabels": {
+          "project": "Проект",
+          "domain": "Область",
+          "startDate": "Дата начала",
+          "endDate": "Дата окончания",
+          "description": "Описание",
+          "environment": "Окружение",
+          "responsibilities": "Обязанности"
+        },
+        "cancelButton": "Отмена",
+        "confirmButton": "Подтвердить"
+      }
     }
   },
   "pages": {
@@ -111,7 +128,11 @@
       },
       "closeBtn": "Закрыть",
       "deleteBtn": "Удалить",
-      "deleteProcessBtn": "Удаление..."
+      "deleteProcessBtn": "Удаление...",
+      "noSkills": "Нет добавленных навыков"
+    },
+    "cvProjects": {
+      "noProjects": "Нет добавленных проектов"
     }
   },
   "shared": {
@@ -166,6 +187,17 @@
         "dialog": {
           "title": "Обновить навык"
         }
+      }
+    },
+    "cvProject": {
+      "table": {
+        "name": "Название",
+        "domain": "Область",
+        "startDate": "Дата начала",
+        "endDate": "Дата окончания",
+        "searchPlaceholder": "Поиск по имени...",
+        "updateBtn": "Обновить",
+        "deleteBtn": "Удалить"
       }
     }
   }
