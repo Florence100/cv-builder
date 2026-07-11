@@ -162,6 +162,13 @@
         "cancelButton": "Cancel",
         "confirmButton": "Confirm"
       }
+    },
+    "deleteCvProject": {
+      "deleteButton": "Delete",
+      "error": "Failed to delete CV Project",
+      "header": "Delete CV Project",
+      "cancelButton": "Cancel",
+      "confirmButton": "Confirm"
     }
   },
   "pages": {

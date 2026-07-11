@@ -78,7 +78,7 @@ export const getColumns = ({ onEdit }: ColumnsProps): ColumnDef<CvProject>[] => 
     id: 'id',
     header: '',
     cell: ({ cell }) => {
-      return <PopoverDemo onEdit={onEdit} project={cell.row.original} />;
+      return <PopoverDemo onEdit={onEdit} cvProject={cell.row.original} />;
     },
   },
 ];

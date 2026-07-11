@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { format } from 'date-fns';
 import { useTranslations } from 'next-intl';
-import type { CvProject, Skill, Project } from 'cv-graphql';
+import type { CvProject, Skill } from 'cv-graphql';
 import { Button } from '@/src/shared/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/src/shared/ui/dialog';
 import { Input } from '@/src/shared/ui/input';
@@ -23,14 +23,12 @@ interface UpdateCvProjectModalProps {
   project: CvProject | null;
   skills: Skill[];
   cvId: string;
-  projectList: Project[];
   onOpenChange(open: boolean): void;
 }
 
 export const UpdateCvProjectModal = ({
   open,
   project,
-  projectList,
   skills,
   cvId,
   onOpenChange,
@@ -70,8 +68,6 @@ export const UpdateCvProjectModal = ({
   const onSubmit = async (data: UpdateCvProjectFormValues) => {
     if (!project) return;
 
-    const curProject = projectList.filter((item) => item.name === project.name)[0];
-
     const responsibilities = data.responsibilities
       .split(',')
       .map((item) => item.trim())
@@ -79,7 +75,7 @@ export const UpdateCvProjectModal = ({
 
     const payload = {
       cvId: cvId,
-      projectId: curProject.id,
+      projectId: project.project.id,
       start_date: project.start_date,
       end_date: project.end_date || undefined,
       roles: [],

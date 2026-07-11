@@ -41,6 +41,9 @@ export const CV_PROJECTS = gql`
         description
         environment
         responsibilities
+        project {
+          id
+        }
       }
     }
   }
