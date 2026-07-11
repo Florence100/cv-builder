@@ -2,21 +2,14 @@ import { getCategories } from '@/src/entities/categories';
 import { fetchCv } from '@/src/entities/cv/api/server';
 import { groupSkillsByRootCategory } from '@/src/entities/skill';
 import { getSkills } from '@/src/entities/skill/api/server';
-
-import { getTranslations } from 'next-intl/server';
 import { formatSkillsForTable } from '../lib/formatSkillsForTable';
 import { CvPreviewWidget } from '@/src/widgets/cv-preview-widget';
 
 export const CvPreviewPage = async ({ cvId }: { cvId: string }) => {
   const cv = await fetchCv(cvId);
-  const t = await getTranslations('pages.cvDetails');
 
   if (!cv) {
-    return (
-      <div className="flex h-full items-center justify-center">
-        <p>{t('noCv')}</p>
-      </div>
-    );
+    throw new Error(`Failed to load CV for ID: ${cvId}`);
   }
 
   const profile = cv.user?.profile;

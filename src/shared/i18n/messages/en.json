@@ -95,6 +95,12 @@
       "passwordPlaceholder": "Password",
       "submitButton": "Create an account"
     },
+    "switchTheme": {
+      "appearance": "Appearance",
+      "lightTheme": "Light",
+      "darkTheme": "Dark",
+      "deviceTheme": "Device Settings"
+    },
     "updateCv": {
       "error": "Failed to update CV",
       "nameLabel": "Name",
@@ -177,6 +183,9 @@
       "subtitle": "Almost done! Now create a new password",
       "backToLoginButton": "Back to log in"
     },
+    "settings": {
+      "title": "Settings"
+    },
     "signup": {
       "title": "Register now",
       "subtitle": "Welcome! Sign up to continue",
@@ -220,8 +229,28 @@
       "deleteProcessBtn": "Deleting...",
       "noSkills": "No skills added yet"
     },
+    "cvPreviewWidget": {
+      "exportPdf": "Export PDF",
+      "education": "Education",
+      "proficiency": "Language proficiency",
+      "domains": "Domains",
+      "projects": "Projects",
+      "roles": "Project roles",
+      "period": "Period",
+      "responsibilities": "Responsibilities",
+      "environment": "Environment",
+      "profSkills": "Professional skills",
+      "skills": "Skills",
+      "experience": "Experience",
+      "inYears": "In years",
+      "lastUsed": "Last used",
+      "used": ""
+    },
     "cvProjects": {
       "noProjects": "No projects added yet"
+    },
+    "cvsWidget": {
+      "noCvs": "No cvs added yet"
     }
   },
   "shared": {

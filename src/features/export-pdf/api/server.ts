@@ -10,10 +10,10 @@ export async function exportPdf(htmlString: string) {
       pdf: {
         html: htmlString,
         margin: {
-          top: '1',
-          bottom: '1',
-          left: '1',
-          right: '1',
+          top: '1in',
+          bottom: '1in',
+          left: '1in',
+          right: '1in',
         },
       },
     },

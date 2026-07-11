@@ -19,14 +19,16 @@ export const CvSkillsPage = async ({ cvId, loggedInUserId }: CvSkillsPageProps) 
   const isOwner = loggedInUserId === userId;
 
   return (
-    <UserSkills
-      userId={userId}
-      userSkills={skills}
-      isOwner={isOwner}
-      categories={categories}
-      skills={remainedSkills}
-      cvId={cvId}
-      mood="CvPage"
-    />
+    <div className="p-6">
+      <UserSkills
+        userId={userId}
+        userSkills={skills}
+        isOwner={isOwner}
+        categories={categories}
+        skills={remainedSkills}
+        cvId={cvId}
+        mood="CvPage"
+      />
+    </div>
   );
 };
