@@ -329,7 +329,7 @@ export const ProfileForm = ({ user, departments, positions, isOwner }: ProfileFo
                   <SelectTrigger className="h-12 w-full bg-transparent border-border rounded-none hover:border-border-hovered focus-visible:border-border-focused">
                     <SelectValue placeholder="" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="bg-background">
                     {departments.map((dept) => (
                       <SelectItem key={dept.id} value={dept.id}>
                         {dept.name}
@@ -352,7 +352,7 @@ export const ProfileForm = ({ user, departments, positions, isOwner }: ProfileFo
                   <SelectTrigger className="h-12 w-full bg-transparent border-border rounded-none hover:border-border-hovered focus-visible:border-border-focused">
                     <SelectValue placeholder="" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="bg-background">
                     {positions.map((pos) => (
                       <SelectItem key={pos.id} value={pos.id}>
                         {pos.name}

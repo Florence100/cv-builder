@@ -24,6 +24,7 @@ import { useTranslations } from 'next-intl';
 import { Fragment } from 'react';
 import type { CvProject } from 'cv-graphql';
 import { Badge } from '@/src/shared/ui/badge';
+import { useMediaQuery } from 'react-responsive';
 
 interface CvProjectTableProps {
   columns: ColumnDef<CvProject>[];
@@ -36,6 +37,13 @@ export function CvProjectTable({ columns, data }: CvProjectTableProps) {
 
   const t = useTranslations('entities.cvProject.table');
 
+  const isLessThan1024 = useMediaQuery({ maxWidth: 1024 });
+
+  const columnVisibility = {
+    start_date: !isLessThan1024,
+    end_date: !isLessThan1024,
+  };
+
   const table = useReactTable({
     data,
     columns,
@@ -47,6 +55,7 @@ export function CvProjectTable({ columns, data }: CvProjectTableProps) {
     state: {
       sorting,
       columnFilters,
+      columnVisibility: columnVisibility,
     },
   });
 

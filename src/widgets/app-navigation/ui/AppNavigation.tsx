@@ -30,10 +30,6 @@ function NavigationList({ userId }: AppNavigationProps) {
         return pathname === '/users';
       }
 
-      if (href === '/cvs') {
-        return /^\/cvs(\/.*)?$/.test(pathname);
-      }
-
       if (href.includes('/languages')) {
         return /^\/users\/\d+\/languages$/.test(pathname);
       }
@@ -53,7 +49,7 @@ function NavigationList({ userId }: AppNavigationProps) {
           isActive(item.href) ? 'bg-neutral-subtle text-foreground' : 'text-muted-foreground'
         }`}
       >
-        <Icon fill={isActive(item.href) ? '#2e2e2e' : '#00000099'} className="size-6 shrink-0" />
+        <Icon className="size-6 shrink-0" />
         <p className={`text-left truncate lg:w-full ${open ? 'block' : 'hidden'}`}>
           {t(item.labelKey)}
         </p>
