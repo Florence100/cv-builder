@@ -36,7 +36,7 @@ export const PasswordResetForm = () => {
         variables: { auth: { newPassword: data.newPassword } },
         context: {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: token,
           },
         },
       });
