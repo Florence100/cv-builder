@@ -30,6 +30,10 @@ function NavigationList({ userId }: AppNavigationProps) {
         return pathname === '/users';
       }
 
+      if (href === '/cvs') {
+        return /^\/cvs(\/.*)?$/.test(pathname);
+      }
+
       if (href.includes('/languages')) {
         return /^\/users\/\d+\/languages$/.test(pathname);
       }

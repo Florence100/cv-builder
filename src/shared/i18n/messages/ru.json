@@ -83,8 +83,8 @@
     },
     "deleteCvProject": {
       "deleteButton": "Удалить",
-      "error": "Не удалось удалить CV проект",
-      "header": "Удалить CV проект",
+      "error": "Не удалось удалить проект из резюме",
+      "header": "Удалить проект из резюме",
       "cancelButton": "Отмена",
       "confirmButton": "Подтвердить"
     }
@@ -196,6 +196,11 @@
       },
       "removeBtn": {
         "skill": "удалить навык"
+      },
+      "sideBarPopover": {
+        "profile": "Профиль",
+        "settings": "Настройки",
+        "logout": "Выйти"
       }
     },
     "validation": {

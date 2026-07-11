@@ -20,7 +20,7 @@ export async function proxy(request: NextRequest) {
         const decoded: { exp: number } = jwtDecode(accessToken);
         const currentTime = Math.floor(Date.now() / 1000);
 
-        if (decoded.exp - currentTime < 10) {
+        if (decoded.exp - currentTime < 30) {
           needsRefresh = true; //The access token is still valid, but it will expire soon. (less 10s)
         }
       } catch {
