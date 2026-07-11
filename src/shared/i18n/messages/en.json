@@ -95,6 +95,12 @@
       "passwordPlaceholder": "Password",
       "submitButton": "Create an account"
     },
+    "switchTheme": {
+      "appearance": "Appearance",
+      "lightTheme": "Light",
+      "darkTheme": "Dark",
+      "deviceTheme": "Device Settings"
+    },
     "updateCv": {
       "error": "Failed to update CV",
       "nameLabel": "Name",
@@ -146,6 +152,9 @@
       "title": "Set a new password",
       "subtitle": "Almost done! Now create a new password",
       "backToLoginButton": "Back to log in"
+    },
+    "settings": {
+      "title": "Settings"
     },
     "signup": {
       "title": "Register now",

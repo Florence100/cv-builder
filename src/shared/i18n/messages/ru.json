@@ -23,6 +23,12 @@
       "passwordPlaceholder": "Пароль",
       "submitButton": "Создать аккаунт"
     },
+    "switchTheme": {
+      "appearance": "Тема",
+      "lightTheme": "Светлая",
+      "darkTheme": "Темная",
+      "deviceTheme": "Системная"
+    },
     "passwordRecovery": {
       "emailPlaceholder": "Почта",
       "submitButton": "Сбросить пароль"
@@ -87,6 +93,9 @@
       "title": "Установите новый пароль",
       "subtitle": "Почти готово! Теперь придумайте новый пароль",
       "backToLoginButton": "Вернуться на страницу входа"
+    },
+    "settings": {
+      "title": "Настройки"
     },
     "signup": {
       "title": "Зарегистрируйтесь",
