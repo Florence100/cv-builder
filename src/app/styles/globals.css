@@ -43,6 +43,11 @@
   --sidebar-ring: oklch(0.708 0 0);
   --select-item: rgba(235, 235, 235, 1);
   --positive: rgba(11, 170, 0, 1);
+  --neutral-subtle: rgba(0, 0, 0, 0.04);
+  --table-avatar: rgb(189, 189, 189);
+  --table-border: rgb(224, 224, 224);
+  --neutral-default: rgb(118, 118, 118);
+  --btn-hovered: rgb(138, 33, 34);
 }
 
 @theme inline {
@@ -82,11 +87,11 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --color-btn-hovered: rgb(138, 33, 34);
-  --color-neutral-default: rgb(118, 118, 118);
-  --color-neutral-subtle: rgba(0, 0, 0, 0.04);
-  --color-table-avatar: rgb(189, 189, 189);
-  --color-table-border: rgb(224, 224, 224);
+  --color-btn-hovered: var(--btn-hovered);
+  --color-neutral-default: var(--neutral-default);
+  --color-neutral-subtle: var(--neutral-subtle);
+  --color-table-avatar: var(--table-avatar);
+  --color-table-border: var(--table-border);
   --color-select-item: var(--select-item);
   --color-positive: var(--positive);
   --radius-sm: calc(var(--radius) * 0.6);
@@ -99,11 +104,11 @@
 }
 
 .dark {
-  --background: rgba(53, 53, 53, 1);
+  --background: rgb(53, 53, 53);
   --foreground: rgba(255, 255, 255, 1);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
+  --popover: rgb(46, 46, 46);
   --popover-foreground: oklch(0.985 0 0);
   --primary: rgba(198, 48, 49, 1);
   --primary-transparent: rgba(198, 48, 49, 0.04);
@@ -136,6 +141,7 @@
   --sidebar-ring: oklch(0.556 0 0);
   --select-item: rgba(38, 38, 38, 1);
   --positive: rgba(11, 170, 0, 1);
+  --neutral-subtle: rgba(255, 255, 255, 0.08);
 }
 
 @layer base {
