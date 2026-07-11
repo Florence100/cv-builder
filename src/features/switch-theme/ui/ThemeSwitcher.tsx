@@ -40,7 +40,7 @@ export const ThemeSwitcher = ({ initialTheme }: ThemeSwitcherProps) => {
   return (
     <div className="relative w-full max-w-3xl">
       <Label className="absolute -top-2 left-3 bg-background px-1 text-xs text-muted-foreground font-normal z-10">
-        {t('appearance')}
+        {t('label')}
       </Label>
       <Select value={theme} onValueChange={handleThemeChange}>
         <SelectTrigger className="h-12 w-full bg-background border-border rounded-none hover:border-border-hovered focus-visible:border-border-focused">
