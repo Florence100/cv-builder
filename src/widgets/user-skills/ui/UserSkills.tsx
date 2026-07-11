@@ -161,8 +161,8 @@ export function UserSkills({
               className="rounded-full px-10 h-10 bg-primary hover:bg-primary/80 text-white border-none font-medium tracking-wide uppercase text-sm"
             >
               {deleteProfileSkillLoading || deleteCvSkillLoading
-                ? `${'deleteProcessBtn'}`
-                : `${'deleteBtn'}`}
+                ? `${t('deleteProcessBtn')}`
+                : `${t('deleteBtn')}`}
               {selectedSkills.length > 0 && (
                 <span className="flex items-center justify-center w-5 h-5 ml-1 bg-white text-primary rounded-full text-xs font-bold">
                   {selectedSkills.length}

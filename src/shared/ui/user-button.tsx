@@ -4,6 +4,7 @@ import { GET_USER } from '@/src/entities/user/api/queries';
 import { useSidebar } from '@/src/shared/ui/sidebar';
 import { useQuery } from '@apollo/client/react';
 import Cookies from 'js-cookie';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { ComponentPropsWithoutRef, forwardRef } from 'react';
 
@@ -12,6 +13,7 @@ type UserButtonProps = ComponentPropsWithoutRef<'button'>;
 export const UserButton = forwardRef<HTMLButtonElement, UserButtonProps>(
   ({ className, ...props }, ref) => {
     const { open } = useSidebar();
+    const t = useTranslations('shared.ui.userButton');
 
     const userId = Cookies.get('userId');
 
@@ -21,7 +23,7 @@ export const UserButton = forwardRef<HTMLButtonElement, UserButtonProps>(
     });
 
     const avatar = data?.user?.profile?.avatar || null;
-    const fullName = data?.user?.profile?.full_name || 'User Name';
+    const fullName = data?.user?.profile?.full_name || t('userNamePlaceholder');
     const initial = fullName.charAt(0).toUpperCase();
 
     return (

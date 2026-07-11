@@ -66,7 +66,7 @@ export const DeleteCvModal = ({ cvId, name }: DeleteCvModalProps) => {
         </DialogHeader>
         <form onSubmit={onDelete} onKeyDown={handleKeyDown} className="flex flex-col gap-6">
           <p>
-            Are you sure you want to delete CV <strong>{name}</strong>?
+            {t('question')} <strong>{name}</strong>?
           </p>
 
           <div className="flex justify-center sm:justify-end gap-4">
