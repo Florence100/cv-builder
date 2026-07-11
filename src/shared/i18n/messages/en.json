@@ -123,6 +123,36 @@
           "environment": "Environment",
           "responsibilities": "Responsibilities"
         },
+        "errors": {
+          "projectRequired": "Project is required",
+          "responsibilitiesRequired": "Responsibilities are required",
+          "startDateRequired": "Start date is required",
+          "endDateRequired": "End date is required",
+          "dateError": "Start date cannot be later than end date"
+        },
+        "cancelButton": "Cancel",
+        "confirmButton": "Confirm"
+      }
+    },
+    "updateCvProject": {
+      "header": "Update project",
+      "modal": {
+        "inputLabels": {
+          "project": "Project",
+          "domain": "Domain",
+          "startDate": "Start Date",
+          "endDate": "End Date",
+          "description": "Description",
+          "environment": "Environment",
+          "responsibilities": "Responsibilities"
+        },
+        "errors": {
+          "projectRequired": "Project is required",
+          "responsibilitiesRequired": "Responsibilities are required",
+          "startDateRequired": "Start date is required",
+          "endDateRequired": "End date is required",
+          "dateError": "Start date cannot be later than end date"
+        },
         "cancelButton": "Cancel",
         "confirmButton": "Confirm"
       }

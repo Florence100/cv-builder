@@ -48,7 +48,11 @@ const HeaderWithTranslation = ({
   return <p>{t(translationKey)}</p>;
 };
 
-export const columns: ColumnDef<CvProject>[] = [
+type ColumnsProps = {
+  onEdit(project: CvProject): void;
+};
+
+export const getColumns = ({ onEdit }: ColumnsProps): ColumnDef<CvProject>[] => [
   {
     accessorKey: 'name',
     id: 'name',
@@ -73,8 +77,8 @@ export const columns: ColumnDef<CvProject>[] = [
     accessorKey: 'id',
     id: 'id',
     header: '',
-    cell: () => {
-      return <PopoverDemo />;
+    cell: ({ cell }) => {
+      return <PopoverDemo onEdit={onEdit} project={cell.row.original} />;
     },
   },
 ];
