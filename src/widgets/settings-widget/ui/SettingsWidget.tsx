@@ -1,4 +1,4 @@
-import { ThemeSwitcher } from '@/src/features/switch-language';
+import { ThemeSwitcher } from '@/src/features/switch-theme';
 import { cookies } from 'next/headers';
 
 export const SettingsWidget = async () => {
