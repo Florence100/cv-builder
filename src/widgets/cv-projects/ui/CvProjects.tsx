@@ -37,7 +37,6 @@ export function CvProjects({ cvProjects, projectList, skills, cvId }: CvProjects
         <UpdateCvProjectModal
           open={editingProject !== null}
           project={editingProject}
-          projectList={projectList}
           skills={skills}
           cvId={cvId}
           onOpenChange={(open) => {

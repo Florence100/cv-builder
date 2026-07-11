@@ -65,15 +65,22 @@
           "responsibilities": "Обязанности"
         },
         "errors": {
-          "projectRequired": "Поле проект обязательно",
-          "responsibilitiesRequired": "Поле обязанности обязательно",
-          "startDateRequired": "Дата начала обязательна",
-          "endDateRequired": "Дата окончания обязательна",
+          "projectRequired": "Укажите проект",
+          "responsibilitiesRequired": "Опишите обязанности",
+          "startDateRequired": "Укажите дату начала",
+          "endDateRequired": "Укажите дату окончания",
           "dateError": "Дата начала не может быть позднее даты окончания"
         },
         "cancelButton": "Отмена",
         "confirmButton": "Подтвердить"
       }
+    },
+    "deleteCvProject": {
+      "deleteButton": "Удалить",
+      "error": "Не удалось удалить CV проект",
+      "header": "Удалить CV проект",
+      "cancelButton": "Отмена",
+      "confirmButton": "Подтвердить"
     }
   },
   "pages": {
