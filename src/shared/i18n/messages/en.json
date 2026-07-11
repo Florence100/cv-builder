@@ -281,6 +281,11 @@
       },
       "removeBtn": {
         "skill": "remove skill"
+      },
+      "sideBarPopover": {
+        "profile": "Profile",
+        "settings": "Settings",
+        "logout": "Logout"
       }
     },
     "validation": {

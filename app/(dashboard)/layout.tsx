@@ -1,17 +1,18 @@
 import { SidebarProvider } from '@/src/shared/ui/sidebar';
 import { AppSidebar } from '@/src/shared/ui/app-sidebar';
 import { AppNavigation } from '@/src/widgets/app-navigation';
-import { UserButton } from '@/src/shared/ui/user-button';
+// import { UserButton } from '@/src/shared/ui/user-button';
 import { cookies } from 'next/headers';
+import { SideBarPopover } from '@/src/shared/ui/side-bar-popover';
 
 export default async function Layout({ children }: { children: React.ReactNode }) {
   const cookieStore = await cookies();
-  const userId = cookieStore.get('userId')?.value;
+  const userId = cookieStore.get('userId')?.value || '';
 
   return (
     <SidebarProvider>
       <div className="hidden lg:block bg-background">
-        <AppSidebar />
+        <AppSidebar userId={userId} />
       </div>
 
       <main className="flex-1 h-dvh pb-16 lg:pb-0 bg-background overflow-hidden">{children}</main>
@@ -21,7 +22,7 @@ export default async function Layout({ children }: { children: React.ReactNode }
           <AppNavigation userId={userId} />
         </div>
         <div className="flex-1">
-          <UserButton />
+          <SideBarPopover userId={userId} />
         </div>
       </div>
     </SidebarProvider>
