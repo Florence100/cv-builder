@@ -23,8 +23,11 @@
       "passwordPlaceholder": "Пароль",
       "submitButton": "Создать аккаунт"
     },
+    "switchLanguage": {
+      "label": "Язык"
+    },
     "switchTheme": {
-      "appearance": "Тема",
+      "label": "Тема",
       "lightTheme": "Светлая",
       "darkTheme": "Темная",
       "deviceTheme": "Системная"
