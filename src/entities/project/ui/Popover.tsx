@@ -13,8 +13,6 @@ type PopoverDemoProps = {
 export function PopoverDemo({ onEdit, cvProject }: PopoverDemoProps) {
   const t = useTranslations('entities.cvProject.table');
 
-  console.log('cvProject: ', cvProject);
-
   return (
     <Popover>
       <PopoverTrigger asChild>
