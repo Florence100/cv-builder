@@ -44,7 +44,7 @@ The application provides a comprehensive toolkit for managing employees, trackin
 
 ### Quality Assurance & Tooling
 
-- **React Testing Library:** High-speed unit testing environment for component and utility validation.
+- **Vitest & React Testing Library:** High-speed unit testing environment for component and utility validation.
 - **Code Quality:** Automated formatting and linting via **ESLint** and **Prettier**.
 - **Git Hooks:** Enforced pre-commit and pre-push checks using **Husky** and **lint-staged**.
 
