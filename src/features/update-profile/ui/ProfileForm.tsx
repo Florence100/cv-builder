@@ -20,6 +20,7 @@ import { fileToBase64 } from '@/src/shared/lib/file-to-base64';
 import { useRouter } from 'next/navigation';
 import { GET_USER } from '@/src/entities/user/api/queries';
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 type ProfileFormValues = {
   firstName: string;
@@ -37,6 +38,8 @@ type ProfileFormProps = {
 };
 
 export const ProfileForm = ({ user, departments, positions, isOwner }: ProfileFormProps) => {
+  const t = useTranslations('features.updateProfile');
+
   const router = useRouter();
   const [dragActive, setDragActive] = useState(false);
 
@@ -60,7 +63,7 @@ export const ProfileForm = ({ user, departments, positions, isOwner }: ProfileFo
 
   const serverFirstName = user?.profile?.first_name || '';
   const serverLastName = user?.profile?.last_name || '';
-  const fullName = `${serverFirstName} ${serverLastName}`.trim() || 'User Name';
+  const fullName = `${serverFirstName} ${serverLastName}`.trim() || t('fullNamePlaceholder');
   const initial = fullName.charAt(0).toUpperCase();
 
   const avatarFiles = useWatch({
@@ -73,13 +76,19 @@ export const ProfileForm = ({ user, departments, positions, isOwner }: ProfileFo
   const displayAvatarUrl = previewUrl || user?.profile?.avatar;
   const email = user?.email || 'email@example.com';
 
-  let date = new Date().toDateString();
+  const dateOptions: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  };
+  let date = new Date().toLocaleDateString('en-CA', dateOptions);
+
   if (user?.created_at) {
     const isTimestamp = /^\d+$/.test(user.created_at);
     const parsedDate = new Date(isTimestamp ? Number(user.created_at) : user.created_at);
 
     if (!isNaN(parsedDate.getTime())) {
-      date = parsedDate.toDateString();
+      date = parsedDate.toLocaleDateString('en-CA', dateOptions);
     }
   }
 
@@ -241,9 +250,9 @@ export const ProfileForm = ({ user, departments, positions, isOwner }: ProfileFo
               className="cursor-pointer flex items-center gap-4 group hover:opacity-80 transition-opacity"
             >
               <Upload className="w-7 h-7 text-foreground" strokeWidth={2.5} />
-              <span className="text-xl font-medium text-foreground">Upload avatar image</span>
+              <span className="text-xl font-medium text-foreground">{t('title')}</span>
             </label>
-            <p className="text-muted-foreground">png, jpg or gif no more than 0.5MB</p>
+            <p className="text-muted-foreground">{t('subtitle')}</p>
             {errors.avatar && (
               <p className="text-destructive text-sm mt-1 font-medium">{errors.avatar.message}</p>
             )}
@@ -257,7 +266,7 @@ export const ProfileForm = ({ user, departments, positions, isOwner }: ProfileFo
                 className="mt-1 text-base text-foreground hover:bg-destructive/10 hover:text-destructive flex items-center gap-2"
               >
                 <Trash2 className="w-4 h-4" />
-                {isDeletingAvatar ? 'Deleting...' : 'Delete avatar'}
+                {isDeletingAvatar ? t('deletingAvatarButton') : t('deleteAvatarButton')}
               </Button>
             )}
 
@@ -290,14 +299,14 @@ export const ProfileForm = ({ user, departments, positions, isOwner }: ProfileFo
       <div className="text-center">
         <h2 className="text-2xl text-foreground font-normal">{fullName}</h2>
         <p className="text-muted-foreground mt-2">{email}</p>
-        <p className="text-foreground">{`A member since ${date}`}</p>
+        <p className="text-foreground">{`${t('sinceText')} ${date}`}</p>
       </div>
 
       <div className="w-full max-w-3xl pt-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-9">
           <div className="relative">
             <Label className="absolute -top-2 left-3 bg-background px-1 text-xs text-muted-foreground font-normal z-10">
-              First Name
+              {t('firstNameLabel')}
             </Label>
             <Input
               type="text"
@@ -308,7 +317,7 @@ export const ProfileForm = ({ user, departments, positions, isOwner }: ProfileFo
           </div>
           <div className="relative">
             <Label className="absolute -top-2 left-3 bg-background px-1 text-xs text-muted-foreground font-normal z-10">
-              Last Name
+              {t('lastNameLabel')}
             </Label>
             <Input
               type="text"
@@ -319,7 +328,7 @@ export const ProfileForm = ({ user, departments, positions, isOwner }: ProfileFo
           </div>
           <div className="relative">
             <Label className="absolute -top-2 left-3 bg-background px-1 text-xs text-muted-foreground font-normal z-10">
-              Department
+              {t('department')}
             </Label>
             <Controller
               control={control}
@@ -342,7 +351,7 @@ export const ProfileForm = ({ user, departments, positions, isOwner }: ProfileFo
           </div>
           <div className="relative">
             <Label className="absolute -top-2 left-3 bg-background px-1 text-xs text-muted-foreground font-normal z-10">
-              Position
+              {t('position')}
             </Label>
             <Controller
               control={control}
@@ -368,9 +377,9 @@ export const ProfileForm = ({ user, departments, positions, isOwner }: ProfileFo
               <Button
                 type="submit"
                 disabled={isBusy || !isDirty}
-                className="w-full h-12 bg-primary disabled:opacity-100 disabled:bg-black/12 hover:opacity-90 text-primary-foreground disabled:text-black/26 font-medium tracking-wide rounded-full"
+                className="w-full h-12 uppercase bg-primary disabled:opacity-100 disabled:bg-black/12 hover:opacity-90 text-primary-foreground disabled:text-black/26 font-medium tracking-wide rounded-full"
               >
-                {isBusy ? 'UPDATING...' : 'UPDATE'}
+                {isBusy ? t('updatingButton') : t('updateButton')}
               </Button>
             </div>
           )}

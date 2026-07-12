@@ -73,21 +73,25 @@ export const CvPreviewWidget = ({ cvData }: { cvData: CvData }) => {
               <h3 className="font-bold">{t('education')}</h3>
               <p>{education}</p>
             </div>
-            <div className="space-y-2">
-              <h3 className="font-bold">{t('proficiency')}</h3>
-              {languages.map((language) => (
-                <div key={language.name} className="grid grid-cols-2">
-                  <p>{language.name}</p>
-                  <p>{language.proficiency}</p>
-                </div>
-              ))}
-            </div>
-            <div className="space-y-2">
-              <h3 className="font-bold">{t('domains')}</h3>
-              {projects.map((project) => (
-                <p key={project.id}>{project.domain}</p>
-              ))}
-            </div>
+            {languages.length > 0 && (
+              <div className="space-y-2">
+                <h3 className="font-bold">{t('proficiency')}</h3>
+                {languages.map((language) => (
+                  <div key={language.name} className="grid grid-cols-2">
+                    <p>{language.name}</p>
+                    <p>{language.proficiency}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+            {projects.length > 0 && (
+              <div className="space-y-2">
+                <h3 className="font-bold">{t('domains')}</h3>
+                {projects.map((project) => (
+                  <p key={project.id}>{project.domain}</p>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="border-l border-primary pl-6 space-y-4 py-4">
@@ -119,33 +123,39 @@ export const CvPreviewWidget = ({ cvData }: { cvData: CvData }) => {
                 </div>
 
                 <div className="border-l border-primary pl-6 space-y-4 py-4">
-                  <div className="space-y-2">
-                    <h3 className="font-bold">{t('roles')}</h3>
-                    <p>{project.roles.join(', ')}</p>
-                  </div>
+                  {project.roles.length > 0 && (
+                    <div className="space-y-2">
+                      <h3 className="font-bold">{t('roles')}</h3>
+                      <p>{project.roles.join(', ')}</p>
+                    </div>
+                  )}
                   <div className="space-y-2">
                     <h3 className="font-bold">{t('period')}</h3>
                     <p>
                       {project.start_date} — {project.end_date}
                     </p>
                   </div>
-                  <div className="space-y-2">
-                    <h3 className="font-bold">{t('responsibilities')}</h3>
-                    <ul className="ml-2 space-y-1.5 ">
-                      {project.responsibilities.map((resp) => (
-                        <li
-                          key={resp}
-                          className="relative pl-4 before:absolute before:left-0 before:top-2.5 before:h-1 before:w-1 before:rounded-full before:bg-foreground"
-                        >
-                          {resp}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="space-y-2">
-                    <h3 className="font-bold">{t('environment')}</h3>
-                    <p>{project.environment.join(', ')}</p>
-                  </div>
+                  {project.responsibilities.length > 0 && (
+                    <div className="space-y-2">
+                      <h3 className="font-bold">{t('responsibilities')}</h3>
+                      <ul className="ml-2 space-y-1.5 ">
+                        {project.responsibilities.map((resp) => (
+                          <li
+                            key={resp}
+                            className="relative pl-4 before:absolute before:left-0 before:top-2.5 before:h-1 before:w-1 before:rounded-full before:bg-foreground"
+                          >
+                            {resp}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {project.environment.length > 0 && (
+                    <div className="space-y-2">
+                      <h3 className="font-bold">{t('environment')}</h3>
+                      <p>{project.environment.join(', ')}</p>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}

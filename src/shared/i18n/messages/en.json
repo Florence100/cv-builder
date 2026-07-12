@@ -80,7 +80,8 @@
       "error": "Failed to delete CV",
       "header": "Delete CV",
       "cancelButton": "Cancel",
-      "confirmButton": "Confirm"
+      "confirmButton": "Confirm",
+      "question": "Are you sure you want to delete CV"
     },
     "passwordRecovery": {
       "emailPlaceholder": "Email",
@@ -171,22 +172,46 @@
       "error": "Failed to delete CV Project",
       "header": "Delete CV Project",
       "cancelButton": "Cancel",
-      "confirmButton": "Confirm"
+      "confirmButton": "Confirm",
+      "question": "Are you sure you want to delete CV"
+    },
+    "updateProfile": {
+      "fullNamePlaceholder": "User Name",
+      "title": "Upload avatar image",
+      "subtitle": "png, jpg or gif no more than 0.5MB",
+      "sinceText": "A member since",
+      "firstNameLabel": "First Name",
+      "lastNameLabel": "Last Name",
+      "department": "Department",
+      "position": "Position",
+      "deleteAvatarButton": "Delete avatar",
+      "deletingAvatarButton": "Deleting...",
+      "updateButton": "Update",
+      "updatingButton": "Updating..."
     }
   },
   "pages": {
     "cvDetails": {
       "noCv": "Could not find the CV you are looking for."
     },
+    "cvPreview": {
+      "userNamePlaceholder": "User Name",
+      "position": "Position",
+      "cvName": "CV Name",
+      "cvDescription": "Your CV description"
+    },
     "forgotPassword": {
       "title": "Forgot password",
-      "subtitle": "We will sent you an email with further instructions",
+      "subtitle": "We will send you an email with further instructions",
       "cancelButton": "Cancel"
     },
     "login": {
       "title": "Welcome back",
       "subtitle": "Hello again! Log in to continue",
       "forgetLink": "Forgot password"
+    },
+    "profile": {
+      "loading": "Loading profile..."
     },
     "resetPassword": {
       "title": "Set a new password",
@@ -223,7 +248,8 @@
       "previewTab": "Preview"
     },
     "userProfileHeader": {
-      "employeesTab": "Employees"
+      "employeesTab": "Employees",
+      "userNamePlaceholder": "User Name"
     },
     "userProfileNav": {
       "profileTab": "Profile",
@@ -260,7 +286,16 @@
       "noProjects": "No projects added yet"
     },
     "cvsWidget": {
-      "noCvs": "No cvs added yet"
+      "noCvs": "No CVs added yet"
+    },
+    "languagesActionButtons": {
+      "removeButton": "Delete languages",
+      "closeButton": "Close",
+      "deleteButton": "Delete",
+      "deletingButton": "Deleting..."
+    },
+    "languagesManager": {
+      "noLanguages": "No languages added yet"
     }
   },
   "shared": {
@@ -286,6 +321,9 @@
         "profile": "Profile",
         "settings": "Settings",
         "logout": "Logout"
+      },
+      "userButton": {
+        "userNamePlaceholder": "Your Name"
       }
     },
     "validation": {
@@ -294,7 +332,7 @@
         "passwordRequired": "Password is required",
         "emailInvalid": "Please enter a valid email address",
         "passwordTooShort": "Password must contain at least 8 characters",
-        "invalidCredentials": "Invalid сredentials",
+        "invalidCredentials": "Invalid credentials",
         "userExists": "User already exists",
         "noEmail": "Failed to send an email",
         "actionExpired": "This link has expired",

@@ -15,7 +15,7 @@ export const UserProfileHeader = async ({ userId }: { userId: string }) => {
 
   const firstName = user?.profile?.first_name || '';
   const lastName = user?.profile?.last_name || '';
-  const displayName = `${firstName} ${lastName}`.trim() || 'User Name';
+  const displayName = `${firstName} ${lastName}`.trim() || t('userNamePlaceholder');
 
   return (
     <Breadcrumb>

@@ -6,6 +6,7 @@ import { Button } from '@/src/shared/ui/button';
 import { RemoveButton } from '@/src/shared/ui/removeButton';
 import { useMutation } from '@apollo/client/react';
 import { Language } from 'cv-graphql';
+import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -26,6 +27,7 @@ export const LanguagesActionButtons = ({
   selectedIds,
   setSelectedIds,
 }: LanguagesActionButtonsProps) => {
+  const t = useTranslations('widgets.languagesActionButtons');
   const selectedCount = selectedIds.length;
   const router = useRouter();
 
@@ -70,7 +72,7 @@ export const LanguagesActionButtons = ({
             }}
             className="rounded-full px-10 h-10 bg-transparent border-border hover:border-border-hovered text-muted-foreground hover:bg-gray-150 font-medium tracking-wide uppercase text-sm"
           >
-            CLOSE
+            {t('closeButton')}
           </Button>
 
           <Button
@@ -78,7 +80,7 @@ export const LanguagesActionButtons = ({
             disabled={selectedCount === 0 || isDeleting}
             className="rounded-full px-10 h-10 bg-primary hover:bg-primary/80 text-white border-none font-medium tracking-wide uppercase text-sm"
           >
-            {isDeleting ? 'DELETING...' : 'DELETE'}
+            {isDeleting ? t('deletingButton') : t('deleteButton')}
             {selectedCount > 0 && (
               <span className="flex items-center justify-center w-5 h-5 ml-1 bg-white text-primary rounded-full text-xs font-bold">
                 {selectedCount}
@@ -89,7 +91,7 @@ export const LanguagesActionButtons = ({
       ) : (
         <div className="flex gap-6">
           <AddLanguageModal userId={userId} remainedLanguages={remainedLanguages} />
-          <RemoveButton onClick={() => setIsDeleteMode(true)} value="Remove Languages" />
+          <RemoveButton onClick={() => setIsDeleteMode(true)} value={t('removeButton')} />
         </div>
       )}
     </div>

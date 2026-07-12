@@ -1,4 +1,46 @@
 {
+  "entities": {
+    "cv": {
+      "cvsTable": {
+        "name": "Имя",
+        "education": "Образование",
+        "employee": "Сотрудник",
+        "updateBtn": "Обновить",
+        "deleteBtn": "Удалить",
+        "searchPlaceholder": "Поиск по имени или описанию..."
+      }
+    },
+    "user": {
+      "title": "Сотрудники",
+      "table": {
+        "firstName": "Имя",
+        "lastName": "Фамилия",
+        "email": "Почта",
+        "department": "Отдел",
+        "position": "Позиция",
+        "profileBtn": "Профиль",
+        "updateBtn": "Обновить"
+      }
+    },
+    "skill": {
+      "skillCard": {
+        "dialog": {
+          "title": "Обновить навык"
+        }
+      }
+    },
+    "cvProject": {
+      "table": {
+        "name": "Название",
+        "domain": "Область",
+        "startDate": "Дата начала",
+        "endDate": "Дата окончания",
+        "searchPlaceholder": "Поиск по имени...",
+        "updateBtn": "Обновить",
+        "deleteBtn": "Удалить"
+      }
+    }
+  },
   "features": {
     "addLanguage": {
       "error": "Не удалось добавить язык",
@@ -7,15 +49,15 @@
       "languageLabel": "Язык",
       "proficiencyLabel": "Уровень владения языком",
       "cancelButton": "Отмена",
-      "confirmButton": "Отмена",
+      "confirmButton": "Подтвердить",
       "disabledButtonTitle": "Вы добавили все доступные языки"
     },
     "addSkill": {
-      "error": "Не удалось  добавить навык",
+      "error": "Не удалось добавить навык",
       "skillLabel": "Навык",
       "masterLabel": "Уровень владения навыком",
       "cancelButton": "Отмена",
-      "confirmButton": "Отмена",
+      "confirmButton": "Подтвердить",
       "disabledButtonTitle": "Вы добавили все доступные навыки"
     },
     "registerByEmail": {
@@ -45,6 +87,24 @@
       "passwordPlaceholder": "Пароль",
       "submitButton": "Войти"
     },
+    "createCv": {
+      "createButton": "Создать резюме",
+      "error": "Не удалось создать резюме",
+      "header": "Создать резюме",
+      "nameLabel": "Имя",
+      "educationLabel": "Образование",
+      "descriptionLabel": "Описание",
+      "cancelButton": "Отмена",
+      "submitButton": "Создать"
+    },
+    "deleteCv": {
+      "deleteButton": "Удалить",
+      "error": "Не удалось удалить резюме",
+      "header": "Удалить резюме",
+      "cancelButton": "Отмена",
+      "confirmButton": "Подтвердить",
+      "question": "Вы действительно хотите удалить резюме"
+    },
     "updateCv": {
       "error": "Не удалось обновить резюме",
       "nameLabel": "Имя",
@@ -70,7 +130,30 @@
           "startDate": "Дата начала",
           "endDate": "Дата окончания",
           "description": "Описание",
-          "environment": "Окружение",
+          "environment": "Технологии",
+          "responsibilities": "Обязанности"
+        },
+        "errors": {
+          "projectRequired": "Укажите проект",
+          "responsibilitiesRequired": "Опишите обязанности",
+          "startDateRequired": "Укажите дату начала",
+          "endDateRequired": "Укажите дату окончания",
+          "dateError": "Дата начала не может быть позднее даты окончания"
+        },
+        "cancelButton": "Отмена",
+        "confirmButton": "Подтвердить"
+      }
+    },
+    "updateCvProject": {
+      "header": "Обновить проект",
+      "modal": {
+        "inputLabels": {
+          "project": "Проект",
+          "domain": "Область",
+          "startDate": "Дата начала",
+          "endDate": "Дата окончания",
+          "description": "Описание",
+          "environment": "Технологии",
           "responsibilities": "Обязанности"
         },
         "errors": {
@@ -89,12 +172,33 @@
       "error": "Не удалось удалить проект из резюме",
       "header": "Удалить проект из резюме",
       "cancelButton": "Отмена",
-      "confirmButton": "Подтвердить"
+      "confirmButton": "Подтвердить",
+      "question": "Вы действительно хотите удалить проект из резюме"
+    },
+    "updateProfile": {
+      "fullNamePlaceholder": "Имя пользователя",
+      "title": "Загрузить фото",
+      "subtitle": "png, jpg или gif не более 0.5 МБ",
+      "sinceText": "Член команды с",
+      "firstNameLabel": "Имя",
+      "lastNameLabel": "Фамилия",
+      "department": "Отдел",
+      "position": "Должность",
+      "deleteAvatarButton": "Удалить фото",
+      "deletingAvatarButton": "Удаление...",
+      "updateButton": "Обновить",
+      "updatingButton": "Обновление..."
     }
   },
   "pages": {
     "cvDetails": {
       "noCv": "Не удалось найти резюме."
+    },
+    "cvPreview": {
+      "userNamePlaceholder": "Имя пользователя",
+      "position": "Должность",
+      "cvName": "Название резюме",
+      "cvDescription": "Описание резюме"
     },
     "forgotPassword": {
       "title": "Восстановление пароля",
@@ -105,6 +209,9 @@
       "title": "С возвращением",
       "subtitle": "Рады вас видеть! Войдите, чтобы продолжить",
       "forgetLink": "Забыли пароль"
+    },
+    "profile": {
+      "loading": "Загрузка профиля..."
     },
     "resetPassword": {
       "title": "Установите новый пароль",
@@ -141,7 +248,8 @@
       "previewTab": "Предпросмотр"
     },
     "userProfileHeader": {
-      "employeesTab": "Сотрудники"
+      "employeesTab": "Сотрудники",
+      "userNamePlaceholder": "Имя пользователя"
     },
     "userProfileNav": {
       "profileTab": "Профиль",
@@ -166,7 +274,7 @@
       "roles": "Роли в проекте",
       "period": "Период",
       "responsibilities": "Обязанности",
-      "environment": "Окружение",
+      "environment": "Технологии",
       "profSkills": "Профессиональные навыки",
       "skills": "Навыки",
       "experience": "Опыт работы",
@@ -179,6 +287,15 @@
     },
     "cvsWidget": {
       "noCvs": "Нет добавленных резюме"
+    },
+    "languagesActionButtons": {
+      "removeButton": "Удалить языки",
+      "closeButton": "Закрыть",
+      "deleteButton": "Удалить",
+      "deletingButton": "Удаление..."
+    },
+    "languagesManager": {
+      "noLanguages": "Нет добавленных языков"
     }
   },
   "shared": {
@@ -189,7 +306,7 @@
       },
       "passwordInput": {
         "btnShowPassword": "Показать пароль",
-        "btnHidePassword": "Спрятать пароль"
+        "btnHidePassword": "Скрыть пароль"
       },
       "searchFullNameInput": {
         "placeholder": "Поиск по полному имени..."
@@ -204,6 +321,9 @@
         "profile": "Профиль",
         "settings": "Настройки",
         "logout": "Выйти"
+      },
+      "userButton": {
+        "userNamePlaceholder": "Ваше имя"
       }
     },
     "validation": {
@@ -217,38 +337,6 @@
         "noEmail": "Не удалось отправить письмо",
         "actionExpired": "Ссылка недействительна",
         "uninspectedServerError": "Ошибка сервера. Пожалуйста, попробуйте еще раз"
-      }
-    }
-  },
-  "entities": {
-    "user": {
-      "title": "Работники",
-      "table": {
-        "firstName": "Имя",
-        "lastName": "Фамилия",
-        "email": "Почта",
-        "department": "Отделение",
-        "position": "Позиция",
-        "profileBtn": "Профиль",
-        "updateBtn": "Обновить"
-      }
-    },
-    "skill": {
-      "skillCard": {
-        "dialog": {
-          "title": "Обновить навык"
-        }
-      }
-    },
-    "cvProject": {
-      "table": {
-        "name": "Название",
-        "domain": "Область",
-        "startDate": "Дата начала",
-        "endDate": "Дата окончания",
-        "searchPlaceholder": "Поиск по имени...",
-        "updateBtn": "Обновить",
-        "deleteBtn": "Удалить"
       }
     }
   }
