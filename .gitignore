@@ -41,3 +41,6 @@ yarn-error.log*
 next-env.d.ts
 
 validator.ts
+
+help.txt
+.vscode/settings.json

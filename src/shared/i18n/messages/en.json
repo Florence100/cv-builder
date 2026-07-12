@@ -1,0 +1,343 @@
+{
+  "entities": {
+    "cv": {
+      "cvsTable": {
+        "name": "Name",
+        "education": "Education",
+        "employee": "Employee",
+        "updateBtn": "Update",
+        "deleteBtn": "Delete",
+        "searchPlaceholder": "Search name or description..."
+      }
+    },
+    "user": {
+      "title": "Employees",
+      "table": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email",
+        "department": "Department",
+        "position": "Position",
+        "profileBtn": "Profile",
+        "updateBtn": "Update"
+      }
+    },
+    "skill": {
+      "skillCard": {
+        "dialog": {
+          "title": "Update skill"
+        }
+      }
+    },
+    "cvProject": {
+      "table": {
+        "name": "Name",
+        "domain": "Domain",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "searchPlaceholder": "Search name...",
+        "updateBtn": "Update",
+        "removeBtn": "Delete"
+      }
+    }
+  },
+  "features": {
+    "addLanguage": {
+      "error": "Failed to add language",
+      "header": "Add language",
+      "addButton": "Add language",
+      "languageLabel": "Language",
+      "proficiencyLabel": "Language proficiency",
+      "cancelButton": "Cancel",
+      "confirmButton": "Confirm",
+      "disabledButtonTitle": "You have added all available languages"
+    },
+    "addSkill": {
+      "error": "Failed to add skill",
+      "skillLabel": "Skill",
+      "masterLabel": "Skill Mastery",
+      "cancelButton": "Cancel",
+      "confirmButton": "Confirm",
+      "disabledButtonTitle": "You have added all available skills"
+    },
+    "authByEmail": {
+      "emailPlaceholder": "Email",
+      "passwordPlaceholder": "Password",
+      "submitButton": "Log in"
+    },
+    "createCv": {
+      "createButton": "Create CV",
+      "error": "Failed to create CV",
+      "header": "Create CV",
+      "nameLabel": "Name",
+      "educationLabel": "Education",
+      "descriptionLabel": "Description",
+      "cancelButton": "Cancel",
+      "submitButton": "Create"
+    },
+    "deleteCv": {
+      "deleteButton": "Delete",
+      "error": "Failed to delete CV",
+      "header": "Delete CV",
+      "cancelButton": "Cancel",
+      "confirmButton": "Confirm",
+      "question": "Are you sure you want to delete CV"
+    },
+    "passwordRecovery": {
+      "emailPlaceholder": "Email",
+      "submitButton": "Reset password"
+    },
+    "passwordReset": {
+      "passwordPlaceholder": "New password",
+      "submitButton": "Submit"
+    },
+    "registerByEmail": {
+      "emailPlaceholder": "Email",
+      "passwordPlaceholder": "Password",
+      "submitButton": "Create an account"
+    },
+    "switchLanguage": {
+      "label": "Language"
+    },
+    "switchTheme": {
+      "label": "Appearance",
+      "lightTheme": "Light",
+      "darkTheme": "Dark",
+      "deviceTheme": "Device Settings"
+    },
+    "updateCv": {
+      "error": "Failed to update CV",
+      "nameLabel": "Name",
+      "educationLabel": "Education",
+      "descriptionLabel": "Description",
+      "updateButton": "Update"
+    },
+    "updateLanguage": {
+      "error": "Failed to update language",
+      "header": "Update language",
+      "languageLabel": "Language",
+      "proficiencyLabel": "Language proficiency",
+      "cancelButton": "Cancel",
+      "confirmButton": "Confirm"
+    },
+    "createCvProject": {
+      "createButton": "Add project",
+      "header": "Add project",
+      "modal": {
+        "inputLabels": {
+          "project": "Project",
+          "domain": "Domain",
+          "startDate": "Start Date",
+          "endDate": "End Date",
+          "description": "Description",
+          "environment": "Environment",
+          "responsibilities": "Responsibilities"
+        },
+        "errors": {
+          "projectRequired": "Project is required",
+          "responsibilitiesRequired": "Responsibilities are required",
+          "startDateRequired": "Start date is required",
+          "endDateRequired": "End date is required",
+          "dateError": "Start date cannot be later than end date"
+        },
+        "cancelButton": "Cancel",
+        "confirmButton": "Confirm"
+      }
+    },
+    "updateCvProject": {
+      "header": "Update project",
+      "modal": {
+        "inputLabels": {
+          "project": "Project",
+          "domain": "Domain",
+          "startDate": "Start Date",
+          "endDate": "End Date",
+          "description": "Description",
+          "environment": "Environment",
+          "responsibilities": "Responsibilities"
+        },
+        "errors": {
+          "projectRequired": "Project is required",
+          "responsibilitiesRequired": "Responsibilities are required",
+          "startDateRequired": "Start date is required",
+          "endDateRequired": "End date is required",
+          "dateError": "Start date cannot be later than end date"
+        },
+        "cancelButton": "Cancel",
+        "confirmButton": "Confirm"
+      }
+    },
+    "deleteCvProject": {
+      "deleteButton": "Delete",
+      "error": "Failed to delete CV Project",
+      "header": "Delete CV Project",
+      "cancelButton": "Cancel",
+      "confirmButton": "Confirm",
+      "question": "Are you sure you want to delete CV"
+    },
+    "updateProfile": {
+      "fullNamePlaceholder": "User Name",
+      "title": "Upload avatar image",
+      "subtitle": "png, jpg or gif no more than 0.5MB",
+      "sinceText": "A member since",
+      "firstNameLabel": "First Name",
+      "lastNameLabel": "Last Name",
+      "department": "Department",
+      "position": "Position",
+      "deleteAvatarButton": "Delete avatar",
+      "deletingAvatarButton": "Deleting...",
+      "updateButton": "Update",
+      "updatingButton": "Updating..."
+    }
+  },
+  "pages": {
+    "cvDetails": {
+      "noCv": "Could not find the CV you are looking for."
+    },
+    "cvPreview": {
+      "userNamePlaceholder": "User Name",
+      "position": "Position",
+      "cvName": "CV Name",
+      "cvDescription": "Your CV description"
+    },
+    "forgotPassword": {
+      "title": "Forgot password",
+      "subtitle": "We will send you an email with further instructions",
+      "cancelButton": "Cancel"
+    },
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Hello again! Log in to continue",
+      "forgetLink": "Forgot password"
+    },
+    "profile": {
+      "loading": "Loading profile..."
+    },
+    "resetPassword": {
+      "title": "Set a new password",
+      "subtitle": "Almost done! Now create a new password",
+      "backToLoginButton": "Back to log in"
+    },
+    "settings": {
+      "title": "Settings"
+    },
+    "signup": {
+      "title": "Register now",
+      "subtitle": "Welcome! Sign up to continue",
+      "haveAccountButton": "I have an account"
+    }
+  },
+  "widgets": {
+    "authNavigation": {
+      "loginTab": "Log in",
+      "signupTab": "Sign up"
+    },
+    "appNavigation": {
+      "employeersTab": "Employees",
+      "skillsTab": "Skills",
+      "languagesTab": "Languages",
+      "CVsTab": "CVs"
+    },
+    "userCvHeader": {
+      "cvsTab": "CVs"
+    },
+    "userCvNav": {
+      "detailsTab": "Details",
+      "skillsTab": "Skills",
+      "projectsTab": "Projects",
+      "previewTab": "Preview"
+    },
+    "userProfileHeader": {
+      "employeesTab": "Employees",
+      "userNamePlaceholder": "User Name"
+    },
+    "userProfileNav": {
+      "profileTab": "Profile",
+      "skillsTab": "Skills",
+      "languagesTab": "Languages"
+    },
+    "userSkills": {
+      "dialog": {
+        "title": "Add skill"
+      },
+      "closeBtn": "Close",
+      "deleteBtn": "Delete",
+      "deleteProcessBtn": "Deleting...",
+      "noSkills": "No skills added yet"
+    },
+    "cvPreviewWidget": {
+      "exportPdf": "Export PDF",
+      "education": "Education",
+      "proficiency": "Language proficiency",
+      "domains": "Domains",
+      "projects": "Projects",
+      "roles": "Project roles",
+      "period": "Period",
+      "responsibilities": "Responsibilities",
+      "environment": "Environment",
+      "profSkills": "Professional skills",
+      "skills": "Skills",
+      "experience": "Experience",
+      "inYears": "In years",
+      "lastUsed": "Last used",
+      "used": ""
+    },
+    "cvProjects": {
+      "noProjects": "No projects added yet"
+    },
+    "cvsWidget": {
+      "noCvs": "No CVs added yet"
+    },
+    "languagesActionButtons": {
+      "removeButton": "Delete languages",
+      "closeButton": "Close",
+      "deleteButton": "Delete",
+      "deletingButton": "Deleting..."
+    },
+    "languagesManager": {
+      "noLanguages": "No languages added yet"
+    }
+  },
+  "shared": {
+    "ui": {
+      "mobileFallback": {
+        "title": "Desktop & Tablet Only",
+        "subtitle": "We apologize, but the CV-Builder application is currently optimized only for screens 768px and wider. Please switch to a larger device to continue."
+      },
+      "passwordInput": {
+        "btnShowPassword": "Show password",
+        "btnHidePassword": "Hide password"
+      },
+      "searchFullNameInput": {
+        "placeholder": "Search full name..."
+      },
+      "addBtn": {
+        "skill": "add skill"
+      },
+      "removeBtn": {
+        "skill": "remove skill"
+      },
+      "sideBarPopover": {
+        "profile": "Profile",
+        "settings": "Settings",
+        "logout": "Logout"
+      },
+      "userButton": {
+        "userNamePlaceholder": "Your Name"
+      }
+    },
+    "validation": {
+      "errors": {
+        "emailRequired": "Email address is required",
+        "passwordRequired": "Password is required",
+        "emailInvalid": "Please enter a valid email address",
+        "passwordTooShort": "Password must contain at least 8 characters",
+        "invalidCredentials": "Invalid credentials",
+        "userExists": "User already exists",
+        "noEmail": "Failed to send an email",
+        "actionExpired": "This link has expired",
+        "uninspectedServerError": "Server error. Please, try again"
+      }
+    }
+  }
+}
