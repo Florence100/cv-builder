@@ -1,0 +1,343 @@
+{
+  "entities": {
+    "cv": {
+      "cvsTable": {
+        "name": "Imię",
+        "education": "Wykształcenie",
+        "employee": "Pracownik",
+        "updateBtn": "Aktualizuj",
+        "deleteBtn": "Usuń",
+        "searchPlaceholder": "Szukaj po imieniu lub opisie..."
+      }
+    },
+    "user": {
+      "title": "Pracownicy",
+      "table": {
+        "firstName": "Imię",
+        "lastName": "Nazwisko",
+        "email": "Email",
+        "department": "Dział",
+        "position": "Stanowisko",
+        "profileBtn": "Profil",
+        "updateBtn": "Aktualizuj"
+      }
+    },
+    "skill": {
+      "skillCard": {
+        "dialog": {
+          "title": "Aktualizuj umiejętność"
+        }
+      }
+    },
+    "cvProject": {
+      "table": {
+        "name": "Nazwa",
+        "domain": "Dziedzina",
+        "startDate": "Data rozpoczęcia",
+        "endDate": "Data zakończenia",
+        "searchPlaceholder": "Szukaj po nazwie...",
+        "updateBtn": "Aktualizuj",
+        "deleteBtn": "Usuń"
+      }
+    }
+  },
+  "features": {
+    "addLanguage": {
+      "error": "Nie udało się dodać języka",
+      "header": "Dodaj język",
+      "addButton": "Dodaj język",
+      "languageLabel": "Język",
+      "proficiencyLabel": "Poziom znajomości języka",
+      "cancelButton": "Anuluj",
+      "confirmButton": "Potwierdź",
+      "disabledButtonTitle": "Dodałeś wszystkie dostępne języki"
+    },
+    "addSkill": {
+      "error": "Nie udało się dodać umiejętności",
+      "skillLabel": "Umiejętność",
+      "masterLabel": "Poziom umiejętności",
+      "cancelButton": "Anuluj",
+      "confirmButton": "Potwierdź",
+      "disabledButtonTitle": "Dodałeś wszystkie dostępne umiejętności"
+    },
+    "registerByEmail": {
+      "emailPlaceholder": "Email",
+      "passwordPlaceholder": "Hasło",
+      "submitButton": "Utwórz konto"
+    },
+    "switchLanguage": {
+      "label": "Język"
+    },
+    "switchTheme": {
+      "label": "Motyw",
+      "lightTheme": "Jasny",
+      "darkTheme": "Ciemny",
+      "deviceTheme": "Systemowy"
+    },
+    "passwordRecovery": {
+      "emailPlaceholder": "Email",
+      "submitButton": "Resetuj hasło"
+    },
+    "passwordReset": {
+      "passwordPlaceholder": "Nowe hasło",
+      "submitButton": "Zapisz"
+    },
+    "authByEmail": {
+      "emailPlaceholder": "Email",
+      "passwordPlaceholder": "Hasło",
+      "submitButton": "Zaloguj się"
+    },
+    "createCv": {
+      "createButton": "Utwórz CV",
+      "error": "Nie udało się utworzyć CV",
+      "header": "Utwórz CV",
+      "nameLabel": "Imię",
+      "educationLabel": "Wykształcenie",
+      "descriptionLabel": "Opis",
+      "cancelButton": "Anuluj",
+      "submitButton": "Utwórz"
+    },
+    "deleteCv": {
+      "deleteButton": "Usuń",
+      "error": "Nie udało się usunąć CV",
+      "header": "Usuń CV",
+      "cancelButton": "Anuluj",
+      "confirmButton": "Potwierdź",
+      "question": "Czy na pewno chcesz usunąć to CV"
+    },
+    "updateCv": {
+      "error": "Nie udało się zaktualizować CV",
+      "nameLabel": "Imię",
+      "educationLabel": "Wykształcenie",
+      "descriptionLabel": "Opis",
+      "updateButton": "Aktualizuj"
+    },
+    "updateLanguage": {
+      "error": "Nie udało się zaktualizować poziomu znajomości języka",
+      "header": "Aktualizuj poziom znajomości języka",
+      "languageLabel": "Język",
+      "proficiencyLabel": "Poziom znajomości języka",
+      "cancelButton": "Anuluj",
+      "confirmButton": "Potwierdź"
+    },
+    "createCvProject": {
+      "createButton": "Dodaj projekt",
+      "header": "Dodaj projekt",
+      "modal": {
+        "inputLabels": {
+          "project": "Projekt",
+          "domain": "Dziedzina",
+          "startDate": "Data rozpoczęcia",
+          "endDate": "Data zakończenia",
+          "description": "Opis",
+          "environment": "Technologie",
+          "responsibilities": "Obowiązki"
+        },
+        "errors": {
+          "projectRequired": "Podaj projekt",
+          "responsibilitiesRequired": "Opisz obowiązki",
+          "startDateRequired": "Podaj datę rozpoczęcia",
+          "endDateRequired": "Podaj datę zakończenia",
+          "dateError": "Data rozpoczęcia nie może być późniejsza niż data zakończenia"
+        },
+        "cancelButton": "Anuluj",
+        "confirmButton": "Potwierdź"
+      }
+    },
+    "updateCvProject": {
+      "header": "Aktualizuj projekt",
+      "modal": {
+        "inputLabels": {
+          "project": "Projekt",
+          "domain": "Dziedzina",
+          "startDate": "Data rozpoczęcia",
+          "endDate": "Data zakończenia",
+          "description": "Opis",
+          "environment": "Technologie",
+          "responsibilities": "Obowiązki"
+        },
+        "errors": {
+          "projectRequired": "Podaj projekt",
+          "responsibilitiesRequired": "Opisz obowiązki",
+          "startDateRequired": "Podaj datę rozpoczęcia",
+          "endDateRequired": "Podaj datę zakończenia",
+          "dateError": "Data rozpoczęcia nie może być późniejsza niż data zakończenia"
+        },
+        "cancelButton": "Anuluj",
+        "confirmButton": "Potwierdź"
+      }
+    },
+    "deleteCvProject": {
+      "deleteButton": "Usuń",
+      "error": "Nie udało się usunąć projektu z CV",
+      "header": "Usuń projekt z CV",
+      "cancelButton": "Anuluj",
+      "confirmButton": "Potwierdź",
+      "question": "Czy na pewno chcesz usunąć ten projekt z CV"
+    },
+    "updateProfile": {
+      "fullNamePlaceholder": "Nazwa użytkownika",
+      "title": "Prześlij zdjęcie",
+      "subtitle": "png, jpg lub gif nie większe niż 0.5 MB",
+      "sinceText": "Członek zespołu od",
+      "firstNameLabel": "Imię",
+      "lastNameLabel": "Nazwisko",
+      "department": "Dział",
+      "position": "Stanowisko",
+      "deleteAvatarButton": "Usuń zdjęcie",
+      "deletingAvatarButton": "Usuwanie...",
+      "updateButton": "Aktualizuj",
+      "updatingButton": "Aktualizowanie..."
+    }
+  },
+  "pages": {
+    "cvDetails": {
+      "noCv": "Nie udało się znaleźć CV."
+    },
+    "cvPreview": {
+      "userNamePlaceholder": "Nazwa użytkownika",
+      "position": "Stanowisko",
+      "cvName": "Nazwa CV",
+      "cvDescription": "Opis CV"
+    },
+    "forgotPassword": {
+      "title": "Odzyskiwanie hasła",
+      "subtitle": "Wyślemy Ci e-mail z dalszymi instrukcjami",
+      "cancelButton": "Anuluj"
+    },
+    "login": {
+      "title": "Witamy ponownie",
+      "subtitle": "Miło cię widzieć! Zaloguj się, aby kontynuować",
+      "forgetLink": "Zapomniałeś hasła"
+    },
+    "profile": {
+      "loading": "Ładowanie profilu..."
+    },
+    "resetPassword": {
+      "title": "Ustaw nowe hasło",
+      "subtitle": "Prawie gotowe! Teraz wymyśl nowe hasło",
+      "backToLoginButton": "Wróć do strony logowania"
+    },
+    "settings": {
+      "title": "Ustawienia"
+    },
+    "signup": {
+      "title": "Zarejestruj się",
+      "subtitle": "Witamy! Utwórz konto, aby kontynuować",
+      "haveAccountButton": "Mam już konto"
+    }
+  },
+  "widgets": {
+    "authNavigation": {
+      "loginTab": "Zaloguj",
+      "signupTab": "Zarejestruj"
+    },
+    "appNavigation": {
+      "employeersTab": "Pracownicy",
+      "skillsTab": "Umiejętności",
+      "languagesTab": "Języki",
+      "CVsTab": "CV"
+    },
+    "userCvHeader": {
+      "cvsTab": "CV"
+    },
+    "userCvNav": {
+      "detailsTab": "Szczegóły",
+      "skillsTab": "Umiejętności",
+      "projectsTab": "Projekty",
+      "previewTab": "Podgląd"
+    },
+    "userProfileHeader": {
+      "employeesTab": "Pracownicy",
+      "userNamePlaceholder": "Nazwa użytkownika"
+    },
+    "userProfileNav": {
+      "profileTab": "Profil",
+      "skillsTab": "Umiejętności",
+      "languagesTab": "Języki"
+    },
+    "userSkills": {
+      "dialog": {
+        "title": "Dodaj umiejętność"
+      },
+      "closeBtn": "Zamknij",
+      "deleteBtn": "Usuń",
+      "deleteProcessBtn": "Usuwanie...",
+      "noSkills": "Brak dodanych umiejętności"
+    },
+    "cvPreviewWidget": {
+      "exportPdf": "Eksportuj do PDF",
+      "education": "Wykształcenie",
+      "proficiency": "Znajomość języków",
+      "domains": "Dziedziny",
+      "projects": "Projekty",
+      "roles": "Role w projekcie",
+      "period": "Okres",
+      "responsibilities": "Obowiązki",
+      "environment": "Technologie",
+      "profSkills": "Umiejętności zawodowe",
+      "skills": "Umiejętności",
+      "experience": "Doświadczenie zawodowe",
+      "inYears": "W latach",
+      "lastUsed": "Ostatnio użyte",
+      "used": "Użycie"
+    },
+    "cvProjects": {
+      "noProjects": "Brak dodanych projektów"
+    },
+    "cvsWidget": {
+      "noCvs": "Brak dodanych CV"
+    },
+    "languagesActionButtons": {
+      "removeButton": "Usuń języki",
+      "closeButton": "Zamknij",
+      "deleteButton": "Usuń",
+      "deletingButton": "Usuwanie..."
+    },
+    "languagesManager": {
+      "noLanguages": "Brak dodanych języków"
+    }
+  },
+  "shared": {
+    "ui": {
+      "mobileFallback": {
+        "title": "Tylko dla komputerów i tabletów",
+        "subtitle": "Przepraszamy, ale aplikacja CV-Builder jest obecnie zoptymalizowana tylko dla ekranów o szerokości od 768px. Aby kontynuować, użyj urządzenia z większym ekranem."
+      },
+      "passwordInput": {
+        "btnShowPassword": "Pokaż hasło",
+        "btnHidePassword": "Ukryj hasło"
+      },
+      "searchFullNameInput": {
+        "placeholder": "Szukaj po pełnym imieniu i nazwisku..."
+      },
+      "addBtn": {
+        "skill": "dodaj umiejętność"
+      },
+      "removeBtn": {
+        "skill": "usuń umiejętność"
+      },
+      "sideBarPopover": {
+        "profile": "Profil",
+        "settings": "Ustawienia",
+        "logout": "Wyloguj się"
+      },
+      "userButton": {
+        "userNamePlaceholder": "Twoje imię"
+      }
+    },
+    "validation": {
+      "errors": {
+        "emailRequired": "Pole email jest wymagane",
+        "passwordRequired": "Pole hasło jest wymagane",
+        "emailInvalid": "Wprowadź poprawny adres email",
+        "passwordTooShort": "Hasło musi zawierać co najmniej 8 znaków",
+        "invalidCredentials": "Nieprawidłowe dane logowania",
+        "userExists": "Użytkownik jest już zarejestrowany",
+        "noEmail": "Nie udało się wysłać e-maila",
+        "actionExpired": "Link jest nieważny",
+        "uninspectedServerError": "Błąd serwera. Spróbuj ponownie"
+      }
+    }
+  }
+}

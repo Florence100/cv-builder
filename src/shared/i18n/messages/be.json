@@ -1,0 +1,343 @@
+{
+  "entities": {
+    "cv": {
+      "cvsTable": {
+        "name": "Імя",
+        "education": "Адукацыя",
+        "employee": "Супрацоўнік",
+        "updateBtn": "Абнавіць",
+        "deleteBtn": "Выдаліць",
+        "searchPlaceholder": "Пошук па імені або апісанні..."
+      }
+    },
+    "user": {
+      "title": "Супрацоўнікі",
+      "table": {
+        "firstName": "Імя",
+        "lastName": "Прозвішча",
+        "email": "Пошта",
+        "department": "Аддзел",
+        "position": "Пасада",
+        "profileBtn": "Профіль",
+        "updateBtn": "Абнавіць"
+      }
+    },
+    "skill": {
+      "skillCard": {
+        "dialog": {
+          "title": "Абнавіць навык"
+        }
+      }
+    },
+    "cvProject": {
+      "table": {
+        "name": "Назва",
+        "domain": "Вобласць",
+        "startDate": "Дата пачатку",
+        "endDate": "Дата заканчэння",
+        "searchPlaceholder": "Пошук па імені...",
+        "updateBtn": "Абнавіць",
+        "deleteBtn": "Выдаліць"
+      }
+    }
+  },
+  "features": {
+    "addLanguage": {
+      "error": "Не ўдалося дадаць мову",
+      "header": "Дадаць мову",
+      "addButton": "Дадаць мову",
+      "languageLabel": "Мова",
+      "proficiencyLabel": "Узровень валодання мовай",
+      "cancelButton": "Адмена",
+      "confirmButton": "Пацвердзіць",
+      "disabledButtonTitle": "Вы дадалі ўсе даступныя мовы"
+    },
+    "addSkill": {
+      "error": "Не ўдалося дадаць навык",
+      "skillLabel": "Навык",
+      "masterLabel": "Узровень валодання навыкам",
+      "cancelButton": "Адмена",
+      "confirmButton": "Пацвердзіць",
+      "disabledButtonTitle": "Вы дадалі ўсе даступныя навыкі"
+    },
+    "registerByEmail": {
+      "emailPlaceholder": "Пошта",
+      "passwordPlaceholder": "Пароль",
+      "submitButton": "Стварыць акаўнт"
+    },
+    "switchLanguage": {
+      "label": "Мова"
+    },
+    "switchTheme": {
+      "label": "Тэма",
+      "lightTheme": "Светлая",
+      "darkTheme": "Цёмная",
+      "deviceTheme": "Сістэмная"
+    },
+    "passwordRecovery": {
+      "emailPlaceholder": "Пошта",
+      "submitButton": "Скінуць пароль"
+    },
+    "passwordReset": {
+      "passwordPlaceholder": "Новы пароль",
+      "submitButton": "Захаваць"
+    },
+    "authByEmail": {
+      "emailPlaceholder": "Пошта",
+      "passwordPlaceholder": "Пароль",
+      "submitButton": "Увайсці"
+    },
+    "createCv": {
+      "createButton": "Стварыць рэзюмэ",
+      "error": "Не ўдалося стварыць рэзюмэ",
+      "header": "Стварыць рэзюмэ",
+      "nameLabel": "Імя",
+      "educationLabel": "Адукацыя",
+      "descriptionLabel": "Апісанне",
+      "cancelButton": "Адмена",
+      "submitButton": "Стварыць"
+    },
+    "deleteCv": {
+      "deleteButton": "Выдаліць",
+      "error": "Не ўдалося выдаліць рэзюмэ",
+      "header": "Выдаліць рэзюмэ",
+      "cancelButton": "Адмена",
+      "confirmButton": "Пацвердзіць",
+      "question": "Вы сапраўды хочаце выдаліць рэзюмэ"
+    },
+    "updateCv": {
+      "error": "Не ўдалося абнавіць рэзюмэ",
+      "nameLabel": "Імя",
+      "educationLabel": "Адукацыя",
+      "descriptionLabel": "Апісанне",
+      "updateButton": "Абнавіць"
+    },
+    "updateLanguage": {
+      "error": "Не ўдалося абнавіць узровень валодання мовай",
+      "header": "Абнавіць узровень валодання мовай",
+      "languageLabel": "Мова",
+      "proficiencyLabel": "Узровень валодання мовай",
+      "cancelButton": "Адмена",
+      "confirmButton": "Пацвердзіць"
+    },
+    "createCvProject": {
+      "createButton": "Дадаць праект",
+      "header": "Дадаць праект",
+      "modal": {
+        "inputLabels": {
+          "project": "Праект",
+          "domain": "Вобласць",
+          "startDate": "Дата пачатку",
+          "endDate": "Дата заканчэння",
+          "description": "Апісанне",
+          "environment": "Тэхналогіі",
+          "responsibilities": "Абавязкі"
+        },
+        "errors": {
+          "projectRequired": "Укажыце праект",
+          "responsibilitiesRequired": "Апішыце абавязкі",
+          "startDateRequired": "Укажыце дату пачатку",
+          "endDateRequired": "Укажыце дату заканчэння",
+          "dateError": "Дата пачатку не можа быць пазней за дату заканчэння"
+        },
+        "cancelButton": "Адмена",
+        "confirmButton": "Пацвердзіць"
+      }
+    },
+    "updateCvProject": {
+      "header": "Абнавіць праект",
+      "modal": {
+        "inputLabels": {
+          "project": "Праект",
+          "domain": "Вобласць",
+          "startDate": "Дата пачатку",
+          "endDate": "Дата заканчэння",
+          "description": "Апісанне",
+          "environment": "Тэхналогіі",
+          "responsibilities": "Абавязкі"
+        },
+        "errors": {
+          "projectRequired": "Укажыце праект",
+          "responsibilitiesRequired": "Апішыце абавязкі",
+          "startDateRequired": "Укажыце дату пачатку",
+          "endDateRequired": "Укажыце дату заканчэння",
+          "dateError": "Дата пачатку не можа быць пазней за дату заканчэння"
+        },
+        "cancelButton": "Адмена",
+        "confirmButton": "Пацвердзіць"
+      }
+    },
+    "deleteCvProject": {
+      "deleteButton": "Выдаліць",
+      "error": "Не ўдалося выдаліць праект з рэзюмэ",
+      "header": "Выдаліць праект з рэзюмэ",
+      "cancelButton": "Адмена",
+      "confirmButton": "Пацвердзіць",
+      "question": "Вы сапраўды хочаце выдаліць праект з рэзюмэ"
+    },
+    "updateProfile": {
+      "fullNamePlaceholder": "Імя карыстальніка",
+      "title": "Загрузіць фота",
+      "subtitle": "png, jpg або gif не больш за 0.5 МБ",
+      "sinceText": "Член каманды з",
+      "firstNameLabel": "Імя",
+      "lastNameLabel": "Прозвішча",
+      "department": "Аддзел",
+      "position": "Пасада",
+      "deleteAvatarButton": "Выдаліць фота",
+      "deletingAvatarButton": "Выдаленне...",
+      "updateButton": "Абнавіць",
+      "updatingButton": "Абнаўленне..."
+    }
+  },
+  "pages": {
+    "cvDetails": {
+      "noCv": "Не ўдалося знайсці рэзюмэ."
+    },
+    "cvPreview": {
+      "userNamePlaceholder": "Імя карыстальніка",
+      "position": "Пасада",
+      "cvName": "Назва рэзюмэ",
+      "cvDescription": "Апісанне рэзюмэ"
+    },
+    "forgotPassword": {
+      "title": "Аднаўленне пароля",
+      "subtitle": "Мы адправім вам ліст з далейшымі інструкцыямі",
+      "cancelButton": "Адмена"
+    },
+    "login": {
+      "title": "З вяртаннем",
+      "subtitle": "Рады вас бачыць! Увайдзіце, каб працягнуць",
+      "forgetLink": "Забыліся пароль"
+    },
+    "profile": {
+      "loading": "Загрузка профілю..."
+    },
+    "resetPassword": {
+      "title": "Усталюйце новы пароль",
+      "subtitle": "Амаль гатова! Цяпер прыдумайце новы пароль",
+      "backToLoginButton": "Вярнуцца на старонку ўваходу"
+    },
+    "settings": {
+      "title": "Налады"
+    },
+    "signup": {
+      "title": "Зарэгіструйцеся",
+      "subtitle": "Сардэчна запрашаем! Стварыце акаўнт, каб працягнуць",
+      "haveAccountButton": "У мяне ёсць акаўнт"
+    }
+  },
+  "widgets": {
+    "authNavigation": {
+      "loginTab": "Увайсці",
+      "signupTab": "Стварыць"
+    },
+    "appNavigation": {
+      "employeersTab": "Супрацоўнікі",
+      "skillsTab": "Навыкі",
+      "languagesTab": "Мовы",
+      "CVsTab": "Рэзюмэ"
+    },
+    "userCvHeader": {
+      "cvsTab": "Рэзюмэ"
+    },
+    "userCvNav": {
+      "detailsTab": "Дэталі",
+      "skillsTab": "Навыкі",
+      "projectsTab": "Праекты",
+      "previewTab": "Папярэдні прагляд"
+    },
+    "userProfileHeader": {
+      "employeesTab": "Супрацоўнікі",
+      "userNamePlaceholder": "Імя карыстальніка"
+    },
+    "userProfileNav": {
+      "profileTab": "Профіль",
+      "skillsTab": "Навыкі",
+      "languagesTab": "Мовы"
+    },
+    "userSkills": {
+      "dialog": {
+        "title": "Дадаць навык"
+      },
+      "closeBtn": "Закрыць",
+      "deleteBtn": "Выдаліць",
+      "deleteProcessBtn": "Выдаленне...",
+      "noSkills": "Няма дададзеных навыкаў"
+    },
+    "cvPreviewWidget": {
+      "exportPdf": "Экспарт у PDF",
+      "education": "Адукацыя",
+      "proficiency": "Валоданне мовамі",
+      "domains": "Прадметныя вобласці",
+      "projects": "Праекты",
+      "roles": "Ролі ў праекце",
+      "period": "Перыяд",
+      "responsibilities": "Абавязкі",
+      "environment": "Тэхналогіі",
+      "profSkills": "Прафесійныя навыкі",
+      "skills": "Навыкі",
+      "experience": "Вопыт працы",
+      "inYears": "У гадах",
+      "lastUsed": "Апошняе",
+      "used": "Выкарыстанне"
+    },
+    "cvProjects": {
+      "noProjects": "Няма дададзеных праектаў"
+    },
+    "cvsWidget": {
+      "noCvs": "Няма дададзеных рэзюмэ"
+    },
+    "languagesActionButtons": {
+      "removeButton": "Выдаліць мовы",
+      "closeButton": "Закрыць",
+      "deleteButton": "Выдаліць",
+      "deletingButton": "Выдаленне..."
+    },
+    "languagesManager": {
+      "noLanguages": "Няма дададзеных моў"
+    }
+  },
+  "shared": {
+    "ui": {
+      "mobileFallback": {
+        "title": "Толькі для камп'ютараў і планшэтаў",
+        "subtitle": "Прыносім прабачэнні, але праграма CV-Builder у цяперашні час аптымізавана толькі для экранаў шырынёй ад 768px і больш. Калі ласка, выкарыстоўвайце прыладу з вялікім экранам, каб працягнуць."
+      },
+      "passwordInput": {
+        "btnShowPassword": "Паказаць пароль",
+        "btnHidePassword": "Схаваць пароль"
+      },
+      "searchFullNameInput": {
+        "placeholder": "Пошук па поўным імені..."
+      },
+      "addBtn": {
+        "skill": "дадаць навык"
+      },
+      "removeBtn": {
+        "skill": "выдаліць навык"
+      },
+      "sideBarPopover": {
+        "profile": "Профіль",
+        "settings": "Налады",
+        "logout": "Выйсці"
+      },
+      "userButton": {
+        "userNamePlaceholder": "Ваша імя"
+      }
+    },
+    "validation": {
+      "errors": {
+        "emailRequired": "Поле email абавязковае",
+        "passwordRequired": "Поле пароль абавязковае",
+        "emailInvalid": "Калі ласка, увядзіце карэктны email",
+        "passwordTooShort": "Пароль павінен утрымліваць як мінімум 8 сімвалаў",
+        "invalidCredentials": "Няправільныя ўліковыя дадзеныя",
+        "userExists": "Карыстальнік ужо зарэгістраваны",
+        "noEmail": "Не ўдалося адправіць ліст",
+        "actionExpired": "Спасылка несапраўдная",
+        "uninspectedServerError": "Памылка сервера. Калі ласка, паспрабуйце яшчэ раз"
+      }
+    }
+  }
+}
