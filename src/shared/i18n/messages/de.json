@@ -1,0 +1,343 @@
+{
+  "entities": {
+    "cv": {
+      "cvsTable": {
+        "name": "Name",
+        "education": "Ausbildung",
+        "employee": "Mitarbeiter",
+        "updateBtn": "Aktualisieren",
+        "deleteBtn": "Löschen",
+        "searchPlaceholder": "Nach Name oder Beschreibung suchen..."
+      }
+    },
+    "user": {
+      "title": "Mitarbeiter",
+      "table": {
+        "firstName": "Vorname",
+        "lastName": "Nachname",
+        "email": "E-Mail",
+        "department": "Abteilung",
+        "position": "Position",
+        "profileBtn": "Profil",
+        "updateBtn": "Aktualisieren"
+      }
+    },
+    "skill": {
+      "skillCard": {
+        "dialog": {
+          "title": "Fähigkeit aktualisieren"
+        }
+      }
+    },
+    "cvProject": {
+      "table": {
+        "name": "Name",
+        "domain": "Bereich",
+        "startDate": "Startdatum",
+        "endDate": "Enddatum",
+        "searchPlaceholder": "Nach Name suchen...",
+        "updateBtn": "Aktualisieren",
+        "removeBtn": "Löschen"
+      }
+    }
+  },
+  "features": {
+    "addLanguage": {
+      "error": "Sprache konnte nicht hinzugefügt werden",
+      "header": "Sprache hinzufügen",
+      "addButton": "Sprache hinzufügen",
+      "languageLabel": "Sprache",
+      "proficiencyLabel": "Sprachkenntnisse",
+      "cancelButton": "Abbrechen",
+      "confirmButton": "Bestätigen",
+      "disabledButtonTitle": "Sie haben alle verfügbaren Sprachen hinzugefügt"
+    },
+    "addSkill": {
+      "error": "Fähigkeit konnte nicht hinzugefügt werden",
+      "skillLabel": "Fähigkeit",
+      "masterLabel": "Fähigkeitsniveau",
+      "cancelButton": "Abbrechen",
+      "confirmButton": "Bestätigen",
+      "disabledButtonTitle": "Sie haben alle verfügbaren Fähigkeiten hinzugefügt"
+    },
+    "authByEmail": {
+      "emailPlaceholder": "E-Mail",
+      "passwordPlaceholder": "Passwort",
+      "submitButton": "Anmelden"
+    },
+    "createCv": {
+      "createButton": "Lebenslauf erstellen",
+      "error": "Lebenslauf konnte nicht erstellt werden",
+      "header": "Lebenslauf erstellen",
+      "nameLabel": "Name",
+      "educationLabel": "Ausbildung",
+      "descriptionLabel": "Beschreibung",
+      "cancelButton": "Abbrechen",
+      "submitButton": "Erstellen"
+    },
+    "deleteCv": {
+      "deleteButton": "Löschen",
+      "error": "Lebenslauf konnte nicht gelöscht werden",
+      "header": "Lebenslauf löschen",
+      "cancelButton": "Abbrechen",
+      "confirmButton": "Bestätigen",
+      "question": "Sind Sie sicher, dass Sie den Lebenslauf löschen möchten"
+    },
+    "passwordRecovery": {
+      "emailPlaceholder": "E-Mail",
+      "submitButton": "Passwort zurücksetzen"
+    },
+    "passwordReset": {
+      "passwordPlaceholder": "Neues Passwort",
+      "submitButton": "Senden"
+    },
+    "registerByEmail": {
+      "emailPlaceholder": "E-Mail",
+      "passwordPlaceholder": "Passwort",
+      "submitButton": "Konto erstellen"
+    },
+    "switchLanguage": {
+      "label": "Sprache"
+    },
+    "switchTheme": {
+      "label": "Erscheinungsbild",
+      "lightTheme": "Hell",
+      "darkTheme": "Dunkel",
+      "deviceTheme": "Geräteeinstellungen"
+    },
+    "updateCv": {
+      "error": "Lebenslauf konnte nicht aktualisiert werden",
+      "nameLabel": "Name",
+      "educationLabel": "Ausbildung",
+      "descriptionLabel": "Beschreibung",
+      "updateButton": "Aktualisieren"
+    },
+    "updateLanguage": {
+      "error": "Sprache konnte nicht aktualisiert werden",
+      "header": "Sprache aktualisieren",
+      "languageLabel": "Sprache",
+      "proficiencyLabel": "Sprachkenntnisse",
+      "cancelButton": "Abbrechen",
+      "confirmButton": "Bestätigen"
+    },
+    "createCvProject": {
+      "createButton": "Projekt hinzufügen",
+      "header": "Projekt hinzufügen",
+      "modal": {
+        "inputLabels": {
+          "project": "Projekt",
+          "domain": "Bereich",
+          "startDate": "Startdatum",
+          "endDate": "Enddatum",
+          "description": "Beschreibung",
+          "environment": "Technologien",
+          "responsibilities": "Verantwortlichkeiten"
+        },
+        "errors": {
+          "projectRequired": "Projekt ist erforderlich",
+          "responsibilitiesRequired": "Verantwortlichkeiten sind erforderlich",
+          "startDateRequired": "Startdatum ist erforderlich",
+          "endDateRequired": "Enddatum ist erforderlich",
+          "dateError": "Startdatum darf nicht nach dem Enddatum liegen"
+        },
+        "cancelButton": "Abbrechen",
+        "confirmButton": "Bestätigen"
+      }
+    },
+    "updateCvProject": {
+      "header": "Projekt aktualisieren",
+      "modal": {
+        "inputLabels": {
+          "project": "Projekt",
+          "domain": "Bereich",
+          "startDate": "Startdatum",
+          "endDate": "Enddatum",
+          "description": "Beschreibung",
+          "environment": "Technologien",
+          "responsibilities": "Verantwortlichkeiten"
+        },
+        "errors": {
+          "projectRequired": "Projekt ist erforderlich",
+          "responsibilitiesRequired": "Verantwortlichkeiten sind erforderlich",
+          "startDateRequired": "Startdatum ist erforderlich",
+          "endDateRequired": "Enddatum ist erforderlich",
+          "dateError": "Startdatum darf nicht nach dem Enddatum liegen"
+        },
+        "cancelButton": "Abbrechen",
+        "confirmButton": "Bestätigen"
+      }
+    },
+    "deleteCvProject": {
+      "deleteButton": "Löschen",
+      "error": "Lebenslauf-Projekt konnte nicht gelöscht werden",
+      "header": "Lebenslauf-Projekt löschen",
+      "cancelButton": "Abbrechen",
+      "confirmButton": "Bestätigen",
+      "question": "Sind Sie sicher, dass Sie den Lebenslauf löschen möchten"
+    },
+    "updateProfile": {
+      "fullNamePlaceholder": "Benutzername",
+      "title": "Avatar-Bild hochladen",
+      "subtitle": "png, jpg oder gif maximal 0,5 MB",
+      "sinceText": "Mitglied seit",
+      "firstNameLabel": "Vorname",
+      "lastNameLabel": "Nachname",
+      "department": "Abteilung",
+      "position": "Position",
+      "deleteAvatarButton": "Avatar löschen",
+      "deletingAvatarButton": "Wird gelöscht...",
+      "updateButton": "Aktualisieren",
+      "updatingButton": "Wird aktualisiert..."
+    }
+  },
+  "pages": {
+    "cvDetails": {
+      "noCv": "Der gesuchte Lebenslauf konnte nicht gefunden werden."
+    },
+    "cvPreview": {
+      "userNamePlaceholder": "Benutzername",
+      "position": "Position",
+      "cvName": "Lebenslauf-Name",
+      "cvDescription": "Ihre Lebenslauf-Beschreibung"
+    },
+    "forgotPassword": {
+      "title": "Passwort vergessen",
+      "subtitle": "Wir senden Ihnen eine E-Mail mit weiteren Anweisungen",
+      "cancelButton": "Abbrechen"
+    },
+    "login": {
+      "title": "Willkommen zurück",
+      "subtitle": "Hallo nochmal! Melden Sie sich an, um fortzufahren",
+      "forgetLink": "Passwort vergessen"
+    },
+    "profile": {
+      "loading": "Profil wird geladen..."
+    },
+    "resetPassword": {
+      "title": "Neues Passwort festlegen",
+      "subtitle": "Fast fertig! Erstellen Sie nun ein neues Passwort",
+      "backToLoginButton": "Zurück zur Anmeldung"
+    },
+    "settings": {
+      "title": "Einstellungen"
+    },
+    "signup": {
+      "title": "Jetzt registrieren",
+      "subtitle": "Willkommen! Registrieren Sie sich, um fortzufahren",
+      "haveAccountButton": "Ich habe ein Konto"
+    }
+  },
+  "widgets": {
+    "authNavigation": {
+      "loginTab": "Anmelden",
+      "signupTab": "Registrieren"
+    },
+    "appNavigation": {
+      "employeersTab": "Mitarbeiter",
+      "skillsTab": "Fähigkeiten",
+      "languagesTab": "Sprachen",
+      "CVsTab": "Lebensläufe"
+    },
+    "userCvHeader": {
+      "cvsTab": "Lebensläufe"
+    },
+    "userCvNav": {
+      "detailsTab": "Details",
+      "skillsTab": "Fähigkeiten",
+      "projectsTab": "Projekte",
+      "previewTab": "Vorschau"
+    },
+    "userProfileHeader": {
+      "employeesTab": "Mitarbeiter",
+      "userNamePlaceholder": "Benutzername"
+    },
+    "userProfileNav": {
+      "profileTab": "Profil",
+      "skillsTab": "Fähigkeiten",
+      "languagesTab": "Sprachen"
+    },
+    "userSkills": {
+      "dialog": {
+        "title": "Fähigkeit hinzufügen"
+      },
+      "closeBtn": "Schließen",
+      "deleteBtn": "Löschen",
+      "deleteProcessBtn": "Wird gelöscht...",
+      "noSkills": "Noch keine Fähigkeiten hinzugefügt"
+    },
+    "cvPreviewWidget": {
+      "exportPdf": "Als PDF exportieren",
+      "education": "Ausbildung",
+      "proficiency": "Sprachkenntnisse",
+      "domains": "Bereiche",
+      "projects": "Projekte",
+      "roles": "Projektrollen",
+      "period": "Zeitraum",
+      "responsibilities": "Verantwortlichkeiten",
+      "environment": "Technologien",
+      "profSkills": "Berufliche Fähigkeiten",
+      "skills": "Fähigkeiten",
+      "experience": "Berufserfahrung",
+      "inYears": "In Jahren",
+      "lastUsed": "Zuletzt verwendet",
+      "used": ""
+    },
+    "cvProjects": {
+      "noProjects": "Noch keine Projekte hinzugefügt"
+    },
+    "cvsWidget": {
+      "noCvs": "Noch keine Lebensläufe hinzugefügt"
+    },
+    "languagesActionButtons": {
+      "removeButton": "Sprachen löschen",
+      "closeButton": "Schließen",
+      "deleteButton": "Löschen",
+      "deletingButton": "Wird gelöscht..."
+    },
+    "languagesManager": {
+      "noLanguages": "Noch keine Sprachen hinzugefügt"
+    }
+  },
+  "shared": {
+    "ui": {
+      "mobileFallback": {
+        "title": "Nur für Desktop und Tablet",
+        "subtitle": "Wir bitten um Entschuldigung, aber die CV-Builder-Anwendung ist derzeit nur für Bildschirme ab 768px Breite optimiert. Bitte wechseln Sie zu einem größeren Gerät, um fortzufahren."
+      },
+      "passwordInput": {
+        "btnShowPassword": "Passwort anzeigen",
+        "btnHidePassword": "Passwort verbergen"
+      },
+      "searchFullNameInput": {
+        "placeholder": "Nach vollständigem Namen suchen..."
+      },
+      "addBtn": {
+        "skill": "Fähigkeit hinzufügen"
+      },
+      "removeBtn": {
+        "skill": "Fähigkeit entfernen"
+      },
+      "sideBarPopover": {
+        "profile": "Profil",
+        "settings": "Einstellungen",
+        "logout": "Abmelden"
+      },
+      "userButton": {
+        "userNamePlaceholder": "Ihr Name"
+      }
+    },
+    "validation": {
+      "errors": {
+        "emailRequired": "E-Mail-Adresse ist erforderlich",
+        "passwordRequired": "Passwort ist erforderlich",
+        "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+        "passwordTooShort": "Das Passwort muss mindestens 8 Zeichen lang sein",
+        "invalidCredentials": "Ungültige Anmeldedaten",
+        "userExists": "Benutzer existiert bereits",
+        "noEmail": "E-Mail konnte nicht gesendet werden",
+        "actionExpired": "Dieser Link ist abgelaufen",
+        "uninspectedServerError": "Serverfehler. Bitte versuchen Sie es erneut"
+      }
+    }
+  }
+}
