@@ -103,11 +103,5 @@ npm run test
 - Nastassia Hrybouskaya
 - Usevalad Kavalenka
 
-**Mentors:**
-
-- Leonid Tarasiuk
-- Darya Yusipets
-- Nikita Mihnevich
-
 **Context:** Innowise Internship Program  
 **Timeline:** June – July 2026
