@@ -61,7 +61,7 @@ The application provides a comprehensive toolkit for managing employees, trackin
 ### 1. Clone the repository
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/Florence100/cv-builder.git
 cd cv-builder
 ```
 
